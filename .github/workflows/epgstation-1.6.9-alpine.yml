@@ -1,0 +1,173 @@
+name: epgstation-1.6.9-alpine
+
+on: [ workflow_dispatch ]
+
+jobs:
+  buildx:
+    runs-on: ubuntu-latest
+    steps:
+      -
+        name: Checkout
+        uses: actions/checkout@v2
+      -
+        name: Set up Docker Buildx
+        uses: crazy-max/ghaction-docker-buildx@v3
+      -
+        name: Cache Docker layers
+        uses: actions/cache@v2
+        id: cache
+        with:
+          path: /tmp/.buildx-cache
+          key: ${{ runner.os }}-buildx-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-buildx-
+      -
+        name: Docker Login
+        env:
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+        run: |
+          echo "${DOCKER_PASSWORD}" | docker login --username "${DOCKER_USERNAME}" --password-stdin
+      -
+        name: Docker Buildx (build) - 1.6.9-alpine-amd64
+        run: |
+          docker buildx build \
+            --cache-from "type=local,src=/tmp/.buildx-cache" \
+            --cache-to "type=local,dest=/tmp/.buildx-cache" \
+            --platform linux/amd64 \
+            --output "type=image,push=false" \
+            --tag collelog/epgstation:1.6.9-alpine-amd64 \
+            --file ./epgstation/1.6.9-alpine-amd64.Dockerfile ./epgstation/
+      -
+        name: Docker Buildx (push) - 1.6.9-alpine-amd64
+        run: |
+          docker buildx build \
+            --cache-from "type=local,src=/tmp/.buildx-cache" \
+            --platform linux/amd64 \
+            --output "type=image,push=true" \
+            --tag collelog/epgstation:1.6.9-alpine-amd64 \
+            --file ./epgstation/1.6.9-alpine-amd64.Dockerfile ./epgstation/
+      -
+        name: Docker Check Manifest - 1.6.9-alpine-amd64
+        run: |
+          docker run --rm mplatform/mquery collelog/epgstation:1.6.9-alpine-amd64
+      -
+        name: Docker Buildx (build) - 1.6.9-alpine-vaapi-amd64
+        run: |
+          docker buildx build \
+            --cache-from "type=local,src=/tmp/.buildx-cache" \
+            --cache-to "type=local,dest=/tmp/.buildx-cache" \
+            --platform linux/amd64 \
+            --output "type=image,push=false" \
+            --tag collelog/epgstation:1.6.9-alpine-vaapi-amd64 \
+            --file ./epgstation/1.6.9-alpine-vaapi-amd64.Dockerfile ./epgstation/
+      -
+        name: Docker Buildx (push) - 1.6.9-alpine-vaapi-amd64
+        run: |
+          docker buildx build \
+            --cache-from "type=local,src=/tmp/.buildx-cache" \
+            --platform linux/amd64 \
+            --output "type=image,push=true" \
+            --tag collelog/epgstation:1.6.9-alpine-vaapi-amd64 \
+            --file ./epgstation/1.6.9-alpine-vaapi-amd64.Dockerfile ./epgstation/
+      -
+        name: Docker Check Manifest - 1.6.9-alpine-vaapi-amd64
+        run: |
+          docker run --rm mplatform/mquery collelog/epgstation:1.6.9-alpine-vaapi-amd64
+      -
+        name: Docker Buildx (build) - 1.6.9-alpine-arm64v8
+        run: |
+          docker buildx build \
+            --cache-from "type=local,src=/tmp/.buildx-cache" \
+            --cache-to "type=local,dest=/tmp/.buildx-cache" \
+            --platform linux/arm64 \
+            --output "type=image,push=false" \
+            --tag collelog/epgstation:1.6.9-alpine-arm64v8 \
+            --file ./epgstation/1.6.9-alpine-arm64v8.Dockerfile ./epgstation/
+      -
+        name: Docker Buildx (push) - 1.6.9-alpine-arm64v8
+        run: |
+          docker buildx build \
+            --cache-from "type=local,src=/tmp/.buildx-cache" \
+            --platform linux/arm64 \
+            --output "type=image,push=true" \
+            --tag collelog/epgstation:1.6.9-alpine-arm64v8 \
+            --file ./epgstation/1.6.9-alpine-arm64v8.Dockerfile ./epgstation/
+      -
+        name: Docker Check Manifest - 1.6.9-alpine-arm64v8
+        run: |
+          docker run --rm mplatform/mquery collelog/epgstation:1.6.9-alpine-arm64v8
+      -
+        name: Docker Buildx (build) - 1.6.9-alpine-rpi4-arm64v8
+        run: |
+          docker buildx build \
+            --cache-from "type=local,src=/tmp/.buildx-cache" \
+            --cache-to "type=local,dest=/tmp/.buildx-cache" \
+            --platform linux/arm64 \
+            --output "type=image,push=false" \
+            --tag collelog/epgstation:1.6.9-alpine-rpi4-arm64v8 \
+            --file ./epgstation/1.6.9-alpine-rpi4-arm64v8.Dockerfile ./epgstation/
+      -
+        name: Docker Buildx (push) - 1.6.9-alpine-rpi4-arm64v8
+        run: |
+          docker buildx build \
+            --cache-from "type=local,src=/tmp/.buildx-cache" \
+            --platform linux/arm64 \
+            --output "type=image,push=true" \
+            --tag collelog/epgstation:1.6.9-alpine-rpi4-arm64v8 \
+            --file ./epgstation/1.6.9-alpine-rpi4-arm64v8.Dockerfile ./epgstation/
+      -
+        name: Docker Check Manifest - 1.6.9-alpine-rpi4-arm64v8
+        run: |
+          docker run --rm mplatform/mquery collelog/epgstation:1.6.9-alpine-rpi4-arm64v8
+      -
+        name: Docker Buildx (build) - 1.6.9-alpine-arm32v7
+        run: |
+          docker buildx build \
+            --cache-from "type=local,src=/tmp/.buildx-cache" \
+            --cache-to "type=local,dest=/tmp/.buildx-cache" \
+            --platform linux/arm/v7 \
+            --output "type=image,push=false" \
+            --tag collelog/epgstation:1.6.9-alpine-arm32v7 \
+            --file ./epgstation/1.6.9-alpine-arm32v7.Dockerfile ./epgstation/
+      -
+        name: Docker Buildx (push) - 1.6.9-alpine-arm32v7
+        run: |
+          docker buildx build \
+            --cache-from "type=local,src=/tmp/.buildx-cache" \
+            --platform linux/arm/v7 \
+            --output "type=image,push=true" \
+            --tag collelog/epgstation:1.6.9-alpine-arm32v7 \
+            --file ./epgstation/1.6.9-alpine-arm32v7.Dockerfile ./epgstation/
+      -
+        name: Docker Check Manifest - 1.6.9-alpine-arm32v7
+        run: |
+          docker run --rm mplatform/mquery collelog/epgstation:1.6.9-alpine-arm32v7
+      -
+        name: Docker Buildx (build) - 1.6.9-alpine-rpi4-arm32v7
+        run: |
+          docker buildx build \
+            --cache-from "type=local,src=/tmp/.buildx-cache" \
+            --cache-to "type=local,dest=/tmp/.buildx-cache" \
+            --platform linux/arm/v7 \
+            --output "type=image,push=false" \
+            --tag collelog/epgstation:1.6.9-alpine-rpi4-arm32v7 \
+            --file ./epgstation/1.6.9-alpine-rpi4-arm32v7.Dockerfile ./epgstation/
+      -
+        name: Docker Buildx (push) - 1.6.9-alpine-rpi4-arm32v7
+        run: |
+          docker buildx build \
+            --cache-from "type=local,src=/tmp/.buildx-cache" \
+            --platform linux/arm/v7 \
+            --output "type=image,push=true" \
+            --tag collelog/epgstation:1.6.9-alpine-rpi4-arm32v7 \
+            --file ./epgstation/1.6.9-alpine-rpi4-arm32v7.Dockerfile ./epgstation/
+      -
+        name: Docker Check Manifest - 1.6.9-alpine-rpi4-arm32v7
+        run: |
+          docker run --rm mplatform/mquery collelog/epgstation:1.6.9-alpine-rpi4-arm32v7
+      -
+        name: Clear
+        if: always()
+        run: |
+          rm -f ${HOME}/.docker/config.json
