@@ -98,28 +98,28 @@ jobs:
         run: |
           docker run --rm mplatform/mquery collelog/epgstation:1.7.4-alpine-arm64v8
       -
-        name: Docker Buildx (build) - 1.7.4-alpine-rpi4-arm64v8
+        name: Docker Buildx (build) - 1.7.4-alpine-rpi-arm64v8
         run: |
           docker buildx build \
             --cache-from "type=local,src=/tmp/.buildx-cache" \
             --cache-to "type=local,dest=/tmp/.buildx-cache" \
             --platform linux/arm64 \
             --output "type=image,push=false" \
-            --tag collelog/epgstation:1.7.4-alpine-rpi4-arm64v8 \
-            --file ./epgstation/1.7.4-alpine-rpi4-arm64v8.Dockerfile ./epgstation/
+            --tag collelog/epgstation:1.7.4-alpine-rpi-arm64v8 \
+            --file ./epgstation/1.7.4-alpine-rpi-arm64v8.Dockerfile ./epgstation/
       -
-        name: Docker Buildx (push) - 1.7.4-alpine-rpi4-arm64v8
+        name: Docker Buildx (push) - 1.7.4-alpine-rpi-arm64v8
         run: |
           docker buildx build \
             --cache-from "type=local,src=/tmp/.buildx-cache" \
             --platform linux/arm64 \
             --output "type=image,push=true" \
-            --tag collelog/epgstation:1.7.4-alpine-rpi4-arm64v8 \
-            --file ./epgstation/1.7.4-alpine-rpi4-arm64v8.Dockerfile ./epgstation/
+            --tag collelog/epgstation:1.7.4-alpine-rpi-arm64v8 \
+            --file ./epgstation/1.7.4-alpine-rpi-arm64v8.Dockerfile ./epgstation/
       -
-        name: Docker Check Manifest - 1.7.4-alpine-rpi4-arm64v8
+        name: Docker Check Manifest - 1.7.4-alpine-rpi-arm64v8
         run: |
-          docker run --rm mplatform/mquery collelog/epgstation:1.7.4-alpine-rpi4-arm64v8
+          docker run --rm mplatform/mquery collelog/epgstation:1.7.4-alpine-rpi-arm64v8
       -
         name: Docker Buildx (build) - 1.7.4-alpine-arm32v7
         run: |
@@ -144,28 +144,28 @@ jobs:
         run: |
           docker run --rm mplatform/mquery collelog/epgstation:1.7.4-alpine-arm32v7
       -
-        name: Docker Buildx (build) - 1.7.4-alpine-rpi4-arm32v7
+        name: Docker Buildx (build) - 1.7.4-alpine-rpi-arm32v7
         run: |
           docker buildx build \
             --cache-from "type=local,src=/tmp/.buildx-cache" \
             --cache-to "type=local,dest=/tmp/.buildx-cache" \
             --platform linux/arm/v7 \
             --output "type=image,push=false" \
-            --tag collelog/epgstation:1.7.4-alpine-rpi4-arm32v7 \
-            --file ./epgstation/1.7.4-alpine-rpi4-arm32v7.Dockerfile ./epgstation/
+            --tag collelog/epgstation:1.7.4-alpine-rpi-arm32v7 \
+            --file ./epgstation/1.7.4-alpine-rpi-arm32v7.Dockerfile ./epgstation/
       -
-        name: Docker Buildx (push) - 1.7.4-alpine-rpi4-arm32v7
+        name: Docker Buildx (push) - 1.7.4-alpine-rpi-arm32v7
         run: |
           docker buildx build \
             --cache-from "type=local,src=/tmp/.buildx-cache" \
             --platform linux/arm/v7 \
             --output "type=image,push=true" \
-            --tag collelog/epgstation:1.7.4-alpine-rpi4-arm32v7 \
-            --file ./epgstation/1.7.4-alpine-rpi4-arm32v7.Dockerfile ./epgstation/
+            --tag collelog/epgstation:1.7.4-alpine-rpi-arm32v7 \
+            --file ./epgstation/1.7.4-alpine-rpi-arm32v7.Dockerfile ./epgstation/
       -
-        name: Docker Check Manifest - 1.7.4-alpine-rpi4-arm32v7
+        name: Docker Check Manifest - 1.7.4-alpine-rpi-arm32v7
         run: |
-          docker run --rm mplatform/mquery collelog/epgstation:1.7.4-alpine-rpi4-arm32v7
+          docker run --rm mplatform/mquery collelog/epgstation:1.7.4-alpine-rpi-arm32v7
       -
         name: Clear
         if: always()

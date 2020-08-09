@@ -1,12 +1,12 @@
 # FFmpeg
-FROM collelog/ffmpeg:4.3.1-alpine-rpi4-arm32v7 AS ffmpeg-image
+FROM collelog/ffmpeg:4.3.1-alpine-rpi-arm64v8 AS ffmpeg-image
 
 
 # EPGStation
 FROM collelog/buildenv:node12-alpine-jst AS epgstation-build
 
 WORKDIR /usr/local/EPGStation
-RUN curl -fsSL https://github.com/l3tnun/EPGStation/archive/v1.7.2.tar.gz | \
+RUN curl -fsSL https://github.com/l3tnun/EPGStation/archive/v1.6.8.tar.gz | \
 		tar -xz --strip-components=1
 RUN npm install --nosave --python=/usr/bin/python3
 RUN npm run build
@@ -40,7 +40,6 @@ RUN set -eux && \
 	echo http://dl-cdn.alpinelinux.org/alpine/edge/community >> /etc/apk/repositories && \
 	apk upgrade --update && \
 	apk add --no-cache --update \
-		linux-rpi4 \
 		raspberrypi-libs && \
 	\
 	# Compatible with Old Version config.json
