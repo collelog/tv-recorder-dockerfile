@@ -167,6 +167,52 @@ jobs:
         run: |
           docker run --rm mplatform/mquery collelog/epgstation:1.6.9-alpine-rpi-arm32v7
       -
+        name: Docker Buildx (build) - 1.6.9-alpine-arm32v6
+        run: |
+          docker buildx build \
+            --cache-from "type=local,src=/tmp/.buildx-cache" \
+            --cache-to "type=local,dest=/tmp/.buildx-cache" \
+            --platform linux/arm/v6 \
+            --output "type=image,push=false" \
+            --tag collelog/epgstation:1.6.9-alpine-arm32v6 \
+            --file ./epgstation/1.6.9-alpine-arm32v6.Dockerfile ./epgstation/
+      -
+        name: Docker Buildx (push) - 1.6.9-alpine-arm32v6
+        run: |
+          docker buildx build \
+            --cache-from "type=local,src=/tmp/.buildx-cache" \
+            --platform linux/arm/v6 \
+            --output "type=image,push=true" \
+            --tag collelog/epgstation:1.6.9-alpine-arm32v6 \
+            --file ./epgstation/1.6.9-alpine-arm32v6.Dockerfile ./epgstation/
+      -
+        name: Docker Check Manifest - 1.6.9-alpine-arm32v6
+        run: |
+          docker run --rm mplatform/mquery collelog/epgstation:1.6.9-alpine-arm32v6
+      -
+        name: Docker Buildx (build) - 1.6.9-alpine-rpi-arm32v6
+        run: |
+          docker buildx build \
+            --cache-from "type=local,src=/tmp/.buildx-cache" \
+            --cache-to "type=local,dest=/tmp/.buildx-cache" \
+            --platform linux/arm/v6 \
+            --output "type=image,push=false" \
+            --tag collelog/epgstation:1.6.9-alpine-rpi-arm32v6 \
+            --file ./epgstation/1.6.9-alpine-rpi-arm32v6.Dockerfile ./epgstation/
+      -
+        name: Docker Buildx (push) - 1.6.9-alpine-rpi-arm32v6
+        run: |
+          docker buildx build \
+            --cache-from "type=local,src=/tmp/.buildx-cache" \
+            --platform linux/arm/v6 \
+            --output "type=image,push=true" \
+            --tag collelog/epgstation:1.6.9-alpine-rpi-arm32v6 \
+            --file ./epgstation/1.6.9-alpine-rpi-arm32v6.Dockerfile ./epgstation/
+      -
+        name: Docker Check Manifest - 1.6.9-alpine-rpi-arm32v6
+        run: |
+          docker run --rm mplatform/mquery collelog/epgstation:1.6.9-alpine-rpi-arm32v6
+      -
         name: Clear
         if: always()
         run: |
