@@ -13,7 +13,7 @@ LABEL maintainer "collelog <collelog.cavamin@gmail.com>"
 EXPOSE 8888
 EXPOSE 8889
 
-ENV LD_LIBRARY_PATH=/opt/vc/lib:/usr/local/lib64:/usr/local/lib:/usr/lib:/lib
+ENV LD_LIBRARY_PATH=/opt/vc/lib:/usr/local/lib:/usr/lib:/lib
 
 # FFmpeg
 COPY --from=ffmpeg-image /build /
