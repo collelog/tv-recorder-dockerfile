@@ -20,4 +20,4 @@ RUN rm -rf /tmp/* /var/cache/apk/*
 FROM scratch
 LABEL maintainer "collelog <collelog.cavamin@gmail.com>"
 
-COPY --from=build /build /build
+COPY --from=epgstation-build /build /build
