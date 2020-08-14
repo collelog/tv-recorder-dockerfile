@@ -3,21 +3,7 @@ FROM collelog/ffmpeg:4.3.1-alpine-vaapi-amd64 AS ffmpeg-image
 
 
 # EPGStation
-FROM collelog/buildenv:node14-alpine-jst AS epgstation-build
-
-WORKDIR /usr/local/EPGStation
-RUN curl -fsSL https://github.com/l3tnun/EPGStation/archive/v1.7.4.tar.gz | \
-		tar -xz --strip-components=1
-RUN npm install --nosave
-RUN npm run build
-
-RUN mkdir -p /build
-RUN cp --archive --parents --no-dereference /usr/local/EPGStation /build
-RUN cp --archive --parents --no-dereference /etc/localtime /build
-RUN cp --archive --parents --no-dereference /etc/timezone /build
-
-RUN npm cache verify
-RUN rm -rf /tmp/* /var/cache/apk/*
+FROM collelog/epgstation-build:1.7.4-alpine AS epgstation-build
 
 
 # final image
