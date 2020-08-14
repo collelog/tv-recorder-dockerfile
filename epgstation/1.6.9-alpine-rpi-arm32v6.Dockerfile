@@ -1,19 +1,19 @@
 # FFmpeg
-FROM collelog/ffmpeg:4.3.1-alpine-arm32v6 AS ffmpeg-image
+FROM collelog/ffmpeg:4.3.1-alpine-rpi-arm32v6 AS ffmpeg-image
 
 
 # EPGStation
-FROM collelog/epgstation-build:1.7.3-alpine AS epgstation-build
+FROM collelog/epgstation-build:1.6.9-alpine AS epgstation-build
 
 
 # final image
-FROM node:14-alpine
+FROM node:12-alpine
 LABEL maintainer "collelog <collelog.cavamin@gmail.com>"
 
 EXPOSE 8888
 EXPOSE 8889
 
-ENV LD_LIBRARY_PATH=/usr/local/lib:/usr/lib:/lib
+ENV LD_LIBRARY_PATH=/opt/vc/lib:/usr/local/lib:/usr/lib:/lib
 
 # FFmpeg
 COPY --from=ffmpeg-image /build /
@@ -25,6 +25,8 @@ RUN set -eux && \
 	echo http://dl-cdn.alpinelinux.org/alpine/edge/testing >> /etc/apk/repositories && \
 	echo http://dl-cdn.alpinelinux.org/alpine/edge/community >> /etc/apk/repositories && \
 	apk upgrade --update && \
+	apk add --no-cache --update \
+		raspberrypi-libs && \
 	\
 	# Compatible with Old Version config.json
 	mkdir -p /usr/local/ffmpeg/bin && \
