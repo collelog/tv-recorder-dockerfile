@@ -1,5 +1,5 @@
 # FFmpeg
-FROM collelog/ffmpeg:4.3.1-alpine-arm32v7 AS ffmpeg-image
+FROM collelog/ffmpeg:4.3.1-alpine-arm32v6 AS ffmpeg-image
 
 
 # EPGStation
