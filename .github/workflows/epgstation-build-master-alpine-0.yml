@@ -38,7 +38,7 @@ jobs:
             --output "type=image,push=false" \
             --tag collelog/epgstation-build:master-alpine \
             --file ./epgstation-build/master-alpine.Dockerfile ./epgstation-build/ \
-            --ulimit 4096
+            --ulimit 2048
       -
         name: Docker Buildx (push) - master-alpine
         run: |
