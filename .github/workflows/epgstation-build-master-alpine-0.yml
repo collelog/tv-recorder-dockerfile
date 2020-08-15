@@ -37,7 +37,8 @@ jobs:
             --platform linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64 \
             --output "type=image,push=false" \
             --tag collelog/epgstation-build:master-alpine \
-            --file ./epgstation-build/master-alpine.Dockerfile ./epgstation-build/
+            --file ./epgstation-build/master-alpine.Dockerfile ./epgstation-build/ \
+            --ulimit 4096
       -
         name: Docker Buildx (push) - master-alpine
         run: |
