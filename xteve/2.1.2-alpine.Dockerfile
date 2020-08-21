@@ -12,7 +12,7 @@ RUN go get github.com/kardianos/osext
 RUN mkdir /opt/xteve
 RUN go build -o /opt/xteve xteve.go
 
-RUN mkdir -p /build/opt/xteve/conf/backup
+RUN mkdir -p /build/var/opt/xteve/conf/backup
 RUN mkdir -p /build/tmp/xteve
 RUN cp --archive --parents --no-dereference /opt/xteve /build
 
@@ -37,10 +37,10 @@ RUN set -eux && \
 	# cleaning
 	rm -rf /var/cache/apk/*
 
-VOLUME /opt/xteve/conf
+VOLUME /var/opt/xteve/conf
 VOLUME /tmp/xteve
 
 WORKDIR /opt/xteve
 
 ENTRYPOINT [ "/opt/xteve/xteve" ]
-CMD [ "-config", "/opt/xteve/conf", "-port", "34400" ]
+CMD [ "-config", "/var/opt/xteve/conf", "-port", "34400" ]
