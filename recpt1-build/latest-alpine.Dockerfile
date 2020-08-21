@@ -1,8 +1,6 @@
 # libarib25, recpt1
 FROM collelog/buildenv:alpine-jst AS recpt1-build
 
-ENV MAKEFLAGS=-j15
-
 RUN apk add --no-cache --update \
 	pcsc-lite-dev
 
@@ -19,8 +17,8 @@ RUN \
 		tar -xz --strip-components=1 && \
 	cd ./recpt1 && \
 	./autogen.sh && \
-	./configure --prefix=/usr/local && \
-	make ${MAKEFLAGS} && \
+	./configure --prefix=/usr/local --enable-b25 && \
+	make -j $(nproc) && \
 	make install
 
 RUN mkdir /build
