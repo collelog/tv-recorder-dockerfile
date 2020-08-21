@@ -1,7 +1,6 @@
 # xTeVe
 FROM collelog/buildenv:golang-alpine AS xteve-build
 
-
 WORKDIR /tmp/xteve
 RUN \
 	curl -fsSL https://github.com/xteve-project/xTeVe/archive/2.1.2.0120.tar.gz | \
@@ -12,10 +11,12 @@ RUN go get github.com/kardianos/osext
 RUN mkdir /opt/xteve
 RUN go build -o /opt/xteve xteve.go
 
+WORKDIR /build
 RUN mkdir -p /build/var/opt/xteve/conf/backup
 RUN mkdir -p /build/tmp/xteve
 RUN cp --archive --parents --no-dereference /opt/xteve /build
 
+WORKDIR /root
 RUN rm -rf /tmp/* /var/cache/apk/*
 
 

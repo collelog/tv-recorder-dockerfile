@@ -24,4 +24,6 @@ RUN set -eux && \
 
 VOLUME /var/lib/mysql
 
+WORKDIR /var/lib/mysql
+
 ENTRYPOINT /scripts/run.sh

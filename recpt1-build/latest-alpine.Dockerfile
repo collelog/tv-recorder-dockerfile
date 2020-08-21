@@ -1,6 +1,7 @@
 # libarib25, recpt1
 FROM collelog/buildenv:alpine-jst AS recpt1-build
 
+WORKDIR /root
 RUN apk add --no-cache --update \
 	pcsc-lite-dev
 
@@ -21,7 +22,7 @@ RUN \
 	make -j $(nproc) && \
 	make install
 
-RUN mkdir /build
+WORKDIR /build
 RUN cp --archive --parents --no-dereference /usr/local/lib64/libarib25.* /build || true
 RUN cp --archive --parents --no-dereference /usr/local/lib64/pkgconfig/libarib25.pc /build || true
 RUN cp --archive --parents --no-dereference /usr/local/lib/libarib25.* /build || true
@@ -32,6 +33,7 @@ RUN cp --archive --parents --no-dereference /usr/local/bin/b25 /build
 RUN cp --archive --parents --no-dereference /etc/localtime /build
 RUN cp --archive --parents --no-dereference /etc/timezone /build
 
+WORKDIR /root
 RUN rm -rf /tmp/* /var/cache/apk/*
 
 
