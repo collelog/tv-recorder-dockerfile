@@ -9,12 +9,12 @@ RUN \
 RUN go get github.com/koron/go-ssdp
 RUN go get github.com/gorilla/websocket
 RUN go get github.com/kardianos/osext
-RUN mkdir -p /usr/local/xteve
-RUN go build -o /usr/local/xteve xteve.go
+RUN mkdir /opt/xteve
+RUN go build -o /opt/xteve xteve.go
 
-RUN mkdir -p /build/usr/local/xteve/conf/backup
+RUN mkdir -p /build/opt/xteve/conf/backup
 RUN mkdir -p /build/tmp/xteve
-RUN cp --archive --parents --no-dereference /usr/local/xteve /build
+RUN cp --archive --parents --no-dereference /opt/xteve /build
 
 RUN rm -rf /tmp/* /var/cache/apk/*
 
@@ -37,10 +37,10 @@ RUN set -eux && \
 	# cleaning
 	rm -rf /var/cache/apk/*
 
-VOLUME /usr/local/xteve/conf
+VOLUME /opt/xteve/conf
 VOLUME /tmp/xteve
 
-WORKDIR /usr/local/xteve
+WORKDIR /opt/xteve
 
-ENTRYPOINT [ "/usr/local/xteve/xteve" ]
-CMD [ "-config", "/usr/local/xteve/conf", "-port", "34400" ]
+ENTRYPOINT [ "/opt/xteve/xteve" ]
+CMD [ "-config", "/opt/xteve/conf", "-port", "34400" ]
