@@ -1,6 +1,6 @@
 # mirakc-arib, mirakc
 FROM masnagam/mirakc:0.3.0-alpine AS mirakc-image
-RUN mkdir /build
+WORKDIR /build
 RUN cp --archive --parents --no-dereference /usr/local/bin/mirakc-arib /build
 RUN cp --archive --parents --no-dereference /usr/local/bin/mirakc /build
 RUN cp --archive --parents --no-dereference /etc/mirakurun.openapi.json /build
@@ -18,7 +18,6 @@ FROM collelog/arib-b25-stream-test-build:latest-alpine AS arib-b25-stream-test-i
 FROM alpine:3.12.0
 LABEL maintainer "collelog <collelog.cavamin@gmail.com>"
 
-EXPOSE 40772
 ENV LD_LIBRARY_PATH=/usr/local/lib64
 ENV MIRAKC_CONFIG=/etc/mirakc/config.yml
 
@@ -31,7 +30,7 @@ COPY --from=recpt1-image /build /
 # arib-b25-stream-test
 COPY --from=arib-b25-stream-test-image /build /
 
-COPY ./services.sh /usr/local/bin/
+COPY ./services.sh /usr/local/bin/services.sh
 
 RUN set -eux && \
 	apk upgrade --update && \
@@ -49,6 +48,7 @@ RUN set -eux && \
 	\
 	chmod 755 /usr/local/bin/services.sh
 
+EXPOSE 40772
 VOLUME /var/lib/mirakc/epg
-
-ENTRYPOINT /usr/local/bin/services.sh
+ENTRYPOINT ["/usr/local/bin/services.sh"]
+CMD []
