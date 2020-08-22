@@ -12,19 +12,16 @@ RUN mkdir /opt/xteve
 RUN go build -o /opt/xteve xteve.go
 
 WORKDIR /build
-RUN mkdir -p /build/var/opt/xteve/conf/backup
+RUN mkdir -p /build/etc/opt/xteve/backup
 RUN mkdir -p /build/tmp/xteve
 RUN cp --archive --parents --no-dereference /opt/xteve /build
 
-WORKDIR /root
 RUN rm -rf /tmp/* /var/cache/apk/*
 
 
 # final image
 FROM alpine:3.12
 LABEL maintainer "collelog <collelog.cavamin@gmail.com>"
-
-EXPOSE 34400
 
 # xTeVe
 COPY --from=xteve-build /build /
@@ -38,10 +35,10 @@ RUN set -eux && \
 	# cleaning
 	rm -rf /var/cache/apk/*
 
-VOLUME /var/opt/xteve/conf
-VOLUME /tmp/xteve
-
 WORKDIR /opt/xteve
 
-ENTRYPOINT [ "/opt/xteve/xteve" ]
-CMD [ "-config", "/var/opt/xteve/conf", "-port", "34400" ]
+EXPOSE 34400
+VOLUME /etc/opt/xteve
+VOLUME /tmp/xteve
+ENTRYPOINT ["/opt/xteve/xteve"]
+CMD ["-config", "/etc/opt/xteve", "-port", "34400"]
