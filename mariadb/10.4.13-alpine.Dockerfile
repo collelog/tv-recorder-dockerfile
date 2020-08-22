@@ -1,8 +1,6 @@
 FROM alpine:3.12
 LABEL maintainer "collelog <collelog.cavamin@gmail.com>"
 
-EXPOSE 3306
-
 COPY ./scripts/run.sh /scripts/run.sh
 
 RUN set -eux && \
@@ -22,8 +20,9 @@ RUN set -eux && \
 	mkdir /scripts/pre-init.d && \
 	chmod -R 755 /scripts
 
-VOLUME /var/lib/mysql
-
 WORKDIR /var/lib/mysql
 
-ENTRYPOINT /scripts/run.sh
+EXPOSE 3306
+VOLUME /var/lib/mysql
+ENTRYPOINT ["/scripts/run.sh"]
+CMD []
