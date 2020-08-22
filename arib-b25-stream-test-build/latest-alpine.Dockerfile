@@ -5,7 +5,7 @@ RUN apk add --no-cache --update \
 	pcsc-lite-dev
 
 WORKDIR /tmp
-RUN npm install arib-b25-stream-test -g --unsafe
+RUN npm install arib-b25-stream-test --unsafe
 RUN cp /tmp/node_modules/.bin/arib-b25-stream-test /usr/local/bin/arib-b25-stream-test
 
 WORKDIR /build
