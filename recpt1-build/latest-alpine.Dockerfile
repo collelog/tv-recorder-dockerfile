@@ -1,26 +1,23 @@
 # libarib25, recpt1
 FROM collelog/buildenv:alpine-jst AS recpt1-build
 
-WORKDIR /root
 RUN apk add --no-cache --update \
 	pcsc-lite-dev
 
 WORKDIR /tmp/libarib25
-RUN \
-	curl -fsSL https://github.com/stz2012/libarib25/tarball/master | \
-		tar -xz --strip-components=1 && \
-	cmake . && \
-	make install
+RUN curl -fsSL https://github.com/stz2012/libarib25/tarball/master | \
+		tar -xz --strip-components=1
+RUN cmake .
+RUN make install
 
 WORKDIR /tmp/recpt1
-RUN \
-	curl -fsSL https://github.com/stz2012/recpt1/tarball/master | \
-		tar -xz --strip-components=1 && \
-	cd ./recpt1 && \
-	./autogen.sh && \
-	./configure --prefix=/usr/local --enable-b25 && \
-	make -j $(nproc) && \
-	make install
+RUN curl -fsSL https://github.com/stz2012/recpt1/tarball/master | \
+		tar -xz --strip-components=1
+RUN cd ./recpt1
+RUN ./autogen.sh
+RUN ./configure --prefix=/usr/local --enable-b25
+RUN make -j $(nproc)
+RUN make install
 
 WORKDIR /build
 RUN cp --archive --parents --no-dereference /usr/local/lib64/libarib25.* /build || true
@@ -33,7 +30,6 @@ RUN cp --archive --parents --no-dereference /usr/local/bin/b25 /build
 RUN cp --archive --parents --no-dereference /etc/localtime /build
 RUN cp --archive --parents --no-dereference /etc/timezone /build
 
-WORKDIR /root
 RUN rm -rf /tmp/* /var/cache/apk/*
 
 
