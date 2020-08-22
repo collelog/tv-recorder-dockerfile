@@ -10,9 +10,6 @@ FROM collelog/epgstation-build:1.7.0-alpine AS epgstation-build
 FROM node:12-alpine
 LABEL maintainer "collelog <collelog.cavamin@gmail.com>"
 
-EXPOSE 8888
-EXPOSE 8889
-
 ENV LD_LIBRARY_PATH=/usr/local/lib64:/usr/lib64:/lib64:/usr/local/lib:/usr/lib:/lib
 
 # FFmpeg
@@ -26,15 +23,18 @@ RUN set -eux && \
 	echo http://dl-cdn.alpinelinux.org/alpine/edge/community >> /etc/apk/repositories && \
 	apk upgrade --update && \
 	\
-	# Compatible with Old Version config.json
-	mkdir -p /usr/local/ffmpeg/bin && \
-	ln -s /usr/local/bin/ffmpeg /usr/local/ffmpeg/bin/ffmpeg && \
-	ln -s /usr/local/bin/ffprobe /usr/local/ffmpeg/bin/ffprobe && \
-	\
 	# cleaning
 	npm cache verify && \
 	rm -rf /tmp/* ~/.npm /var/cache/apk/*
 
-WORKDIR /usr/local/EPGStation
+WORKDIR /opt/epgstation
 
-ENTRYPOINT npm start
+EXPOSE 8888
+EXPOSE 8889
+VOLUME /opt/epgstation/config
+VOLUME /opt/epgstation/data
+VOLUME /opt/epgstation/logs
+VOLUME /opt/epgstation/recorded
+VOLUME /opt/epgstation/thumbnail
+ENTRYPOINT ["npm start"]
+CMD []
