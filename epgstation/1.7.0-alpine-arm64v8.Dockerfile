@@ -22,7 +22,8 @@ RUN set -eux && \
 	apk upgrade --update && \
 	apk add --no-cache --update \
 		tzdata && \
-	\	# cleaning
+	\
+	# cleaning
 	npm cache verify && \
 	rm -rf /tmp/* ~/.npm /var/cache/apk/*
 
