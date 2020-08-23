@@ -1,5 +1,5 @@
 # arib-b25-stream-test
-FROM collelog/buildenv:node12-alpine-jst AS build
+FROM collelog/buildenv:node12-alpine AS build
 
 RUN apk add --no-cache --update \
 	pcsc-lite-dev
@@ -10,8 +10,6 @@ RUN cp /tmp/node_modules/.bin/arib-b25-stream-test /usr/local/bin/arib-b25-strea
 
 WORKDIR /build
 RUN cp --archive --parents --no-dereference /usr/local/bin/arib-b25-stream-test /build
-RUN cp --archive --parents --no-dereference /etc/localtime /build
-RUN cp --archive --parents --no-dereference /etc/timezone /build
 
 RUN npm cache verify
 RUN rm -rf /tmp/* /var/cache/apk/*

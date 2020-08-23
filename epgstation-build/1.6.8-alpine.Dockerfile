@@ -1,5 +1,5 @@
 # EPGStation
-FROM collelog/buildenv:node12-alpine-jst AS epgstation-build
+FROM collelog/buildenv:node12-alpine AS epgstation-build
 
 WORKDIR /opt/epgstation
 RUN curl -fsSL https://github.com/l3tnun/EPGStation/archive/v1.6.8.tar.gz | \
@@ -9,8 +9,6 @@ RUN npm run build
 
 WORKDIR /build
 RUN cp --archive --parents --no-dereference /opt/epgstation /build
-RUN cp --archive --parents --no-dereference /etc/localtime /build
-RUN cp --archive --parents --no-dereference /etc/timezone /build
 
 RUN npm cache verify
 RUN rm -rf /tmp/* /var/cache/apk/*

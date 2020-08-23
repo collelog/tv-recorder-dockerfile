@@ -42,7 +42,8 @@ RUN set -eux && \
 		libstdc++ \
 		pcsc-lite \
 		pcsc-lite-libs \
-		socat && \
+		socat \
+		tzdata && \
 	\
 	# cleaning
 	rm -rf /tmp/* /var/cache/apk/* && \

@@ -10,7 +10,7 @@ RUN set -eux && \
 		mariadb-client=10.4.13-r0 \
 		mariadb-server-utils=10.4.13-r0 \
 		pwgen \
-	&& \
+		tzdata && \
 	\
 	# cleaning
 	rm -rf /tmp/* /var/cache/apk/* && \

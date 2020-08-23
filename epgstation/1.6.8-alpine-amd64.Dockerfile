@@ -19,14 +19,9 @@ COPY --from=ffmpeg-image /build /
 COPY --from=epgstation-build /build /
 
 RUN set -eux && \
-	echo http://dl-cdn.alpinelinux.org/alpine/edge/testing >> /etc/apk/repositories && \
-	echo http://dl-cdn.alpinelinux.org/alpine/edge/community >> /etc/apk/repositories && \
 	apk upgrade --update && \
-	\
-	# Compatible with Old Version config.json
-	mkdir -p /usr/local/ffmpeg/bin && \
-	ln -s /usr/local/bin/ffmpeg /usr/local/ffmpeg/bin/ffmpeg && \
-	ln -s /usr/local/bin/ffprobe /usr/local/ffmpeg/bin/ffprobe && \
+	apk add --no-cache --update \
+		tzdata && \
 	\
 	# cleaning
 	npm cache verify && \

@@ -43,7 +43,12 @@ COPY services.sh /usr/local/bin
 
 RUN set -eux && \
 	apk upgrade --update && \
-	apk add --no-cache ccid libstdc++ pcsc-lite pcsc-lite-libs && \
+	apk add --no-cache \
+		ccid \
+		libstdc++ \
+		pcsc-lite \
+		pcsc-lite-libs \
+		tzdata && \
 	\
 	# cleaning
 	npm cache verify && \

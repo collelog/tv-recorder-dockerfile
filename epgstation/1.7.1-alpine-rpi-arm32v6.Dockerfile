@@ -19,11 +19,10 @@ COPY --from=ffmpeg-image /build /
 COPY --from=epgstation-build /build /
 
 RUN set -eux && \
-	echo http://dl-cdn.alpinelinux.org/alpine/edge/testing >> /etc/apk/repositories && \
-	echo http://dl-cdn.alpinelinux.org/alpine/edge/community >> /etc/apk/repositories && \
 	apk upgrade --update && \
 	apk add --no-cache --update \
-		raspberrypi-libs && \
+		raspberrypi-libs \
+		tzdata && \
 	\
 	# cleaning
 	npm cache verify && \

@@ -27,7 +27,8 @@ RUN set -eux && \
 		libva \
 		libva-intel-driver \
 		libva-vdpau-driver \
-		mesa-va-gallium && \
+		mesa-va-gallium \
+		tzdata && \
 	\
 	# cleaning
 	npm cache verify && \
