@@ -16,7 +16,7 @@ RUN rm -rf /tmp/* /var/cache/apk/*
 
 
 # final image
-FROM scratch
+FROM alpine:3.12.0
 LABEL maintainer "collelog <collelog.cavamin@gmail.com>"
 
 COPY --from=build /build /build
