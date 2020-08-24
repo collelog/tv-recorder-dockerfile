@@ -43,5 +43,5 @@ VOLUME /opt/epgstation/data
 VOLUME /opt/epgstation/logs
 VOLUME /opt/epgstation/recorded
 VOLUME /opt/epgstation/thumbnail
-ENTRYPOINT ["npm start"]
-CMD []
+ENTRYPOINT ["npm"]
+CMD ["start"]
