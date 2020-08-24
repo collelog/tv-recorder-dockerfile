@@ -1,14 +1,15 @@
 # [TV Recorder on Docker] Dockerfiles
->[collelog/tv-recorder](https://github.com/collelog/tv-recorder) プロジェクトを構成するDockerイメージのDockerfileです。
+>[collelog/tv-recorder GitHubリポジトリ](https://github.com/collelog/tv-recorder)を構成するDockerイメージのDockerfileです。
 
 Dockerfileで作成したDockerイメージは全てDocker Hubにて公開しています。  
 対象プラットフォームはamd64(x86-64),arm64v8,arm32v7,arm32v6です。
 
-## Docker Hub
+## Docker Hub タグ
 - **EPGStation**
   - [collelog/epgstation](https://hub.docker.com/r/collelog/epgstation)
     - [collelog/epgstation-build](https://hub.docker.com/r/collelog/epgstation-build)
-    - [collelog/ffmpeg](https://hub.docker.com/r/collelog/ffmpeg) ※Dockerfileは[collelog/ffmpeg](https://github.com/collelog/ffmpeg) プロジェクトにて管理しています。
+    - [collelog/ffmpeg](https://hub.docker.com/r/collelog/ffmpeg)   
+      Dockerfileは[collelog/ffmpeg GitHubリポジトリ](https://github.com/collelog/ffmpeg)にて管理しています。
 - **MariaDB**
   - [collelog/mariadb](https://hub.docker.com/r/collelog/mariadb)
 
@@ -18,9 +19,8 @@ Dockerfileで作成したDockerイメージは全てDocker Hubにて公開して
     - [collelog/arib-b25-stream-test-build](https://hub.docker.com/r/collelog/epgstation-build)
 
 - **xteve**
-  - [collelog/xteve](https://hub.docker.com/r/collelog/epgstation-build)
-
-
+  - [collelog/xteve](https://hub.docker.com/r/collelog/xteve)  
+    Dockerfileは[collelog/xteve GitHubリポジトリ](https://github.com/collelog/xteve)にて管理しています。
 
 ## 利用ソースコード
 当ソースコードは以下のソースコード（docker-compose.yml,Dockerfile,その他動作に必要なファイル一式）を改変または参考に作成しています。
