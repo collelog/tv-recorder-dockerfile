@@ -17,7 +17,7 @@ RUN curl -fsSL https://github.com/stz2012/libarib25/tarball/master | \
 		tar -xz --strip-components=1
 RUN mv /tmp/libarib25-CMakeLists-rpi3-arm32v7.patch /tmp/libarib25/
 RUN patch < libarib25-CMakeLists-rpi3-arm32v7.patch
-RUN cmake .
+RUN cmake -DCMAKE_BUILD_TYPE=Release .
 RUN make install
 
 WORKDIR /tmp/recpt1

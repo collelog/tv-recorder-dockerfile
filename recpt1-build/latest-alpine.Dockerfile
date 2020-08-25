@@ -13,7 +13,7 @@ RUN apk add --no-cache --update \
 WORKDIR /tmp/libarib25
 RUN curl -fsSL https://github.com/stz2012/libarib25/tarball/master | \
 		tar -xz --strip-components=1
-RUN cmake .
+RUN cmake -DCMAKE_BUILD_TYPE=Release .
 RUN make install
 
 WORKDIR /tmp/recpt1
