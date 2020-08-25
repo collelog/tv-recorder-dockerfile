@@ -1,0 +1,11 @@
+--- ./Makefile.in
++++ Makefile.after.in
+@@ -11,7 +11,7 @@
+ RELEASE_VERSION = "c8688d7d6382_with_http_server_RC4 by stz2012"
+ 
+ CPPFLAGS = -I../driver -Wall -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64
+-CFLAGS   = -O2 -g -pthread
++CFLAGS   = -O2 -march=armv8-a+crc+simd -mtune=cortex-a53 -ftree-vectorize -fomit-frame-pointer -mfloat-abi=hard -mfpu=neon-fp-armv8 -mneon-for-64bits
+ 
+ LIBS     = @LIBS@
+ LIBS2    = -lm
