@@ -1,4 +1,4 @@
-name: recpt1-build-latest-alpine
+name: recpt1-build-latest-alpine-rpi4-armXX
 
 on: [ workflow_dispatch ]
 
