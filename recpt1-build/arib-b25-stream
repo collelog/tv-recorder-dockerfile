@@ -1,0 +1,2 @@
+#!/bin/sh
+sh -c cat | b25 -v 0 /dev/stdin /dev/stdout | cat

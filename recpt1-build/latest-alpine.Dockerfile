@@ -1,6 +1,12 @@
 # libarib25, recpt1
 FROM collelog/buildenv:alpine AS recpt1-build
 
+COPY ./arib-b25-stream /tmp/
+
+WORKDIR /tmp
+RUN chmod 755 ./arib-b25-stream
+RUN mv ./arib-b25-stream /usr/local/bin/
+
 RUN apk add --no-cache --update \
 	pcsc-lite-dev
 
@@ -27,6 +33,7 @@ RUN cp --archive --parents --no-dereference /usr/local/lib/pkgconfig/libarib25.p
 RUN cp --archive --parents --no-dereference /usr/local/include/arib25 /build
 RUN cp --archive --parents --no-dereference /usr/local/bin/recpt1 /build
 RUN cp --archive --parents --no-dereference /usr/local/bin/b25 /build
+RUN cp --archive --parents --no-dereference /usr/local/bin/arib-b25-stream /build
 
 RUN rm -rf /tmp/* /var/cache/apk/*
 
