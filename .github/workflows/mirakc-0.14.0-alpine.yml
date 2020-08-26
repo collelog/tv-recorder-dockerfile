@@ -22,6 +22,13 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-buildx-
       -
+        name: Docker Login
+        env:
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+        run: |
+          echo "${DOCKER_PASSWORD}" | docker login --username "${DOCKER_USERNAME}" --password-stdin
+      -
         name: Docker Buildx (build)
         run: |
           docker buildx build \
@@ -31,13 +38,6 @@ jobs:
             --output "type=image,push=false" \
             --tag collelog/mirakc:0.14.0-alpine \
             --file ./mirakc/0.14.0-alpine.Dockerfile ./mirakc/
-      -
-        name: Docker Login
-        env:
-          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-        run: |
-          echo "${DOCKER_PASSWORD}" | docker login --username "${DOCKER_USERNAME}" --password-stdin
       -
         name: Docker Buildx (push)
         run: |
@@ -51,6 +51,75 @@ jobs:
         name: Docker Check Manifest
         run: |
           docker run --rm mplatform/mquery collelog/mirakc:0.14.0-alpine
+      -
+        name: Docker Buildx (build) - 0.14.0-alpine-rpi4-arm64v8
+        run: |
+          docker buildx build \
+            --cache-from "type=local,src=/tmp/.buildx-cache" \
+            --cache-to "type=local,dest=/tmp/.buildx-cache" \
+            --platform linux/arm64 \
+            --output "type=image,push=false" \
+            --tag collelog/mirakc:0.14.0-alpine-rpi4-arm64v8 \
+            --file ./mirakc/0.14.0-alpine-rpi4-arm64v8.Dockerfile ./mirakc/
+      -
+        name: Docker Buildx (push) - 0.14.0-alpine-rpi4-arm64v8
+        run: |
+          docker buildx build \
+            --cache-from "type=local,src=/tmp/.buildx-cache" \
+            --platform linux/arm64 \
+            --output "type=image,push=true" \
+            --tag collelog/mirakc:0.14.0-alpine-rpi4-arm64v8 \
+            --file ./mirakc/0.14.0-alpine-rpi4-arm64v8.Dockerfile ./mirakc/
+      -
+        name: Docker Check Manifest - 0.14.0-alpine-rpi4-arm64v8
+        run: |
+          docker run --rm mplatform/mquery collelog/mirakc:0.14.0-alpine-rpi4-arm64v8
+      -
+        name: Docker Buildx (build) - 0.14.0-alpine-rpi4-arm32v7
+        run: |
+          docker buildx build \
+            --cache-from "type=local,src=/tmp/.buildx-cache" \
+            --cache-to "type=local,dest=/tmp/.buildx-cache" \
+            --platform linux/arm/v7 \
+            --output "type=image,push=false" \
+            --tag collelog/mirakc:0.14.0-alpine-rpi4-arm32v7 \
+            --file ./mirakc/0.14.0-alpine-rpi4-arm32v7.Dockerfile ./mirakc/
+      -
+        name: Docker Buildx (push) - 0.14.0-alpine-rpi4-arm32v7
+        run: |
+          docker buildx build \
+            --cache-from "type=local,src=/tmp/.buildx-cache" \
+            --platform linux/arm/v7 \
+            --output "type=image,push=true" \
+            --tag collelog/mirakc:0.14.0-alpine-rpi4-arm32v7 \
+            --file ./mirakc/0.14.0-alpine-rpi4-arm32v7.Dockerfile ./mirakc/
+      -
+        name: Docker Check Manifest - 0.14.0-alpine-rpi4-arm32v7
+        run: |
+          docker run --rm mplatform/mquery collelog/mirakc:0.14.0-alpine-rpi4-arm32v7
+      -
+        name: Docker Buildx (build) - 0.14.0-alpine-rpi3-arm32v7
+        run: |
+          docker buildx build \
+            --cache-from "type=local,src=/tmp/.buildx-cache" \
+            --cache-to "type=local,dest=/tmp/.buildx-cache" \
+            --platform linux/arm/v7 \
+            --output "type=image,push=false" \
+            --tag collelog/mirakc:0.14.0-alpine-rpi3-arm32v7 \
+            --file ./mirakc/0.14.0-alpine-rpi3-arm32v7.Dockerfile ./mirakc/
+      -
+        name: Docker Buildx (push) - 0.14.0-alpine-rpi3-arm32v7
+        run: |
+          docker buildx build \
+            --cache-from "type=local,src=/tmp/.buildx-cache" \
+            --platform linux/arm/v7 \
+            --output "type=image,push=true" \
+            --tag collelog/mirakc:0.14.0-alpine-rpi3-arm32v7 \
+            --file ./mirakc/0.14.0-alpine-rpi3-arm32v7.Dockerfile ./mirakc/
+      -
+        name: Docker Check Manifest - 0.14.0-alpine-rpi3-arm32v7
+        run: |
+          docker run --rm mplatform/mquery collelog/mirakc:0.14.0-alpine-rpi3-arm32v7
       -
         name: Clear
         if: always()
