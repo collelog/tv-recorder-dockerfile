@@ -1,6 +1,8 @@
 # EPGStation
 FROM collelog/buildenv:node14-alpine AS epgstation-build
 
+ENV NODE_ENV=production
+
 WORKDIR /opt/epgstation
 RUN curl -fsSL https://github.com/l3tnun/EPGStation/archive/v1.7.4.tar.gz | \
 		tar -xz --strip-components=1
