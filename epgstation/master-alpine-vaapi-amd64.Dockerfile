@@ -23,6 +23,7 @@ RUN set -eux && \
 	echo http://dl-cdn.alpinelinux.org/alpine/edge/community >> /etc/apk/repositories && \
 	apk upgrade --update && \
 	apk add --no-cache --update \
+		curl \
 		intel-media-driver \
 		libva \
 		libva-intel-driver \

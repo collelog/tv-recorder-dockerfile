@@ -21,6 +21,7 @@ COPY --from=epgstation-build /build /
 RUN set -eux && \
 	apk upgrade --update && \
 	apk add --no-cache --update \
+		curl \
 		raspberrypi-libs \
 		tzdata && \
 	\
