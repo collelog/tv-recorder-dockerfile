@@ -30,7 +30,7 @@ jobs:
             --platform linux/amd64,linux/arm/v7,linux/arm64 \
             --output "type=image,push=false" \
             --tag collelog/epgstation:1.7.4-debian \
-            --file ./1.7.4-debian.Dockerfile .
+            --file ./epgstation/1.7.4-debian.Dockerfile ./epgstation/
       -
         name: Docker Login
         env:
@@ -46,7 +46,7 @@ jobs:
             --platform linux/amd64,linux/arm/v7,linux/arm64 \
             --output "type=image,push=true" \
             --tag collelog/epgstation:1.7.4-debian \
-            --file ./1.7.4-debian.Dockerfile .
+            --file ./epgstation/1.7.4-debian.Dockerfile ./epgstation/
       -
         name: Docker Check Manifest
         run: |
