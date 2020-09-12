@@ -1,6 +1,3 @@
-# libarib25
-FROM collelog/libarib25-build:latest-alpine AS libarib25-image
-
 # recdvb
 FROM collelog/buildenv:alpine AS recdvb-build
 

@@ -1,7 +1,3 @@
-# libarib25
-FROM collelog/libarib25-build:latest-alpine-rpi4-arm64v8 AS libarib25-image
-
-
 # recdvb
 FROM collelog/buildenv:alpine AS recdvb-build
 
