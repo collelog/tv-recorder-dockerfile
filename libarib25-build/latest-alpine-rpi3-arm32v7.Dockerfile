@@ -21,7 +21,7 @@ RUN make install
 
 WORKDIR /build
 RUN cp --archive --parents --no-dereference /usr/local/lib/libarib25.* /build
-RUN cp --archive --parents --no-dereference /usr/local/lib/pkgconfig/libarib25.pc
+RUN cp --archive --parents --no-dereference /usr/local/lib/pkgconfig/libarib25.pc /build
 RUN cp --archive --parents --no-dereference /usr/local/include/arib25 /build
 RUN cp --archive --parents --no-dereference /usr/local/bin/b25 /build
 RUN cp --archive --parents --no-dereference /usr/local/bin/arib-b25-stream /build
