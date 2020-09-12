@@ -14,7 +14,6 @@ ENV DOCKER="YES"
 RUN npm install mirakurun@2.15.2 -g --unsafe-perm --production
 RUN sed -i -e 's/--max_old_space_size=512/--max_old_space_size=1024/g' /usr/local/lib/node_modules/mirakurun/package.json
 
-RUN mkdir /build
 RUN cp --archive --parents --no-dereference /usr/local/lib/node_modules/mirakurun /build
 
 RUN npm cache verify
@@ -57,5 +56,5 @@ RUN set -eux && \
 	chmod 755 /usr/local/bin/services.sh
 
 WORKDIR /usr/local/lib/node_modules/mirakurun
-
-ENTRYPOINT /usr/local/bin/services.sh
+ENTRYPOINT ["/usr/local/bin/services.sh"]
+CMD []
