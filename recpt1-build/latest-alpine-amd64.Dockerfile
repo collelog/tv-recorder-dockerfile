@@ -2,7 +2,7 @@
 FROM collelog/buildenv:alpine AS recpt1-build
 
 COPY ./patch/recpt1core.c.patch /tmp/
-COPY ./patch/Makefile.in-rpi3-arm32v7.patch /tmp/
+COPY ./patch/Makefile.in-amd64.patch /tmp/
 
 
 RUN apk add --no-cache --update \
@@ -21,7 +21,7 @@ RUN curl -fsSL https://github.com/stz2012/recpt1/tarball/master | \
 WORKDIR /tmp/recpt1/recpt1
 RUN mv /tmp/*.patch /tmp/recpt1/recpt1/
 RUN patch < recpt1core.c.patch
-RUN patch < Makefile.in-rpi3-arm32v7.patch
+RUN patch < Makefile.in-amd64.patch
 RUN ./autogen.sh
 RUN ./configure --prefix=/usr/local --enable-b25
 RUN make -j $(nproc)

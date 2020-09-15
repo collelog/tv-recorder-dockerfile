@@ -1,6 +1,8 @@
 # recdvb
 FROM collelog/buildenv:alpine AS recdvb-build
 
+COPY ./patch/Makefile.in.patch /tmp/
+
 
 RUN apk add --no-cache --update \
 	pcsc-lite-dev
@@ -15,6 +17,8 @@ RUN make install
 WORKDIR /tmp/recdvb
 RUN curl -fsSL http://www13.plala.or.jp/sat/recdvb/recdvb-1.3.2.tgz | \
 		tar -xz --strip-components=1
+RUN mv /tmp/*.patch /tmp/recdvb/
+RUN patch < Makefile.in.patch
 RUN sed -i -e s/msgbuf/_msgbuf/ recpt1core.h
 RUN sed -i '1i#include <sys/types.h>' recpt1.h
 RUN ./autogen.sh

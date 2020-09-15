@@ -1,8 +1,8 @@
 # recpt1
 FROM collelog/buildenv:alpine AS recpt1-build
 
-COPY ./patch/recpt1-recpt1core.c.patch /tmp/
-COPY ./patch/recpt1-Makefile.in-rpi4-arm32v7.patch /tmp/
+COPY ./patch/recpt1core.c.patch /tmp/
+COPY ./patch/Makefile.in-rpi4-arm32v7.patch /tmp/
 
 
 RUN apk add --no-cache --update \
@@ -20,8 +20,8 @@ RUN curl -fsSL https://github.com/stz2012/recpt1/tarball/master | \
 		tar -xz --strip-components=1
 WORKDIR /tmp/recpt1/recpt1
 RUN mv /tmp/*.patch /tmp/recpt1/recpt1/
-RUN patch < recpt1-recpt1core.c.patch
-RUN patch < recpt1-Makefile.in-rpi4-arm32v7.patch
+RUN patch < recpt1core.c.patch
+RUN patch < Makefile.in-rpi4-arm32v7.patch
 RUN ./autogen.sh
 RUN ./configure --prefix=/usr/local --enable-b25
 RUN make -j $(nproc)

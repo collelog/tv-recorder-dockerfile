@@ -2,6 +2,7 @@
 FROM collelog/buildenv:alpine AS libarib25-build
 
 COPY ./arib-b25-stream /tmp/
+COPY ./patch/CMakeLists.patch /tmp/
 
 WORKDIR /tmp
 RUN chmod 755 ./arib-b25-stream
@@ -13,6 +14,8 @@ RUN apk add --no-cache --update \
 WORKDIR /tmp/libarib25
 RUN curl -fsSL https://github.com/stz2012/libarib25/tarball/master | \
 		tar -xz --strip-components=1
+RUN mv /tmp/CMakeLists.patch /tmp/libarib25/
+RUN patch < CMakeLists.patch
 RUN cmake -DCMAKE_BUILD_TYPE=Release .
 RUN make install
 
