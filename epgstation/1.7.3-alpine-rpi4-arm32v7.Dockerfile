@@ -1,16 +1,16 @@
 # FFmpeg
-FROM collelog/ffmpeg:4.3.1-alpine-rpi-arm64v8 AS ffmpeg-image
+FROM collelog/ffmpeg:4.3.1-alpine-rpi4-arm32v7 AS ffmpeg-image
 
 
 # EPGStation
-FROM collelog/epgstation-build:master-alpine AS epgstation-build
+FROM collelog/epgstation-build:1.7.3-alpine AS epgstation-build
 
 
 # final image
 FROM node:14-alpine
 LABEL maintainer "collelog <collelog.cavamin@gmail.com>"
 
-ENV LD_LIBRARY_PATH=/usr/local/lib64:/usr/lib64:/lib64:/usr/local/lib:/usr/lib:/lib
+ENV LD_LIBRARY_PATH=/opt/vc/lib:/usr/local/lib:/usr/lib:/lib
 
 # FFmpeg
 COPY --from=ffmpeg-image /build /

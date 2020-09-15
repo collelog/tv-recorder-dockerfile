@@ -1,5 +1,5 @@
 # FFmpeg
-FROM collelog/ffmpeg:4.3.1-alpine-rpi-arm64v8 AS ffmpeg-image
+FROM collelog/ffmpeg:4.3.1-alpine-rpi4-arm64v8 AS ffmpeg-image
 
 
 # EPGStation
