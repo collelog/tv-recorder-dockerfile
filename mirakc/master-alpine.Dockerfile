@@ -47,6 +47,7 @@ COPY --from=recdvb-image /build /
 # arib-b25-stream-test
 COPY --from=arib-b25-stream-test-image /build /
 
+
 RUN set -eux && \
 	apk upgrade --update && \
 	apk add --no-cache \
