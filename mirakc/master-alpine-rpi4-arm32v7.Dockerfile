@@ -59,6 +59,9 @@ RUN set -eux && \
 		pcsc-lite-libs \
 		socat \
 		tzdata && \
+	echo http://dl-cdn.alpinelinux.org/alpine/edge/community >> /etc/apk/repositories &&
+	apk add --no-cache --update \
+		v4l-utils-dvbv5 &&
 	\
 	# cleaning
 	rm -rf /tmp/* /var/cache/apk/* && \
