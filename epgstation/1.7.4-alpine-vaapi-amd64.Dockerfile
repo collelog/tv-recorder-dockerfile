@@ -19,16 +19,9 @@ COPY --from=ffmpeg-image /build /
 COPY --from=epgstation-build /build /
 
 RUN set -eux && \
-	echo http://dl-cdn.alpinelinux.org/alpine/edge/testing >> /etc/apk/repositories && \
-	echo http://dl-cdn.alpinelinux.org/alpine/edge/community >> /etc/apk/repositories && \
 	apk upgrade --update && \
 	apk add --no-cache --update \
 		curl \
-		intel-media-driver \
-		libva \
-		libva-intel-driver \
-		libva-vdpau-driver \
-		mesa-va-gallium \
 		tzdata && \
 	\
 	# cleaning
