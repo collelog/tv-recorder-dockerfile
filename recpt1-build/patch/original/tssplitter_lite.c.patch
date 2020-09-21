@@ -1,0 +1,10 @@
+--- tssplitter_lite.c	2018-05-28 00:47:03.000000000 +0900
++++ tssplitter_lite.after.c	2020-09-21 15:15:06.000000000 +0900
+@@ -24,6 +24,7 @@
+ 
+ #include <fcntl.h>
+ #include <sys/stat.h>
++#include <sys/types.h>
+ #include "decoder.h"
+ #include "recpt1.h"
+ #include "tssplitter_lite.h"

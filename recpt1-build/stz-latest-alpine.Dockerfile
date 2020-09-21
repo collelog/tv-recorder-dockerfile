@@ -1,13 +1,10 @@
-# recpt1
+# STZ”Årecpt1
 FROM collelog/buildenv:alpine AS recpt1-build
 
-COPY ./patch/original/decoder.h.patch /tmp/
-COPY ./patch/original/pt1_dev.h.patch /tmp/
-COPY ./patch/original/recpt1.h.patch /tmp/
-COPY ./patch/original/recpt1core.h.patch /tmp/
-COPY ./patch/original/tssplitter_lite.h.patch /tmp/
-COPY ./patch/original/tssplitter_lite.c.patch /tmp/
-COPY ./patch/original/Makefile.in-rpi4-arm64v8.patch /tmp/
+COPY ./patch/stz/pt1_dev.h.patch /tmp/
+COPY ./patch/stz/recpt1.h.patch /tmp/
+COPY ./patch/stz/recpt1core.c.patch /tmp/
+COPY ./patch/stz/Makefile.in.patch /tmp/
 
 
 RUN apk add --no-cache --update \
@@ -21,17 +18,14 @@ RUN make install
 
 
 WORKDIR /tmp/recpt1
-RUN curl -fsSL http://hg.honeyplanet.jp/pt1/archive/tip.tar.bz2 | \
-		tar -xj --strip-components=1
+RUN curl -fsSL https://github.com/stz2012/recpt1/tarball/master | \
+		tar -xz --strip-components=1
 WORKDIR /tmp/recpt1/recpt1
 RUN mv /tmp/*.patch /tmp/recpt1/recpt1/
-RUN patch < decoder.h.patch
 RUN patch < pt1_dev.h.patch
 RUN patch < recpt1.h.patch
-RUN patch < recpt1core.h.patch
-RUN patch < tssplitter_lite.h.patch
-RUN patch < tssplitter_lite.c.patch
-RUN patch < Makefile.in-rpi4-arm64v8.patch
+RUN patch < recpt1core.c.patch
+RUN patch < Makefile.in.patch
 RUN ./autogen.sh
 RUN ./configure --prefix=/usr/local --enable-b25
 RUN make -j $(nproc)

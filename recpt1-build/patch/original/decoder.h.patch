@@ -1,0 +1,31 @@
+--- decoder.h	2018-05-28 00:47:03.000000000 +0900
++++ decoder.after.h	2020-09-21 15:12:20.000000000 +0900
+@@ -10,12 +10,12 @@
+ #include <arib25/arib_std_b25.h>
+ #include <arib25/b_cas_card.h>
+ 
+-typedef struct decoder {
++typedef struct {
+     ARIB_STD_B25 *b25;
+     B_CAS_CARD *bcas;
+ } decoder;
+ 
+-typedef struct decoder_options {
++typedef struct {
+     int round;
+     int strip;
+     int emm;
+@@ -28,11 +28,11 @@
+     int32_t  size;
+ } ARIB_STD_B25_BUFFER;
+ 
+-typedef struct decoder {
++typedef struct {
+     void *dummy;
+ } decoder;
+ 
+-typedef struct decoder_options {
++typedef struct {
+     int round;
+     int strip;
+     int emm;

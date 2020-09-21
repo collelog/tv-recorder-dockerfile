@@ -1,0 +1,44 @@
+--- pt1_dev.h	2018-05-28 00:47:03.000000000 +0900
++++ pt1_dev.after.h	2020-09-21 15:27:08.000000000 +0900
+@@ -10,7 +10,19 @@
+     "/dev/pt1video9",
+     "/dev/pt1video8",
+     "/dev/pt1video13",
+-    "/dev/pt1video12"
++    "/dev/pt1video12",
++    "/dev/pt3video1",
++    "/dev/pt3video0",
++    "/dev/pt3video5",
++    "/dev/pt3video4",
++    "/dev/px4video0",
++    "/dev/px4video1",
++    "/dev/px4video4",
++    "/dev/px4video5",
++    "/dev/px4video8",
++    "/dev/px4video9",
++    "/dev/px4video12",
++    "/dev/px4video13"
+ };
+ char *isdb_t_dev[NUM_ISDB_T_DEV] = {
+     "/dev/pt1video2",
+@@ -20,7 +32,19 @@
+     "/dev/pt1video10",
+     "/dev/pt1video11",
+     "/dev/pt1video14",
+-    "/dev/pt1video15"
++    "/dev/pt1video15",
++    "/dev/pt3video2",
++    "/dev/pt3video3",
++    "/dev/pt3video6",
++    "/dev/pt3video7",
++    "/dev/px4video2",
++    "/dev/px4video3",
++    "/dev/px4video6",
++    "/dev/px4video7",
++    "/dev/px4video10",
++    "/dev/px4video11",
++    "/dev/px4video14",
++    "/dev/px4video15"
+ };
+ 
+ // 変換テーブル(ISDB-T用)

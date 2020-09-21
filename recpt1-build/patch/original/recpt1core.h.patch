@@ -1,0 +1,23 @@
+--- recpt1core.h	2018-05-28 00:47:03.000000000 +0900
++++ recpt1core.after.h	2020-09-21 15:13:19.000000000 +0900
+@@ -45,17 +45,17 @@
+ /* type definitions */
+ typedef int boolean;
+ 
+-typedef struct sock_data {
++typedef struct {
+     int sfd;    /* socket fd */
+     struct sockaddr_in addr;
+ } sock_data;
+ 
+-typedef struct msgbuf {
++typedef struct {
+     long    mtype;
+     char    mtext[MSGSZ];
+ } message_buf;
+ 
+-typedef struct thread_data {
++typedef struct {
+     int tfd;    /* tuner fd */ //xxx variable
+ 
+     int wfd;    /* output file fd */ //invariable

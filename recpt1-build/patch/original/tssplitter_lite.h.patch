@@ -1,0 +1,30 @@
+--- tssplitter_lite.h	2018-05-28 00:47:03.000000000 +0900
++++ tssplitter_lite.after.h	2020-09-21 15:13:57.000000000 +0900
+@@ -37,7 +37,7 @@
+ #define C_CHAR_COMMA		','
+ #define SECTION_CONTINUE	(1)
+ 
+-typedef struct pmt_version {
++typedef struct {
+   int pid;
+   int version;
+   int packet;
+@@ -46,7 +46,7 @@
+ /**
+  * splitter構造体
+  */
+-typedef struct splitter {
++typedef struct {
+ 	unsigned char	pids[MAX_PID];
+ 	unsigned char	pmt_pids[MAX_PID];
+ 	unsigned char*	pat;
+@@ -61,8 +61,7 @@
+ 	uint8_t packet_seq[MAX_PID];	// 巡回カウンタ
+ } splitter;
+ 
+-typedef struct _splitbuf_t
+-{
++typedef struct {
+ 	u_char* buffer;
+ 	int buffer_size;
+ 	int buffer_filled;

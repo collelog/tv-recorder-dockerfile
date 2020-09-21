@@ -1,0 +1,11 @@
+--- Makefile.in	2018-05-28 00:47:03.000000000 +0900
++++ Makefile.after.in	2020-09-21 15:24:37.000000000 +0900
+@@ -11,7 +11,7 @@
+ RELEASE_VERSION = "1.2.0"
+ 
+ CPPFLAGS = -I../driver -Wall -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64
+-CFLAGS   = -O2 -g -pthread
++CFLAGS   = -O2 -pthread -march=armv8-a+crc+simd -mtune=cortex-a72 -fomit-frame-pointer
+ 
+ LIBS     = @LIBS@
+ LIBS2    = -lm
