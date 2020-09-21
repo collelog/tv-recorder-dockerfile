@@ -6,10 +6,10 @@
      "/dev/pt1video13",
 -    "/dev/pt1video12"
 +    "/dev/pt1video12",
-+    "/dev/pt3video1",
 +    "/dev/pt3video0",
-+    "/dev/pt3video5",
++    "/dev/pt3video1",
 +    "/dev/pt3video4",
++    "/dev/pt3video5",
 +    "/dev/px4video0",
 +    "/dev/px4video1",
 +    "/dev/px4video4",
