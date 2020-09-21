@@ -9,7 +9,7 @@
  	set(CMAKE_CXX_FLAGS "-Wall")
  	set(CMAKE_CXX_FLAGS_DEBUG "-O3 -g")
 -	set(CMAKE_CXX_FLAGS_RELEASE "-O3")
-+	set(CMAKE_CXX_FLAGS_RELEASE "-O2 -march=x86-64 -mtune=generic -fomit-frame-pointer")
++	set(CMAKE_CXX_FLAGS_RELEASE "-O3 -march=x86-64 -mtune=generic -fomit-frame-pointer")
  	set(CMAKE_SHARED_LINKER_FLAGS "-fvisibility=hidden")
  
  	if(UNIX AND NOT CYGWIN)
