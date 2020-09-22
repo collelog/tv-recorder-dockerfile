@@ -11,6 +11,7 @@ RUN curl -fsSL https://registry.npmjs.org/arib-b25-stream-test/-/arib-b25-stream
 	tar -xz --strip-components=0
 WORKDIR /tmp/arib-b25-stream-test/package/src
 RUN mv /tmp/*.patch /tmp/arib-b25-stream-test/package/src/
+RUN unix2dos Makefile-amd64.patch
 RUN patch < Makefile-amd64.patch
 WORKDIR /tmp/arib-b25-stream-test/package
 RUN npm install . -g --unsafe
