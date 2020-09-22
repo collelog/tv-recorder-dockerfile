@@ -1,4 +1,4 @@
---- ./Makefile.in
+--- Makefile.in
 +++ Makefile.after.in
 @@ -11,7 +11,7 @@
  RELEASE_VERSION = "c8688d7d6382_with_http_server_RC4 by stz2012"

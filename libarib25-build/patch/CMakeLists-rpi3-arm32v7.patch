@@ -1,4 +1,4 @@
---- ./CMakeLists.txt
+--- CMakeLists.txt
 +++ CMakeLists.after.txt
 @@ -46,10 +46,10 @@
  if(CMAKE_C_COMPILER_ID MATCHES "(GNU|Clang)")

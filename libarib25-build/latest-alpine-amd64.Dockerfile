@@ -14,7 +14,7 @@ RUN apk add --no-cache --update \
 WORKDIR /tmp/libarib25
 RUN curl -fsSL https://github.com/stz2012/libarib25/tarball/master | \
 		tar -xz --strip-components=1
-RUN mv /tmp/CMakeLists-amd64.patch /tmp/libarib25/
+RUN mv /tmp/*.patch /tmp/libarib25/
 RUN patch < CMakeLists-amd64.patch
 RUN cmake -DCMAKE_BUILD_TYPE=Release -DLDCONFIG_EXECUTABLE=IGNORE .
 RUN make install
