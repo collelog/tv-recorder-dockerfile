@@ -7,11 +7,11 @@ RUN apk add --no-cache --update \
 	pcsc-lite-dev
 
 WORKDIR /tmp/arib-b25-stream-test
-RUN curl -fsSL https://registry.npmjs.org/arib-b25-stream-test/-/arib-b25-stream-test-0.2.9.tgz | \
+RUN curl -fsSL http://registry.npmjs.org/arib-b25-stream-test/-/arib-b25-stream-test-0.2.9.tgz | \
 	tar -xz --strip-components=0
 WORKDIR /tmp/arib-b25-stream-test/package/src
 RUN mv /tmp/*.patch /tmp/arib-b25-stream-test/package/src/
-RUN unix2dos Makefile-rpi4-arm64v8.patch
+RUN dos2unix Makefile
 RUN patch < Makefile-rpi4-arm64v8.patch
 WORKDIR /tmp/arib-b25-stream-test/package
 RUN npm install . -g --unsafe
