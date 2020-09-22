@@ -5,7 +5,7 @@
  
  CPPFLAGS = -I../driver -Wall -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64
 -CFLAGS   = -O2 -g -pthread
-+CFLAGS   = -O3 -pipe -march=armv8-a+crc+simd -mtune=cortex-a53 -pthread
++CFLAGS   = -O2 -pipe -march=armv8-a+crc+simd -mtune=cortex-a53 -pthread
  
  LIBS     = @LIBS@
  LIBS2    = -lm
