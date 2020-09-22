@@ -5,7 +5,7 @@
  
  CPPFLAGS = -I../driver -Wall -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64
 -CFLAGS   = -O2 -g -pthread
-+CFLAGS   = -O2 -pthread -fomit-frame-pointer
++CFLAGS   = -O2 -pipe -pthread
  
  LIBS     = @LIBS@
  LIBS2    = -lm

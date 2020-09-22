@@ -5,7 +5,7 @@
  
  CPPFLAGS = -Wall -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64
 -CFLAGS   = -O2 -g -pthread
-+CFLAGS   = -O2 -pthread -march=armv8-a+crc+simd -mtune=cortex-a72 -fomit-frame-pointer -mfloat-abi=hard -mfpu=neon-fp-armv8 -mneon-for-64bits
++CFLAGS   = -O3 -pipe -march=armv8-a+crc+simd -mtune=cortex-a72 -pthread
  
  LIBS     = @LIBS@
  LIBS2    = -lm
