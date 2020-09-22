@@ -1,7 +1,7 @@
 # arib-b25-stream-test
 FROM collelog/buildenv:node12-alpine AS build
 
-COPY ./patch/Makefile.patch /tmp/
+COPY ./patch/Makefile-rpi4-arm64v8.patch /tmp/
 
 RUN apk add --no-cache --update \
 	pcsc-lite-dev
@@ -11,7 +11,7 @@ RUN curl -fsSL https://registry.npmjs.org/arib-b25-stream-test/-/arib-b25-stream
 	tar -xz --strip-components=0
 WORKDIR /tmp/arib-b25-stream-test/package/src
 RUN mv /tmp/*.patch /tmp/arib-b25-stream-test/package/src/
-RUN patch < Makefile.patch
+RUN patch < Makefile-rpi4-arm64v8.patch
 WORKDIR /tmp/arib-b25-stream-test/package
 RUN npm install . -g --unsafe
 
