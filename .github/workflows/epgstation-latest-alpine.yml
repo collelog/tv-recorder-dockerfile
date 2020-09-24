@@ -37,7 +37,7 @@ jobs:
             --platform linux/amd64 \
             --output "type=image,push=false" \
             --tag collelog/epgstation:latest-alpine-amd64 \
-            --file ./epgstation/1.7.5-alpine-amd64.Dockerfile ./epgstation/
+            --file ./epgstation/latest-alpine-amd64.Dockerfile ./epgstation/
       -
         name: Docker Buildx (push) - latest-alpine-amd64
         run: |
@@ -46,7 +46,7 @@ jobs:
             --platform linux/amd64 \
             --output "type=image,push=true" \
             --tag collelog/epgstation:latest-alpine-amd64 \
-            --file ./epgstation/1.7.5-alpine-amd64.Dockerfile ./epgstation/
+            --file ./epgstation/latest-alpine-amd64.Dockerfile ./epgstation/
       -
         name: Docker Check Manifest - latest-alpine-amd64
         run: |
@@ -60,7 +60,7 @@ jobs:
             --platform linux/amd64 \
             --output "type=image,push=false" \
             --tag collelog/epgstation:latest-alpine-vaapi-amd64 \
-            --file ./epgstation/1.7.5-alpine-vaapi-amd64.Dockerfile ./epgstation/
+            --file ./epgstation/latest-alpine-vaapi-amd64.Dockerfile ./epgstation/
       -
         name: Docker Buildx (push) - latest-alpine-vaapi-amd64
         run: |
@@ -69,7 +69,7 @@ jobs:
             --platform linux/amd64 \
             --output "type=image,push=true" \
             --tag collelog/epgstation:latest-alpine-vaapi-amd64 \
-            --file ./epgstation/1.7.5-alpine-vaapi-amd64.Dockerfile ./epgstation/
+            --file ./epgstation/latest-alpine-vaapi-amd64.Dockerfile ./epgstation/
       -
         name: Docker Check Manifest - latest-alpine-vaapi-amd64
         run: |
@@ -83,7 +83,7 @@ jobs:
             --platform linux/arm64 \
             --output "type=image,push=false" \
             --tag collelog/epgstation:latest-alpine-rpi4-arm64v8 \
-            --file ./epgstation/1.7.5-alpine-rpi4-arm64v8.Dockerfile ./epgstation/
+            --file ./epgstation/latest-alpine-rpi4-arm64v8.Dockerfile ./epgstation/
       -
         name: Docker Buildx (push) - latest-alpine-rpi4-arm64v8
         run: |
@@ -92,7 +92,7 @@ jobs:
             --platform linux/arm64 \
             --output "type=image,push=true" \
             --tag collelog/epgstation:latest-alpine-rpi4-arm64v8 \
-            --file ./epgstation/1.7.5-alpine-rpi4-arm64v8.Dockerfile ./epgstation/
+            --file ./epgstation/latest-alpine-rpi4-arm64v8.Dockerfile ./epgstation/
       -
         name: Docker Check Manifest - latest-alpine-rpi4-arm64v8
         run: |
@@ -106,7 +106,7 @@ jobs:
             --platform linux/arm/v7 \
             --output "type=image,push=false" \
             --tag collelog/epgstation:latest-alpine-rpi4-arm32v7 \
-            --file ./epgstation/1.7.5-alpine-rpi4-arm32v7.Dockerfile ./epgstation/
+            --file ./epgstation/latest-alpine-rpi4-arm32v7.Dockerfile ./epgstation/
       -
         name: Docker Buildx (push) - latest-alpine-rpi4-arm32v7
         run: |
@@ -115,7 +115,7 @@ jobs:
             --platform linux/arm/v7 \
             --output "type=image,push=true" \
             --tag collelog/epgstation:latest-alpine-rpi4-arm32v7 \
-            --file ./epgstation/1.7.5-alpine-rpi4-arm32v7.Dockerfile ./epgstation/
+            --file ./epgstation/latest-alpine-rpi4-arm32v7.Dockerfile ./epgstation/
       -
         name: Docker Check Manifest - latest-alpine-rpi4-arm32v7
         run: |
@@ -129,7 +129,7 @@ jobs:
             --platform linux/arm/v7 \
             --output "type=image,push=false" \
             --tag collelog/epgstation:latest-alpine-rpi3-arm32v7 \
-            --file ./epgstation/1.7.5-alpine-rpi3-arm32v7.Dockerfile ./epgstation/
+            --file ./epgstation/latest-alpine-rpi3-arm32v7.Dockerfile ./epgstation/
       -
         name: Docker Buildx (push) - latest-alpine-rpi3-arm32v7
         run: |
@@ -138,7 +138,7 @@ jobs:
             --platform linux/arm/v7 \
             --output "type=image,push=true" \
             --tag collelog/epgstation:latest-alpine-rpi3-arm32v7 \
-            --file ./epgstation/1.7.5-alpine-rpi3-arm32v7.Dockerfile ./epgstation/
+            --file ./epgstation/latest-alpine-rpi3-arm32v7.Dockerfile ./epgstation/
       -
         name: Docker Check Manifest - latest-alpine-rpi3-arm32v7
         run: |
@@ -152,7 +152,7 @@ jobs:
             --platform linux/arm64 \
             --output "type=image,push=false" \
             --tag collelog/epgstation:latest-alpine-arm64v8 \
-            --file ./epgstation/1.7.5-alpine-arm64v8.Dockerfile ./epgstation/
+            --file ./epgstation/latest-alpine-arm64v8.Dockerfile ./epgstation/
       -
         name: Docker Buildx (push) - latest-alpine-arm64v8
         run: |
@@ -161,7 +161,7 @@ jobs:
             --platform linux/arm64 \
             --output "type=image,push=true" \
             --tag collelog/epgstation:latest-alpine-arm64v8 \
-            --file ./epgstation/1.7.5-alpine-arm64v8.Dockerfile ./epgstation/
+            --file ./epgstation/latest-alpine-arm64v8.Dockerfile ./epgstation/
       -
         name: Docker Check Manifest - latest-alpine-arm64v8
         run: |
@@ -175,7 +175,7 @@ jobs:
             --platform linux/arm/v7 \
             --output "type=image,push=false" \
             --tag collelog/epgstation:latest-alpine-arm32v7 \
-            --file ./epgstation/1.7.5-alpine-arm32v7.Dockerfile ./epgstation/
+            --file ./epgstation/latest-alpine-arm32v7.Dockerfile ./epgstation/
       -
         name: Docker Buildx (push) - latest-alpine-arm32v7
         run: |
@@ -184,7 +184,7 @@ jobs:
             --platform linux/arm/v7 \
             --output "type=image,push=true" \
             --tag collelog/epgstation:latest-alpine-arm32v7 \
-            --file ./epgstation/1.7.5-alpine-arm32v7.Dockerfile ./epgstation/
+            --file ./epgstation/latest-alpine-arm32v7.Dockerfile ./epgstation/
       -
         name: Docker Check Manifest - latest-alpine-arm32v7
         run: |
@@ -198,7 +198,7 @@ jobs:
             --platform linux/arm/v6 \
             --output "type=image,push=false" \
             --tag collelog/epgstation:latest-alpine-arm32v6 \
-            --file ./epgstation/1.7.5-alpine-arm32v6.Dockerfile ./epgstation/
+            --file ./epgstation/latest-alpine-arm32v6.Dockerfile ./epgstation/
       -
         name: Docker Buildx (push) - latest-alpine-arm32v6
         run: |
@@ -207,7 +207,7 @@ jobs:
             --platform linux/arm/v6 \
             --output "type=image,push=true" \
             --tag collelog/epgstation:latest-alpine-arm32v6 \
-            --file ./epgstation/1.7.5-alpine-arm32v6.Dockerfile ./epgstation/
+            --file ./epgstation/latest-alpine-arm32v6.Dockerfile ./epgstation/
       -
         name: Docker Check Manifest - latest-alpine-arm32v6
         run: |
