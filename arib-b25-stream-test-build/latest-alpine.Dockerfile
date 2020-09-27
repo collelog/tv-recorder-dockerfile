@@ -6,6 +6,10 @@ COPY ./patch/Makefile.patch /tmp/
 RUN apk add --no-cache --update \
 	pcsc-lite-dev
 
+RUN echo http://dl-cdn.alpinelinux.org/alpine/edge/main >> /etc/apk/repositories
+RUN apk add --no-cache --update \
+	gcc=10.2.0-r5
+
 WORKDIR /tmp/arib-b25-stream-test
 RUN curl -fsSL http://registry.npmjs.org/arib-b25-stream-test/-/arib-b25-stream-test-0.2.9.tgz | \
 	tar -xz --strip-components=0

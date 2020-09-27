@@ -6,15 +6,18 @@ COPY ./patch/stz/recpt1.h.patch /tmp/
 COPY ./patch/stz/recpt1core.c.patch /tmp/
 COPY ./patch/stz/Makefile.in.patch /tmp/
 
-
 RUN apk add --no-cache --update \
 	pcsc-lite-dev
+
+RUN echo http://dl-cdn.alpinelinux.org/alpine/edge/main >> /etc/apk/repositories
+RUN apk add --no-cache --update \
+	gcc=10.2.0-r5
 
 WORKDIR /tmp/libarib25
 RUN curl -fsSL https://github.com/stz2012/libarib25/tarball/master | \
 		tar -xz --strip-components=1
 RUN cmake -DCMAKE_BUILD_TYPE=Release -DLDCONFIG_EXECUTABLE=IGNORE .
-RUN make install
+RUN make -j $(nproc) install
 
 
 WORKDIR /tmp/recpt1
@@ -29,7 +32,7 @@ RUN patch < Makefile.in.patch
 RUN ./autogen.sh
 RUN ./configure --prefix=/usr/local --enable-b25
 RUN make -j $(nproc)
-RUN make install
+RUN make -j $(nproc) install
 
 WORKDIR /build
 RUN cp --archive --parents --no-dereference /usr/local/bin/recpt1 /build
