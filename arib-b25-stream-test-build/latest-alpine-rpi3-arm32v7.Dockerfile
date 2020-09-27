@@ -3,12 +3,13 @@ FROM collelog/buildenv:node12-alpine AS build
 
 COPY ./patch/Makefile-rpi3-arm32v7.patch /tmp/
 
-RUN apk add --no-cache --update \
+RUN apk add --no-cache --update-cache \
 	pcsc-lite-dev
 
 RUN echo http://dl-cdn.alpinelinux.org/alpine/edge/main >> /etc/apk/repositories
-RUN apk add --no-cache --update \
-	gcc=10.2.0-r5
+RUN apk add --no-cache --update-cache \
+	gcc=10.2.0-r5 \
+	musl=1.2.1-r1
 
 WORKDIR /tmp/arib-b25-stream-test
 RUN curl -fsSL http://registry.npmjs.org/arib-b25-stream-test/-/arib-b25-stream-test-0.2.9.tgz | \

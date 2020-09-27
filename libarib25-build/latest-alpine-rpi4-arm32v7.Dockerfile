@@ -4,12 +4,13 @@ FROM collelog/buildenv:alpine AS libarib25-build
 COPY ./arib-b25-stream /tmp/
 COPY ./patch/CMakeLists-rpi4-arm32v7.patch /tmp/
 
-RUN apk add --no-cache --update \
+RUN apk add --no-cache --update-cache \
 	pcsc-lite-dev
 
 RUN echo http://dl-cdn.alpinelinux.org/alpine/edge/main >> /etc/apk/repositories
-RUN apk add --no-cache --update \
-	gcc=10.2.0-r5
+RUN apk add --no-cache --update-cache \
+	gcc=10.2.0-r5 \
+	musl=1.2.1-r1
 
 WORKDIR /tmp
 RUN chmod 755 ./arib-b25-stream

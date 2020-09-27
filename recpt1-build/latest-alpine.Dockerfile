@@ -9,12 +9,13 @@ COPY ./patch/original/tssplitter_lite.h.patch /tmp/
 COPY ./patch/original/tssplitter_lite.c.patch /tmp/
 COPY ./patch/original/Makefile.in.patch /tmp/
 
-RUN apk add --no-cache --update \
+RUN apk add --no-cache --update-cache \
 	pcsc-lite-dev
 
 RUN echo http://dl-cdn.alpinelinux.org/alpine/edge/main >> /etc/apk/repositories
-RUN apk add --no-cache --update \
-	gcc=10.2.0-r5
+RUN apk add --no-cache --update-cache \
+	gcc=10.2.0-r5 \
+	musl=1.2.1-r1
 
 WORKDIR /tmp/libarib25
 RUN curl -fsSL https://github.com/stz2012/libarib25/tarball/master | \
@@ -51,3 +52,9 @@ FROM alpine:3.12.0
 LABEL maintainer "collelog <collelog.cavamin@gmail.com>"
 
 COPY --from=recpt1-build /build /build
+
+RUN echo http://dl-cdn.alpinelinux.org/alpine/edge/main >> /etc/apk/repositories
+RUN apk add --no-cache --update-cache \
+	musl=1.2.1-r1
+
+RUN rm -rf /tmp/* /var/cache/apk/*

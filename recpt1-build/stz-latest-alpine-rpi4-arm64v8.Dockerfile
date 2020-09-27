@@ -6,12 +6,13 @@ COPY ./patch/stz/recpt1.h.patch /tmp/
 COPY ./patch/stz/recpt1core.c.patch /tmp/
 COPY ./patch/stz/Makefile.in-rpi4-arm64v8.patch /tmp/
 
-RUN apk add --no-cache --update \
+RUN apk add --no-cache --update-cache \
 	pcsc-lite-dev
 
 RUN echo http://dl-cdn.alpinelinux.org/alpine/edge/main >> /etc/apk/repositories
-RUN apk add --no-cache --update \
-	gcc=10.2.0-r5
+RUN apk add --no-cache --update-cache \
+	gcc=10.2.0-r5 \
+	musl=1.2.1-r1
 
 WORKDIR /tmp/libarib25
 RUN curl -fsSL https://github.com/stz2012/libarib25/tarball/master | \
