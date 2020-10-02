@@ -1,5 +1,5 @@
 # mirakc-arib, mirakc
-FROM masnagam/mirakc:0.13.0-alpine AS mirakc-image
+FROM mirakc/mirakc:0.13.0-alpine AS mirakc-image
 WORKDIR /build
 RUN cp --archive --parents --no-dereference /usr/local/bin/mirakc-arib /build
 RUN cp --archive --parents --no-dereference /usr/local/bin/mirakc /build
