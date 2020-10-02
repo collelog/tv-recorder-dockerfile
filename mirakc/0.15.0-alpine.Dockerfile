@@ -49,8 +49,8 @@ COPY --from=arib-b25-stream-test-image /build /
 
 
 RUN set -eux && \
-	apk upgrade --update && \
-	apk add --no-cache \
+	apk upgrade --no-cache --update-cache && \
+	apk add --no-cache --update-cache \
 		ca-certificates \
 		ccid \
 		curl \
@@ -60,8 +60,11 @@ RUN set -eux && \
 		socat \
 		tzdata && \
 	echo http://dl-cdn.alpinelinux.org/alpine/edge/community >> /etc/apk/repositories && \
-	apk add --no-cache --update \
+	apk add --no-cache --update-cache \
 		v4l-utils-dvbv5 && \
+	echo http://dl-cdn.alpinelinux.org/alpine/edge/main >> /etc/apk/repositories && \
+	apk add --no-cache --update-cache \
+		musl && \
 	\
 	# cleaning
 	rm -rf /tmp/* /var/cache/apk/* && \
