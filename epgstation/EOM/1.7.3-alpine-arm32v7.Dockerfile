@@ -1,5 +1,5 @@
 # FFmpeg
-FROM collelog/ffmpeg:4.3.1-alpine-rpi4-arm32v7 AS ffmpeg-image
+FROM collelog/ffmpeg:4.3.1-alpine-arm32v7 AS ffmpeg-image
 
 
 # EPGStation
@@ -10,7 +10,7 @@ FROM collelog/epgstation-build:1.7.3-alpine AS epgstation-build
 FROM node:14-alpine
 LABEL maintainer "collelog <collelog.cavamin@gmail.com>"
 
-ENV LD_LIBRARY_PATH=/opt/vc/lib:/usr/local/lib:/usr/lib:/lib
+ENV LD_LIBRARY_PATH=/usr/local/lib:/usr/lib:/lib
 
 # FFmpeg
 COPY --from=ffmpeg-image /build /
@@ -19,10 +19,9 @@ COPY --from=ffmpeg-image /build /
 COPY --from=epgstation-build /build /
 
 RUN set -eux && \
-	apk upgrade --update && \
-	apk add --no-cache --update \
+	apk upgrade --no-cache --update-cache && \
+	apk add --no-cache --update-cache \
 		curl \
-		raspberrypi-libs \
 		tzdata && \
 	\
 	# cleaning

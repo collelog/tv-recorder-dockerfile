@@ -21,8 +21,8 @@ COPY --from=epgstation-build /build /
 RUN set -eux && \
 	echo http://dl-cdn.alpinelinux.org/alpine/edge/testing >> /etc/apk/repositories && \
 	echo http://dl-cdn.alpinelinux.org/alpine/edge/community >> /etc/apk/repositories && \
-	apk upgrade --update && \
-	apk add --no-cache --update \
+	apk upgrade --no-cache --update-cache && \
+	apk add --no-cache --update-cache \
 		curl \
 		intel-media-driver \
 		libva \

@@ -1,5 +1,5 @@
 # FFmpeg
-FROM collelog/ffmpeg:4.3.1-alpine-amd64 AS ffmpeg-image
+FROM collelog/ffmpeg:4.3.1-alpine-vaapi-amd64 AS ffmpeg-image
 
 
 # EPGStation
@@ -19,8 +19,8 @@ COPY --from=ffmpeg-image /build /
 COPY --from=epgstation-build /build /
 
 RUN set -eux && \
-	apk upgrade --update && \
-	apk add --no-cache --update \
+	apk upgrade --no-cache --update-cache && \
+	apk add --no-cache --update-cache \
 		curl \
 		tzdata && \
 	\
