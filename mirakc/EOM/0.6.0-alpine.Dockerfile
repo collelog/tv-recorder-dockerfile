@@ -1,5 +1,5 @@
 # mirakc-arib, mirakc
-FROM masnagam/mirakc:0.6.0-alpine AS mirakc-image
+FROM mirakc/mirakc:0.6.0-alpine AS mirakc-image
 WORKDIR /build
 RUN cp --archive --parents --no-dereference /usr/local/bin/mirakc-arib /build
 RUN cp --archive --parents --no-dereference /usr/local/bin/mirakc /build
@@ -33,8 +33,8 @@ COPY --from=arib-b25-stream-test-image /build /
 COPY ./services.sh /usr/local/bin/services.sh
 
 RUN set -eux && \
-	apk upgrade --update && \
-	apk add --no-cache \
+	apk upgrade --no-cache --update-cache && \
+	apk add --no-cache --update-cache \
 		ca-certificates \
 		ccid \
 		curl \
