@@ -8,8 +8,8 @@ RUN apk add --no-cache --update-cache \
 
 RUN echo http://dl-cdn.alpinelinux.org/alpine/edge/main >> /etc/apk/repositories
 RUN apk add --no-cache --update-cache \
-	gcc=10.2.0-r5 \
-	musl=1.2.1-r1
+	gcc \
+	musl
 
 WORKDIR /tmp/arib-b25-stream-test
 RUN curl -fsSL http://registry.npmjs.org/arib-b25-stream-test/-/arib-b25-stream-test-0.2.9.tgz | \
