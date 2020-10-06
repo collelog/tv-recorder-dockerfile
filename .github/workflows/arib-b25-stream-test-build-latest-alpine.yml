@@ -30,7 +30,7 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
       -
-        name: Build and push
+        name: Build and push : latest-alpine
         uses: docker/build-push-action@v2
         with:
           context: ./arib-b25-stream-test-build/
@@ -41,46 +41,46 @@ jobs:
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache
       -
-        name: Build and push
+        name: Build and push : latest-alpine-amd64
         uses: docker/build-push-action@v2
         with:
+          context: ./arib-b25-stream-test-build/
+          file: ./arib-b25-stream-test-build/latest-alpine-amd64.Dockerfile
           tags: collelog/arib-b25-stream-test-build:latest-alpine-amd64
           platforms: linux/amd64
-          context: ./arib-b25-stream-test-build/
-          file: ./arib-b25-stream-test-build/latest-alpine-amd64.Dockerfil
           push: true
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache
       -
-        name: Build and push
+        name: Build and push : latest-alpine-rpi4-arm64v8
         uses: docker/build-push-action@v2
         with:
-          tags: collelog/arib-b25-stream-test-build:latest-alpine-rpi4-arm64v8
-          platforms: linux/arm64
           context: ./arib-b25-stream-test-build/
           file: ./arib-b25-stream-test-build/latest-alpine-rpi4-arm64v8.Dockerfile
+          tags: collelog/arib-b25-stream-test-build:latest-alpine-rpi4-arm64v8
+          platforms: linux/arm64
           push: true
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache
       -
-        name: Build and push
+        name: Build and push : latest-alpine-rpi4-arm32v7
         uses: docker/build-push-action@v2
         with:
-          tags: collelog/arib-b25-stream-test-build:latest-alpine-rpi4-arm32v7
-          platforms: linux/arm/v7
           context: ./arib-b25-stream-test-build/
           file: ./arib-b25-stream-test-build/latest-alpine-rpi4-arm32v7.Dockerfile
+          tags: collelog/arib-b25-stream-test-build:latest-alpine-rpi4-arm32v7
+          platforms: linux/arm/v7
           push: true
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache
       -
-        name: Build and push
+        name: Build and push : latest-alpine-rpi3-arm32v7
         uses: docker/build-push-action@v2
         with:
-          tags: collelog/arib-b25-stream-test-build:latest-alpine-rpi3-arm32v7
-          platforms: linux/arm/v7
           context: ./arib-b25-stream-test-build/
           file: ./arib-b25-stream-test-build/latest-alpine-rpi3-arm32v7.Dockerfile
+          tags: collelog/arib-b25-stream-test-build:latest-alpine-rpi3-arm32v7
+          platforms: linux/arm/v7
           push: true
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache
