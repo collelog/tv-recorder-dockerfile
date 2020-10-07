@@ -1,4 +1,4 @@
-name: epgstation-1.7.5-alpine
+name: epgstation-build-1.7.5-alpine
 
 on: [ workflow_dispatch ]
 
