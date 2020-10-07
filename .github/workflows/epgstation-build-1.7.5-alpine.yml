@@ -35,7 +35,6 @@ jobs:
         with:
           context: ./arib-b25-stream-test-build/
           file: ./epgstation-build/1.7.5-alpine.Dockerfile
-          tags: collelog/epgstation-build:1.7.5-alpine
           tags: |
             collelog/epgstation-build:1.7.5-alpine
             collelog/epgstation-build:latest-alpine
