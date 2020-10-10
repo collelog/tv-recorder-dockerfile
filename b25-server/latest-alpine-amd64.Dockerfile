@@ -24,6 +24,8 @@ RUN set -eux && \
 	apk add --no-cache --update-cache \
 		musl && \
 	\
+	mv /usr/local/bin/arib-b25-stream-test /usr/local/bin/b25 && \
+	\
 	# cleaning
 	rm -rf /tmp/* /var/cache/apk/* && \
 	\
