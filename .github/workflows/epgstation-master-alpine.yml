@@ -91,7 +91,7 @@ jobs:
           context: ./epgstation/
           file: ./epgstation/master-alpine-arm64v8.Dockerfile
           tags: collelog/epgstation:master-alpine-arm64v8
-          platforms: linux/arm/v7
+          platforms: linux/arm64
           push: true
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache
@@ -113,7 +113,7 @@ jobs:
           context: ./epgstation/
           file: ./epgstation/master-alpine-arm32v6.Dockerfile
           tags: collelog/epgstation:master-alpine-arm32v6
-          platforms: linux/arm/v7
+          platforms: linux/arm/v6
           push: true
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache

@@ -103,7 +103,7 @@ jobs:
           tags: |
             collelog/epgstation:1.7.5-alpine-arm64v8
             collelog/epgstation:latest-alpine-arm64v8
-          platforms: linux/arm/v7
+          platforms: linux/arm64
           push: true
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache
@@ -129,7 +129,7 @@ jobs:
           tags: |
             collelog/epgstation:1.7.5-alpine-arm32v6
             collelog/epgstation:latest-alpine-arm32v6
-          platforms: linux/arm/v7
+          platforms: linux/arm/v6
           push: true
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache
