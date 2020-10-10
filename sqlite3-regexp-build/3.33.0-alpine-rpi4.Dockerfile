@@ -17,7 +17,7 @@ WORKDIR /tmp/sqlite3-regexp/sqlite-amalgamation-3310100
 RUN gcc -O2 -pipe -march=armv8-a+crc+simd -mtune=cortex-a72 -fPIC -shared regexp.c -o regexp.so
 
 WORKDIR /build/usr/lib/sqlite3.31.1/
-RUN cp /tmp/sqlite3-regexp/sqlite-amalgamation-3310100/regexp.c .
+RUN cp /tmp/sqlite3-regexp/sqlite-amalgamation-3310100/regexp.so .
 
 RUN rm -rf /tmp/* /var/cache/apk/*
 
