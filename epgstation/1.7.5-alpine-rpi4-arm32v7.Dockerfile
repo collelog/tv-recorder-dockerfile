@@ -2,6 +2,10 @@
 FROM collelog/ffmpeg:4.3.1-alpine-rpi4-arm32v7 AS ffmpeg-image
 
 
+# sqlite3-regexp
+FROM collelog/sqlite3-regexp-build:3.33.0-alpine-rpi4-arm32v7 AS sqlite3-regexp-image
+
+
 # EPGStation
 FROM collelog/epgstation-build:1.7.5-alpine AS epgstation-image
 
@@ -16,7 +20,10 @@ ENV LD_LIBRARY_PATH=/opt/vc/lib:/usr/local/lib:/usr/lib:/lib
 COPY --from=ffmpeg-image /build /
 
 # EPGStation
-COPY --from=epgstation-build /build /
+COPY --from=epgstation-image /build /
+
+# sqlite3-regexp
+COPY --from=sqlite3-regexp-image /build/usr/lib/sqlite3.31.1/regexp.so /opt/epgstation
 
 RUN set -eux && \
 	apk upgrade --no-cache --update-cache && \
