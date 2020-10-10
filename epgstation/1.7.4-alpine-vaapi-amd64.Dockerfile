@@ -3,7 +3,7 @@ FROM collelog/ffmpeg:4.3.1-alpine-vaapi-amd64 AS ffmpeg-image
 
 
 # EPGStation
-FROM collelog/epgstation-build:1.7.4-alpine AS epgstation-build
+FROM collelog/epgstation-build:1.7.4-alpine AS epgstation-image
 
 
 # final image
@@ -16,7 +16,7 @@ ENV LD_LIBRARY_PATH=/usr/local/lib64:/usr/lib64:/lib64:/usr/local/lib:/usr/lib:/
 COPY --from=ffmpeg-image /build /
 
 # EPGStation
-COPY --from=epgstation-build /build /
+COPY --from=epgstation-image /build /
 
 RUN set -eux && \
 	apk upgrade --no-cache --update-cache && \

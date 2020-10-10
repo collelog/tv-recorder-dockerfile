@@ -4,8 +4,8 @@ LABEL maintainer "collelog <collelog.cavamin@gmail.com>"
 COPY ./scripts/run.sh /scripts/run.sh
 
 RUN set -eux && \
-	apk upgrade --update && \
-	apk add --no-cache \
+	apk upgrade --no-cache --update-cache && \
+	apk add --no-cache --update-cache \
 		mariadb=10.4.13-r0 \
 		mariadb-client=10.4.13-r0 \
 		mariadb-server-utils=10.4.13-r0 \

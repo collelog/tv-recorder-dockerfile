@@ -1,6 +1,10 @@
 #!/bin/sh -eux
 
-rm -f /run/pcscd/pcscd.comm >/dev/null 2>&1
+rm -rf /var/run/pcscd
+mkdir -p /var/run/pcscd
 
+echo "Start pcscd"
 pcscd -f -e &
+
+echo "Start mirakurun"
 npm start

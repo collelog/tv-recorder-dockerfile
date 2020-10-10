@@ -3,7 +3,7 @@ FROM collelog/ffmpeg:4.3.1-alpine-arm32v6 AS ffmpeg-image
 
 
 # EPGStation
-FROM collelog/epgstation-build:latest-alpine AS epgstation-build
+FROM collelog/epgstation-build:latest-alpine AS epgstation-image
 
 
 # final image
