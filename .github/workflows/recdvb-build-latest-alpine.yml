@@ -10,141 +10,77 @@ jobs:
         name: Checkout
         uses: actions/checkout@v2
       -
+        name: Set up QEMU
+        uses: docker/setup-qemu-action@v1
+      -
         name: Set up Docker Buildx
-        uses: crazy-max/ghaction-docker-buildx@v3
+        uses: docker/setup-buildx-action@v1
       -
         name: Cache Docker layers
         uses: actions/cache@v2
-        id: cache
         with:
           path: /tmp/.buildx-cache
           key: ${{ runner.os }}-buildx-${{ github.sha }}
           restore-keys: |
             ${{ runner.os }}-buildx-
       -
-        name: Docker Login
-        env:
-          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-        run: |
-          echo "${DOCKER_PASSWORD}" | docker login --username "${DOCKER_USERNAME}" --password-stdin
+        name: Login to DockerHub
+        uses: docker/login-action@v1 
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
       -
-        name: Docker Buildx (build)
-        run: |
-          docker buildx build \
-            --cache-from "type=local,src=/tmp/.buildx-cache" \
-            --cache-to "type=local,dest=/tmp/.buildx-cache" \
-            --platform linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64 \
-            --output "type=image,push=false" \
-            --tag collelog/recdvb-build:latest-alpine \
-            --file ./recdvb-build/latest-alpine.Dockerfile ./recdvb-build/
+        name: Build and push - latest-alpine
+        uses: docker/build-push-action@v2
+        with:
+          context: ./recdvb-build/
+          file: ./recdvb-build/latest-alpine.Dockerfile
+          tags: collelog/recdvb-build:latest-alpine
+          platforms: linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64
+          push: true
+          cache-from: type=local,src=/tmp/.buildx-cache
+          cache-to: type=local,dest=/tmp/.buildx-cache
       -
-        name: Docker Buildx (push)
-        run: |
-          docker buildx build \
-            --cache-from "type=local,src=/tmp/.buildx-cache" \
-            --platform linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64 \
-            --output "type=image,push=true" \
-            --tag collelog/recdvb-build:latest-alpine \
-            --file ./recdvb-build/latest-alpine.Dockerfile ./recdvb-build/
+        name: Build and push - latest-alpine-amd64
+        uses: docker/build-push-action@v2
+        with:
+          context: ./recdvb-build/
+          file: ./recdvb-build/latest-alpine-amd64.Dockerfile
+          tags: collelog/recdvb-build:latest-alpine-amd64
+          platforms: linux/amd64
+          push: true
+          cache-from: type=local,src=/tmp/.buildx-cache
+          cache-to: type=local,dest=/tmp/.buildx-cache
       -
-        name: Docker Check Manifest
-        run: |
-          docker run --rm mplatform/mquery collelog/recdvb-build:latest-alpine
+        name: Build and push - latest-alpine-rpi4-arm64v8
+        uses: docker/build-push-action@v2
+        with:
+          context: ./recdvb-build/
+          file: ./recdvb-build/latest-alpine-rpi4.Dockerfile
+          tags: collelog/recdvb-build:latest-alpine-rpi4-arm64v8
+          platforms: linux/arm64
+          push: true
+          cache-from: type=local,src=/tmp/.buildx-cache
+          cache-to: type=local,dest=/tmp/.buildx-cache
       -
-        name: Docker Buildx (build) - latest-alpine-amd64
-        run: |
-          docker buildx build \
-            --cache-from "type=local,src=/tmp/.buildx-cache" \
-            --cache-to "type=local,dest=/tmp/.buildx-cache" \
-            --platform linux/amd64 \
-            --output "type=image,push=false" \
-            --tag collelog/recdvb-build:latest-alpine-amd64 \
-            --file ./recdvb-build/latest-alpine-amd64.Dockerfile ./recdvb-build/
+        name: Build and push - latest-alpine-rpi4-arm32v7
+        uses: docker/build-push-action@v2
+        with:
+          context: ./recdvb-build/
+          file: ./recdvb-build/latest-alpine-rpi4.Dockerfile
+          tags: collelog/recdvb-build:latest-alpine-rpi4-arm32v7
+          platforms: linux/arm/v7
+          push: true
+          cache-from: type=local,src=/tmp/.buildx-cache
+          cache-to: type=local,dest=/tmp/.buildx-cache
       -
-        name: Docker Buildx (push) - latest-alpine-amd64
-        run: |
-          docker buildx build \
-            --cache-from "type=local,src=/tmp/.buildx-cache" \
-            --platform linux/amd64 \
-            --output "type=image,push=true" \
-            --tag collelog/recdvb-build:latest-alpine-amd64 \
-            --file ./recdvb-build/latest-alpine-amd64.Dockerfile ./recdvb-build/
-      -
-        name: Docker Check Manifest - latest-alpine-amd64
-        run: |
-          docker run --rm mplatform/mquery collelog/recdvb-build:latest-alpine-amd64
-      -
-        name: Docker Buildx (build) - latest-alpine-rpi4-arm64v8
-        run: |
-          docker buildx build \
-            --cache-from "type=local,src=/tmp/.buildx-cache" \
-            --cache-to "type=local,dest=/tmp/.buildx-cache" \
-            --platform linux/arm64 \
-            --output "type=image,push=false" \
-            --tag collelog/recdvb-build:latest-alpine-rpi4-arm64v8 \
-            --file ./recdvb-build/latest-alpine-rpi4-arm64v8.Dockerfile ./recdvb-build/
-      -
-        name: Docker Buildx (push) - latest-alpine-rpi4-arm64v8
-        run: |
-          docker buildx build \
-            --cache-from "type=local,src=/tmp/.buildx-cache" \
-            --platform linux/arm64 \
-            --output "type=image,push=true" \
-            --tag collelog/recdvb-build:latest-alpine-rpi4-arm64v8 \
-            --file ./recdvb-build/latest-alpine-rpi4-arm64v8.Dockerfile ./recdvb-build/
-      -
-        name: Docker Check Manifest - latest-alpine-rpi4-arm64v8
-        run: |
-          docker run --rm mplatform/mquery collelog/recdvb-build:latest-alpine-rpi4-arm64v8
-      -
-        name: Docker Buildx (build) - latest-alpine-rpi4-arm32v7
-        run: |
-          docker buildx build \
-            --cache-from "type=local,src=/tmp/.buildx-cache" \
-            --cache-to "type=local,dest=/tmp/.buildx-cache" \
-            --platform linux/arm/v7 \
-            --output "type=image,push=false" \
-            --tag collelog/recdvb-build:latest-alpine-rpi4-arm32v7 \
-            --file ./recdvb-build/latest-alpine-rpi4-arm32v7.Dockerfile ./recdvb-build/
-      -
-        name: Docker Buildx (push) - latest-alpine-rpi4-arm32v7
-        run: |
-          docker buildx build \
-            --cache-from "type=local,src=/tmp/.buildx-cache" \
-            --platform linux/arm/v7 \
-            --output "type=image,push=true" \
-            --tag collelog/recdvb-build:latest-alpine-rpi4-arm32v7 \
-            --file ./recdvb-build/latest-alpine-rpi4-arm32v7.Dockerfile ./recdvb-build/
-      -
-        name: Docker Check Manifest - latest-alpine-rpi4-arm32v7
-        run: |
-          docker run --rm mplatform/mquery collelog/recdvb-build:latest-alpine-rpi4-arm32v7
-      -
-        name: Docker Buildx (build) - latest-alpine-rpi3-arm32v7
-        run: |
-          docker buildx build \
-            --cache-from "type=local,src=/tmp/.buildx-cache" \
-            --cache-to "type=local,dest=/tmp/.buildx-cache" \
-            --platform linux/arm/v7 \
-            --output "type=image,push=false" \
-            --tag collelog/recdvb-build:latest-alpine-rpi3-arm32v7 \
-            --file ./recdvb-build/latest-alpine-rpi3-arm32v7.Dockerfile ./recdvb-build/
-      -
-        name: Docker Buildx (push) - latest-alpine-rpi3-arm32v7
-        run: |
-          docker buildx build \
-            --cache-from "type=local,src=/tmp/.buildx-cache" \
-            --platform linux/arm/v7 \
-            --output "type=image,push=true" \
-            --tag collelog/recdvb-build:latest-alpine-rpi3-arm32v7 \
-            --file ./recdvb-build/latest-alpine-rpi3-arm32v7.Dockerfile ./recdvb-build/
-      -
-        name: Docker Check Manifest - latest-alpine-rpi3-arm32v7
-        run: |
-          docker run --rm mplatform/mquery collelog/recdvb-build:latest-alpine-rpi3-arm32v7
-      -
-        name: Clear
-        if: always()
-        run: |
-          rm -f ${HOME}/.docker/config.json
+        name: Build and push - latest-alpine-rpi3-arm32v7
+        uses: docker/build-push-action@v2
+        with:
+          context: ./recdvb-build/
+          file: ./recdvb-build/latest-alpine-rpi3.Dockerfile
+          tags: collelog/recdvb-build:latest-alpine-rpi3-arm32v7
+          platforms: linux/arm/v7
+          push: true
+          cache-from: type=local,src=/tmp/.buildx-cache
+          cache-to: type=local,dest=/tmp/.buildx-cache

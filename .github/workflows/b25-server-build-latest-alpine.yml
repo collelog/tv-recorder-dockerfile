@@ -56,7 +56,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: ./b25-server/
-          file: ./b25-server/latest-alpine-rpi4-arm64v8.Dockerfile
+          file: ./b25-server/latest-alpine-rpi4.Dockerfile
           tags: collelog/b25-server:latest-alpine-rpi4-arm64v8
           platforms: linux/arm64
           push: true
@@ -67,7 +67,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: ./b25-server/
-          file: ./b25-server/latest-alpine-rpi4-arm32v7.Dockerfile
+          file: ./b25-server/latest-alpine-rpi4.Dockerfile
           tags: collelog/b25-server:latest-alpine-rpi4-arm32v7
           platforms: linux/arm/v7
           push: true
@@ -78,7 +78,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: ./b25-server/
-          file: ./b25-server/latest-alpine-rpi3-arm32v7.Dockerfile
+          file: ./b25-server/latest-alpine-rpi3.Dockerfile
           tags: collelog/b25-server:latest-alpine-rpi3-arm32v7
           platforms: linux/arm/v7
           push: true

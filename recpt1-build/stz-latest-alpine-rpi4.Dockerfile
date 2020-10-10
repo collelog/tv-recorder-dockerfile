@@ -4,7 +4,7 @@ FROM collelog/buildenv:alpine AS recpt1-build
 COPY ./patch/stz/pt1_dev.h.patch /tmp/
 COPY ./patch/stz/recpt1.h.patch /tmp/
 COPY ./patch/stz/recpt1core.c.patch /tmp/
-COPY ./patch/stz/Makefile.in-rpi3-arm32v7.patch /tmp/
+COPY ./patch/stz/Makefile.in-rpi4.patch /tmp/
 
 RUN apk add --no-cache --update-cache \
 	pcsc-lite-dev
@@ -29,7 +29,7 @@ RUN mv /tmp/*.patch /tmp/recpt1/recpt1/
 RUN patch < pt1_dev.h.patch
 RUN patch < recpt1.h.patch
 RUN patch < recpt1core.c.patch
-RUN patch < Makefile.in-rpi3-arm32v7.patch
+RUN patch < Makefile.in-rpi4.patch
 RUN ./autogen.sh
 RUN ./configure --prefix=/usr/local --enable-b25
 RUN make -j $(nproc)

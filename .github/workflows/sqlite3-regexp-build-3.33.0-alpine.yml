@@ -56,7 +56,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: ./sqlite3-regexp-build/
-          file: ./sqlite3-regexp-build/3.33.0-alpine-rpi4-arm64v8.Dockerfile
+          file: ./sqlite3-regexp-build/3.33.0-alpine-rpi4.Dockerfile
           tags: collelog/sqlite3-regexp-build:3.33.0-alpine-rpi4-arm64v8
           platforms: linux/arm64
           push: true
@@ -67,7 +67,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: ./sqlite3-regexp-build/
-          file: ./sqlite3-regexp-build/3.33.0-alpine-rpi4-arm32v7.Dockerfile
+          file: ./sqlite3-regexp-build/3.33.0-alpine-rpi4.Dockerfile
           tags: collelog/sqlite3-regexp-build:3.33.0-alpine-rpi4-arm32v7
           platforms: linux/arm/v7
           push: true
@@ -78,7 +78,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: ./sqlite3-regexp-build/
-          file: ./sqlite3-regexp-build/3.33.0-alpine-rpi3-arm32v7.Dockerfile
+          file: ./sqlite3-regexp-build/3.33.0-alpine-rpi3.Dockerfile
           tags: collelog/sqlite3-regexp-build:3.33.0-alpine-rpi3-arm32v7
           platforms: linux/arm/v7
           push: true

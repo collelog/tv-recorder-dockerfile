@@ -2,7 +2,7 @@
 FROM collelog/buildenv:alpine AS libarib25-build
 
 COPY ./arib-b25-stream /tmp/
-COPY ./patch/CMakeLists-rpi4-arm32v7.patch /tmp/
+COPY ./patch/CMakeLists-rpi4.patch /tmp/
 
 RUN apk add --no-cache --update-cache \
 	pcsc-lite-dev
@@ -20,13 +20,15 @@ WORKDIR /tmp/libarib25
 RUN curl -fsSL https://github.com/stz2012/libarib25/tarball/master | \
 		tar -xz --strip-components=1
 RUN mv /tmp/*.patch /tmp/libarib25/
-RUN patch < CMakeLists-rpi4-arm32v7.patch
+RUN patch < CMakeLists-rpi4.patch
 RUN cmake -DCMAKE_BUILD_TYPE=Release -DLDCONFIG_EXECUTABLE=IGNORE .
 RUN make -j $(nproc) install
 
 WORKDIR /build
-RUN cp --archive --parents --no-dereference /usr/local/lib/libarib25.* /build
-RUN cp --archive --parents --no-dereference /usr/local/lib/pkgconfig/libarib25.pc /build
+RUN cp --archive --parents --no-dereference /usr/local/lib/libarib25.* /build || true
+RUN cp --archive --parents --no-dereference /usr/local/lib/pkgconfig/libarib25.pc /build || true
+RUN cp --archive --parents --no-dereference /usr/local/lib64/libarib25.* /build || true
+RUN cp --archive --parents --no-dereference /usr/local/lib64/pkgconfig/libarib25.pc /build || true
 RUN cp --archive --parents --no-dereference /usr/local/include/arib25 /build
 RUN cp --archive --parents --no-dereference /usr/local/bin/b25 /build
 RUN cp --archive --parents --no-dereference /usr/local/bin/arib-b25-stream /build
