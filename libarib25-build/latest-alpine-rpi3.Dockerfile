@@ -2,7 +2,7 @@
 FROM collelog/buildenv:alpine AS libarib25-build
 
 COPY ./arib-b25-stream /tmp/
-COPY ./patch/CMakeLists-rpi3-arm32v7.patch /tmp/
+COPY ./patch/CMakeLists-rpi3.patch /tmp/
 
 WORKDIR /tmp
 RUN chmod 755 ./arib-b25-stream
@@ -20,7 +20,7 @@ WORKDIR /tmp/libarib25
 RUN curl -fsSL https://github.com/stz2012/libarib25/tarball/master | \
 		tar -xz --strip-components=1
 RUN mv /tmp/*.patch /tmp/libarib25/
-RUN patch < CMakeLists-rpi3-arm32v7.patch
+RUN patch < CMakeLists-rpi3.patch
 RUN cmake -DCMAKE_BUILD_TYPE=Release -DLDCONFIG_EXECUTABLE=IGNORE .
 RUN make -j $(nproc) install
 
