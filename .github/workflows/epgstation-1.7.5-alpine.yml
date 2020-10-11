@@ -56,40 +56,40 @@ jobs:
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache
       -
-        name: Build and push - 1.7.5-alpine-rpi4-arm64v8
+        name: Build and push - 1.7.5-alpine-rpi4-64
         uses: docker/build-push-action@v2
         with:
           context: ./epgstation/
-          file: ./epgstation/1.7.5-alpine-rpi4-arm64v8.Dockerfile
+          file: ./epgstation/1.7.5-alpine-rpi4-64.Dockerfile
           tags: |
-            collelog/epgstation:1.7.5-alpine-rpi4-arm64v8
-            collelog/epgstation:latest-alpine-rpi4-arm64v8
+            collelog/epgstation:1.7.5-alpine-rpi4-64
+            collelog/epgstation:latest-alpine-rpi4-64
           platforms: linux/arm64
           push: true
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache
       -
-        name: Build and push - 1.7.5-alpine-rpi4-arm32v7
+        name: Build and push - 1.7.5-alpine-rpi4-32
         uses: docker/build-push-action@v2
         with:
           context: ./epgstation/
-          file: ./epgstation/1.7.5-alpine-rpi4-arm32v7.Dockerfile
+          file: ./epgstation/1.7.5-alpine-rpi4-32.Dockerfile
           tags: |
-            collelog/epgstation:1.7.5-alpine-rpi4-arm32v7
-            collelog/epgstation:latest-alpine-rpi4-arm32v7
+            collelog/epgstation:1.7.5-alpine-rpi4-32
+            collelog/epgstation:latest-alpine-rpi4-32
           platforms: linux/arm/v7
           push: true
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache
       -
-        name: Build and push - 1.7.5-alpine-rpi3-arm32v7
+        name: Build and push - 1.7.5-alpine-rpi3
         uses: docker/build-push-action@v2
         with:
           context: ./epgstation/
-          file: ./epgstation/1.7.5-alpine-rpi3-arm32v7.Dockerfile
+          file: ./epgstation/1.7.5-alpine-rpi3.Dockerfile
           tags: |
-            collelog/epgstation:1.7.5-alpine-rpi3-arm32v7
-            collelog/epgstation:latest-alpine-rpi3-arm32v7
+            collelog/epgstation:1.7.5-alpine-rpi3
+            collelog/epgstation:latest-alpine-rpi3
           platforms: linux/arm/v7
           push: true
           cache-from: type=local,src=/tmp/.buildx-cache

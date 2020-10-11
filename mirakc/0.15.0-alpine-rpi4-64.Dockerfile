@@ -1,5 +1,5 @@
 # mirakc-arib, mirakc
-FROM mirakc/mirakc:master-alpine AS mirakc-image
+FROM mirakc/mirakc:0.15.0-alpine AS mirakc-image
 WORKDIR /build
 RUN cp --archive --parents --no-dereference /usr/local/bin/mirakc-arib /build
 RUN cp --archive --parents --no-dereference /usr/local/bin/mirakc /build
@@ -8,19 +8,19 @@ RUN cp --archive --parents --no-dereference /etc/mirakurun.openapi.json /build
 
 
 # libarib25 
-FROM collelog/libarib25-build:latest-alpine-rpi3-arm32v7 AS libarib25-image
+FROM collelog/libarib25-build:latest-alpine-rpi4-64 AS libarib25-image
 
 
 # recpt1
-FROM collelog/recpt1-build:latest-alpine-rpi3-arm32v7 AS recpt1-image
+FROM collelog/recpt1-build:latest-alpine-rpi4-64 AS recpt1-image
 
 
 # recdvb
-FROM collelog/recdvb-build:latest-alpine-rpi3-arm32v7 AS recdvb-image
+FROM collelog/recdvb-build:latest-alpine-rpi4-64 AS recdvb-image
 
 
 # arib-b25-stream-test
-FROM collelog/arib-b25-stream-test-build:latest-alpine-rpi3-arm32v7 AS arib-b25-stream-test-image
+FROM collelog/arib-b25-stream-test-build:latest-alpine-rpi4-64 AS arib-b25-stream-test-image
 
 
 # final image
@@ -29,7 +29,6 @@ LABEL maintainer "collelog <collelog.cavamin@gmail.com>"
 
 ENV LD_LIBRARY_PATH=/usr/local/lib64
 ENV MIRAKC_CONFIG=/etc/mirakc/config.yml
-
 
 COPY ./services.sh /usr/local/bin/services.sh
 

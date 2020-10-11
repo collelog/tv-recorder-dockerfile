@@ -52,34 +52,34 @@ jobs:
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache
       -
-        name: Build and push - 3.33.0-alpine-rpi4-arm64v8
+        name: Build and push - 3.33.0-alpine-rpi4-64
         uses: docker/build-push-action@v2
         with:
           context: ./sqlite3-regexp-build/
           file: ./sqlite3-regexp-build/3.33.0-alpine-rpi4.Dockerfile
-          tags: collelog/sqlite3-regexp-build:3.33.0-alpine-rpi4-arm64v8
+          tags: collelog/sqlite3-regexp-build:3.33.0-alpine-rpi4-64
           platforms: linux/arm64
           push: true
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache
       -
-        name: Build and push - 3.33.0-alpine-rpi4-arm32v7
+        name: Build and push - 3.33.0-alpine-rpi4-32
         uses: docker/build-push-action@v2
         with:
           context: ./sqlite3-regexp-build/
           file: ./sqlite3-regexp-build/3.33.0-alpine-rpi4.Dockerfile
-          tags: collelog/sqlite3-regexp-build:3.33.0-alpine-rpi4-arm32v7
+          tags: collelog/sqlite3-regexp-build:3.33.0-alpine-rpi4-32
           platforms: linux/arm/v7
           push: true
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache
       -
-        name: Build and push - 3.33.0-alpine-rpi3-arm32v7
+        name: Build and push - 3.33.0-alpine-rpi3
         uses: docker/build-push-action@v2
         with:
           context: ./sqlite3-regexp-build/
           file: ./sqlite3-regexp-build/3.33.0-alpine-rpi3.Dockerfile
-          tags: collelog/sqlite3-regexp-build:3.33.0-alpine-rpi3-arm32v7
+          tags: collelog/sqlite3-regexp-build:3.33.0-alpine-rpi3
           platforms: linux/arm/v7
           push: true
           cache-from: type=local,src=/tmp/.buildx-cache

@@ -1,9 +1,9 @@
 # FFmpeg
-FROM collelog/ffmpeg:4.3.1-alpine-rpi4-arm32v7 AS ffmpeg-image
+FROM collelog/ffmpeg:4.3.1-alpine-rpi3 AS ffmpeg-image
 
 
 # sqlite3-regexp
-FROM collelog/sqlite3-regexp-build:3.33.0-alpine-rpi4-arm32v7 AS sqlite3-regexp-image
+FROM collelog/sqlite3-regexp-build:3.33.0-alpine-rpi3 AS sqlite3-regexp-image
 
 
 # EPGStation

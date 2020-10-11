@@ -8,19 +8,19 @@ RUN cp --archive --parents --no-dereference /etc/mirakurun.openapi.json /build
 
 
 # libarib25 
-FROM collelog/libarib25-build:latest-alpine-rpi4-arm32v7 AS libarib25-image
+FROM collelog/libarib25-build:latest-alpine-rpi4-32 AS libarib25-image
 
 
 # recpt1
-FROM collelog/recpt1-build:latest-alpine-rpi4-arm32v7 AS recpt1-image
+FROM collelog/recpt1-build:latest-alpine-rpi4-32 AS recpt1-image
 
 
 # recdvb
-FROM collelog/recdvb-build:latest-alpine-rpi4-arm32v7 AS recdvb-image
+FROM collelog/recdvb-build:latest-alpine-rpi4-32 AS recdvb-image
 
 
 # arib-b25-stream-test
-FROM collelog/arib-b25-stream-test-build:latest-alpine-rpi4-arm32v7 AS arib-b25-stream-test-image
+FROM collelog/arib-b25-stream-test-build:latest-alpine-rpi4-32 AS arib-b25-stream-test-image
 
 
 # final image

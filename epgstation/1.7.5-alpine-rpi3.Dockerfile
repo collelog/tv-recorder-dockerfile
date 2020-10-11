@@ -1,20 +1,20 @@
 # FFmpeg
-FROM collelog/ffmpeg:4.3.1-alpine-rpi4-arm64v8 AS ffmpeg-image
+FROM collelog/ffmpeg:4.3.1-alpine-rpi3 AS ffmpeg-image
 
 
 # sqlite3-regexp
-FROM collelog/sqlite3-regexp-build:3.33.0-alpine-rpi4-arm64v8 AS sqlite3-regexp-image
+FROM collelog/sqlite3-regexp-build:3.33.0-alpine-rpi3 AS sqlite3-regexp-image
 
 
 # EPGStation
-FROM collelog/epgstation-build:master-alpine AS epgstation-image
+FROM collelog/epgstation-build:1.7.5-alpine AS epgstation-image
 
 
 # final image
 FROM node:14-alpine
 LABEL maintainer "collelog <collelog.cavamin@gmail.com>"
 
-ENV LD_LIBRARY_PATH=/usr/local/lib64:/usr/lib64:/lib64:/usr/local/lib:/usr/lib:/lib
+ENV LD_LIBRARY_PATH=/opt/vc/lib:/usr/local/lib:/usr/lib:/lib
 
 # FFmpeg
 COPY --from=ffmpeg-image /build /
