@@ -4,7 +4,7 @@ FROM collelog/buildenv:node14-alpine AS epgstation-build
 WORKDIR /opt/epgstation
 RUN curl -fsSL https://github.com/l3tnun/EPGStation/archive/v1.7.4.tar.gz | \
 		tar -xz --strip-components=1
-RUN npm install --nosave --python=/usr/bin/python3
+RUN npm ci --python=/usr/bin/python3
 RUN npm run build
 
 WORKDIR /build
