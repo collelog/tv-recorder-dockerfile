@@ -20,7 +20,7 @@ FROM collelog/recdvb-build:latest-alpine AS recdvb-image
 
 
 # recfsusb2n
-FROM collelog/recfsusb2n-build:latest-alpine AS recfsusb2n-image
+FROM collelog/recfsusb2n-build:epgdatacapbon-latest-alpine AS recfsusb2n-image
 
 
 # arib-b25-stream-test
