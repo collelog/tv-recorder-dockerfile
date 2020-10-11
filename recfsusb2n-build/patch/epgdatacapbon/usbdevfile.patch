@@ -1,0 +1,11 @@
+--- usbdevfile.c	2020-01-15 00:53:21.000000000 +0900
++++ usbdevfile.c.after	2020-10-11 20:39:54.000000000 +0900
+@@ -10,6 +10,8 @@
+ #include <sys/file.h>
+ #include <linux/usb/ch9.h>
+ #include <dirent.h>
++#include <fcntl.h>
++#include <linux/limits.h>
+ 
+ #include "usbdevfile.h"
+ #include "message.h"

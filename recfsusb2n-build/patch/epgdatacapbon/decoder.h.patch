@@ -1,0 +1,13 @@
+--- decoder.h	2020-01-15 00:53:21.000000000 +0900
++++ decoder.h.after	2020-10-11 18:32:05.000000000 +0900
+@@ -6,8 +6,8 @@
+ 
+ #ifdef STD_B25
+ 
+-#include <aribb25/arib_std_b25.h>
+-#include <aribb25/b_cas_card.h>
++#include <arib25/arib_std_b25.h>
++#include <arib25/b_cas_card.h>
+ 
+ #else
+ 
