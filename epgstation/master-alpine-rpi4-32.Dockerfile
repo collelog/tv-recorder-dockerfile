@@ -3,7 +3,7 @@ FROM collelog/ffmpeg:4.3.1-alpine-rpi4-32 AS ffmpeg-image
 
 
 # sqlite3-regexp
-FROM collelog/sqlite3-regexp-build:3.33.0-alpine-rpi4-32 AS sqlite3-regexp-image
+FROM collelog/sqlite3-regexp-build:3.31.1-alpine-rpi4-32 AS sqlite3-regexp-image
 
 
 # EPGStation
