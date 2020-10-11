@@ -7,7 +7,7 @@ FROM collelog/sqlite3-regexp-build:3.33.0-alpin-rpi4-64 AS sqlite3-regexp-image
 
 
 # EPGStation
-FROM collelog/epgstation-build:2.0.0-beta-alpine AS epgstation-image
+FROM collelog/epgstation-build:2.0.0-beta.0-alpine AS epgstation-image
 
 
 # final image
