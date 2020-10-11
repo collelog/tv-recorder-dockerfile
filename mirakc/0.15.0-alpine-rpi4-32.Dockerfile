@@ -19,6 +19,10 @@ FROM collelog/recpt1-build:latest-alpine-rpi4-32 AS recpt1-image
 FROM collelog/recdvb-build:latest-alpine-rpi4-32 AS recdvb-image
 
 
+# recfsusb2n
+FROM collelog/recfsusb2n-build:latest-alpine-rpi4-32 AS recfsusb2n-image
+
+
 # arib-b25-stream-test
 FROM collelog/arib-b25-stream-test-build:latest-alpine-rpi4-32 AS arib-b25-stream-test-image
 
@@ -44,6 +48,9 @@ COPY --from=recpt1-image /build /
 # recdvb
 COPY --from=recdvb-image /build /
 
+# recfsusb2n
+COPY --from=recfsusb2n-image /build /
+
 # arib-b25-stream-test
 COPY --from=arib-b25-stream-test-image /build /
 
@@ -65,6 +72,11 @@ RUN set -eux && \
 	echo http://dl-cdn.alpinelinux.org/alpine/edge/main >> /etc/apk/repositories && \
 	apk add --no-cache --update-cache \
 		musl && \
+	\
+	mkdir /etc/dvbv5 && \
+	cd /etc/dvbv5 && \
+	curl -fsSLO https://raw.githubusercontent.com/Chinachu/dvbconf-for-isdb/master/conf/dvbv5_channels_isdbs.conf && \
+	curl -fsSLO https://raw.githubusercontent.com/Chinachu/dvbconf-for-isdb/master/conf/dvbv5_channels_isdbt.conf && \
 	\
 	# cleaning
 	rm -rf /tmp/* /var/cache/apk/* && \
