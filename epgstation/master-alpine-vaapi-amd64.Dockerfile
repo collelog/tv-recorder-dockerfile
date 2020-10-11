@@ -20,7 +20,7 @@ ENV LD_LIBRARY_PATH=/usr/local/lib64:/usr/lib64:/lib64:/usr/local/lib:/usr/lib:/
 COPY --from=ffmpeg-image /build /
 
 # EPGStation
-COPY --from=epgstation-build /build /
+COPY --from=epgstation-image /build /
 
 # sqlite3-regexp
 COPY --from=sqlite3-regexp-image /build/usr/lib/sqlite3.31.1/regexp.so /opt/epgstation
