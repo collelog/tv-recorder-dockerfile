@@ -56,7 +56,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: ./mirakurun/
-          file: ./mirakurun/2.15.2-alpine-rpi4.Dockerfile
+          file: ./mirakurun/2.15.2-alpine-rpi4-64.Dockerfile
           tags: collelog/mirakurun:2.15.2-alpine-rpi4-64
           platforms: linux/arm64
           push: true
@@ -67,7 +67,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: ./mirakurun/
-          file: ./mirakurun/2.15.2-alpine-rpi4.Dockerfile
+          file: ./mirakurun/2.15.2-alpine-rpi4-32.Dockerfile
           tags: collelog/mirakurun:2.15.2-alpine-rpi4-32
           platforms: linux/arm/v7
           push: true
