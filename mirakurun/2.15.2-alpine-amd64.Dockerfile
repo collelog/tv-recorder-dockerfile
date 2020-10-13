@@ -10,23 +10,23 @@ RUN rm -rf /tmp/* /var/cache/apk/*
 
 
 # libarib25 
-FROM collelog/libarib25-build:latest-alpine AS libarib25-image
+FROM collelog/libarib25-build:latest-alpine-amd64 AS libarib25-image
 
 
 # recpt1
-FROM collelog/recpt1-build:latest-alpine AS recpt1-image
+FROM collelog/recpt1-build:latest-alpine-amd64 AS recpt1-image
 
 
 # recdvb
-FROM collelog/recdvb-build:latest-alpine AS recdvb-image
+FROM collelog/recdvb-build:latest-alpine-amd64 AS recdvb-image
 
 
 # recfsusb2n
-FROM collelog/recfsusb2n-build:epgdatacapbon-latest-alpine AS recfsusb2n-image
+FROM collelog/recfsusb2n-build:epgdatacapbon-latest-alpine-amd64 AS recfsusb2n-image
 
 
 # arib-b25-stream-test
-FROM collelog/arib-b25-stream-test-build:latest-alpine AS arib-b25-stream-test-image
+FROM collelog/arib-b25-stream-test-build:latest-alpine-amd64 AS arib-b25-stream-test-image
 
 
 # final image
