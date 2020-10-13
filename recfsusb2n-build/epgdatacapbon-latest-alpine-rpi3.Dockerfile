@@ -3,7 +3,7 @@ FROM collelog/buildenv:alpine AS recfsusb2n-build
 
 COPY ./patch/epgdatacapbon/Makefile-rpi3.patch /tmp/
 COPY ./patch/epgdatacapbon/decoder.h.patch /tmp/
-COPY ./patch/epgdatacapbon/usbdevfile.patch /tmp/
+COPY ./patch/epgdatacapbon/usbdevfile.c.patch /tmp/
 
 RUN apk add --no-cache --update-cache \
 	pcsc-lite-dev
@@ -27,7 +27,7 @@ RUN mv /tmp/*.patch /tmp/recfsusb2n/src
 WORKDIR /tmp/recfsusb2n/src
 RUN patch < Makefile-rpi3.patch
 RUN patch < decoder.h.patch
-RUN patch < usbdevfile.patch
+RUN patch < usbdevfile.c.patch
 RUN make -j $(nproc) B25=1
 RUN make -j $(nproc) install
 
