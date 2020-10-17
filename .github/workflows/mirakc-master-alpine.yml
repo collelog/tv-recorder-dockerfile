@@ -56,7 +56,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: ./mirakc/
-          file: ./mirakc/master-alpine-rpi4.Dockerfile
+          file: ./mirakc/master-alpine-rpi4-64.Dockerfile
           tags: collelog/mirakc:master-alpine-rpi4-64
           platforms: linux/arm64
           push: true
