@@ -1,0 +1,13 @@
+diff --git recpt1/recpt1core.c recpt1/recpt1core.c
+index 9412456..7e2a135 100644
+--- recpt1/recpt1core.c
++++ recpt1/recpt1core.c
+@@ -171,7 +171,7 @@ calc_cn(int fd, int type, boolean use_bell)
+         do_bell(bell);
+     }
+     else {
+-        fprintf(stderr, "\rC/N = %fdB", CNR);
++        fprintf(stderr, "C/N = %fdB", CNR);
+     }
+ }
+

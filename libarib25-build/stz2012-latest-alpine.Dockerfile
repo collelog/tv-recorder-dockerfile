@@ -1,8 +1,8 @@
-# libarib25
+# stz2012”Ålibarib25
 FROM collelog/buildenv:alpine AS libarib25-build
 
 COPY ./arib-b25-stream /tmp/
-COPY ./patch/CMakeLists.patch /tmp/
+COPY ./patch/stz2012/CMakeLists.patch /tmp/
 
 WORKDIR /tmp
 RUN chmod 755 ./arib-b25-stream

@@ -1,8 +1,8 @@
-# libarib25
+# epgdatacapbon”Ålibarib25
 FROM collelog/buildenv:alpine AS libarib25-build
 
 COPY ./arib-b25-stream /tmp/
-COPY ./patch/CMakeLists-rpi4.patch /tmp/
+COPY ./patch/epgdatacapbon/CMakeLists-rpi4.patch /tmp/
 
 RUN apk add --no-cache --update-cache \
 	pcsc-lite-dev
@@ -17,7 +17,7 @@ RUN chmod 755 ./arib-b25-stream
 RUN mv ./arib-b25-stream /usr/local/bin/
 
 WORKDIR /tmp/libarib25
-RUN curl -fsSL https://github.com/stz2012/libarib25/tarball/master | \
+RUN curl -fsSL https://github.com/epgdatacapbon/libarib25/tarball/master | \
 		tar -xz --strip-components=1
 RUN mv /tmp/*.patch /tmp/libarib25/
 RUN patch < CMakeLists-rpi4.patch
