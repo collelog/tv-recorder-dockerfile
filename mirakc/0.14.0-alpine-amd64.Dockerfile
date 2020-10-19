@@ -8,7 +8,7 @@ RUN cp --archive --parents --no-dereference /etc/mirakurun.openapi.json /build
 
 
 # libarib25 
-FROM collelog/libarib25-build:latest-alpine-amd64 AS libarib25-image
+FROM collelog/libarib25-build:epgdatacapbon-latest-alpine-amd64 AS libarib25-image
 
 
 # recpt1

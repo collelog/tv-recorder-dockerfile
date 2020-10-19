@@ -10,11 +10,11 @@ RUN rm -rf /tmp/* /var/cache/apk/*
 
 
 # libarib25 
-FROM collelog/libarib25-build:latest-alpine-rpi4-32 AS libarib25-image
+FROM collelog/libarib25-build:epgdatacapbon-latest-alpine-rpi4-32 AS libarib25-image
 
 
 # recpt1
-FROM collelog/recpt1-build:latest-alpine-rpi4-32 AS recpt1-image
+FROM collelog/recpt1-build:epgdatacapbon-latest-alpine-rpi4-32 AS recpt1-image
 
 
 # recdvb
