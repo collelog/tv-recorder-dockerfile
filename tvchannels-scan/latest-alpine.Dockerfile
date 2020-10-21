@@ -22,6 +22,8 @@ FROM collelog/epgdump-build:stz2012-latest-alpine AS epgdump-image
 FROM alpine:3.12.0
 LABEL maintainer "collelog <collelog.cavamin@gmail.com>"
 
+ENV LD_LIBRARY_PATH=/usr/local/lib64:/usr/local/lib
+
 COPY ./services.sh /usr/local/bin/services.sh
 
 
@@ -72,8 +74,8 @@ RUN set -eux && \
 	\
 	chmod 755 /usr/local/bin/services.sh
 
-WORKDIR /etc/tvchannels-scan
+WORKDIR /opt/tvchannels-scan
 
-VOLUME /etc/tvchannels-scan
+VOLUME /opt/tvchannels-scan
 ENTRYPOINT ["/usr/local/bin/services.sh"]
 CMD []
