@@ -1,3 +1,7 @@
+# libarib25 
+FROM collelog/libarib25-build:epgdatacapbon-latest-alpine AS libarib25-image
+
+
 # recpt1
 FROM collelog/recpt1-build:epgdatacapbon-latest-alpine AS recpt1-image
 
@@ -18,6 +22,12 @@ FROM collelog/epgdump-build:stz2012-latest-alpine AS epgdump-image
 FROM alpine:3.12.0
 LABEL maintainer "collelog <collelog.cavamin@gmail.com>"
 
+COPY ./services.sh /usr/local/bin/services.sh
+
+
+# libarib25
+COPY --from=libarib25-image /build /
+
 # recpt1
 COPY --from=recpt1-image /build /
 
@@ -34,8 +44,12 @@ RUN set -eux && \
 	apk upgrade --no-cache --update-cache && \
 	apk add --no-cache --update-cache \
 		ca-certificates \
+		ccid \
 		curl \
 		libxml2-utils \
+		libstdc++ \
+		pcsc-lite \
+		pcsc-lite-libs \
 		tzdata && \
 	echo http://dl-cdn.alpinelinux.org/alpine/edge/community >> /etc/apk/repositories && \
 	apk add --no-cache --update-cache \
@@ -54,7 +68,9 @@ RUN set -eux && \
 	chmod 755 scan_ch_mirak.sh && \
 	\
 	# cleaning
-	rm -rf /tmp/* /var/cache/apk/*
+	rm -rf /tmp/* /var/cache/apk/* && \
+	\
+	chmod 755 /usr/local/bin/services.sh
 
 WORKDIR /etc/tvchannels-scan
 
