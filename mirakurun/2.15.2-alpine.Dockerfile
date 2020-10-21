@@ -33,7 +33,7 @@ FROM collelog/arib-b25-stream-test-build:latest-alpine AS arib-b25-stream-test-i
 FROM node:12-alpine
 LABEL maintainer "collelog <collelog.cavamin@gmail.com>"
 
-ENV LD_LIBRARY_PATH=/usr/local/lib64
+ENV LD_LIBRARY_PATH=/usr/local/lib64:/usr/local/lib
 
 COPY ./services.sh /usr/local/bin/
 
