@@ -10,141 +10,87 @@ jobs:
         name: Checkout
         uses: actions/checkout@v2
       -
+        name: Set up QEMU
+        uses: docker/setup-qemu-action@v1
+      -
         name: Set up Docker Buildx
-        uses: crazy-max/ghaction-docker-buildx@v3
+        uses: docker/setup-buildx-action@v1
       -
         name: Cache Docker layers
         uses: actions/cache@v2
-        id: cache
         with:
           path: /tmp/.buildx-cache
           key: ${{ runner.os }}-buildx-${{ github.sha }}
           restore-keys: |
             ${{ runner.os }}-buildx-
       -
-        name: Docker Login
-        env:
-          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-        run: |
-          echo "${DOCKER_PASSWORD}" | docker login --username "${DOCKER_USERNAME}" --password-stdin
+        name: Login to DockerHub
+        uses: docker/login-action@v1 
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
       -
-        name: Docker Buildx (build)
-        run: |
-          docker buildx build \
-            --cache-from "type=local,src=/tmp/.buildx-cache" \
-            --cache-to "type=local,dest=/tmp/.buildx-cache" \
-            --platform linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64 \
-            --output "type=image,push=false" \
-            --tag collelog/mirakc:0.15.0-alpine \
-            --file ./mirakc/0.15.0-alpine.Dockerfile ./mirakc/
+        name: Build and push - 0.15.0-alpine
+        uses: docker/build-push-action@v2
+        with:
+          context: ./mirakc/
+          file: ./mirakc/0.15.0-alpine.Dockerfile
+          tags: |
+            collelog/mirakc:0.15.0-alpine
+            collelog/mirakc:latest-alpine
+          platforms: linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64
+          push: true
+          cache-from: type=local,src=/tmp/.buildx-cache
+          cache-to: type=local,dest=/tmp/.buildx-cache
       -
-        name: Docker Buildx (push)
-        run: |
-          docker buildx build \
-            --cache-from "type=local,src=/tmp/.buildx-cache" \
-            --platform linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64 \
-            --output "type=image,push=true" \
-            --tag collelog/mirakc:0.15.0-alpine \
-            --file ./mirakc/0.15.0-alpine.Dockerfile ./mirakc/
+        name: Build and push - 0.15.0-alpine-amd64
+        uses: docker/build-push-action@v2
+        with:
+          context: ./mirakc/
+          file: ./mirakc/0.15.0-alpine-amd64.Dockerfile
+          tags: |
+            collelog/mirakc:0.15.0-alpine-amd64
+            collelog/mirakc:latest-alpine-amd64
+          platforms: linux/amd64
+          push: true
+          cache-from: type=local,src=/tmp/.buildx-cache
+          cache-to: type=local,dest=/tmp/.buildx-cache
       -
-        name: Docker Check Manifest
-        run: |
-          docker run --rm mplatform/mquery collelog/mirakc:0.15.0-alpine
+        name: Build and push - 0.15.0-alpine-rpi4-64
+        uses: docker/build-push-action@v2
+        with:
+          context: ./mirakc/
+          file: ./mirakc/0.15.0-alpine-rpi4-64.Dockerfile
+          tags: |
+            collelog/mirakc:0.15.0-alpine-rpi4-64
+            collelog/mirakc:latest-alpine-rpi4-64
+          platforms: linux/arm64
+          push: true
+          cache-from: type=local,src=/tmp/.buildx-cache
+          cache-to: type=local,dest=/tmp/.buildx-cache
       -
-        name: Docker Buildx (build) - 0.15.0-alpine-amd64
-        run: |
-          docker buildx build \
-            --cache-from "type=local,src=/tmp/.buildx-cache" \
-            --cache-to "type=local,dest=/tmp/.buildx-cache" \
-            --platform linux/amd64 \
-            --output "type=image,push=false" \
-            --tag collelog/mirakc:0.15.0-alpine-amd64 \
-            --file ./mirakc/0.15.0-alpine-amd64.Dockerfile ./mirakc/
+        name: Build and push - 0.15.0-alpine-rpi4-32
+        uses: docker/build-push-action@v2
+        with:
+          context: ./mirakc/
+          file: ./mirakc/0.15.0-alpine-rpi4-32.Dockerfile
+          tags: |
+            collelog/mirakc:0.15.0-alpine-rpi4-32
+            collelog/mirakc:latest-alpine-rpi4-32
+          platforms: linux/arm/v7
+          push: true
+          cache-from: type=local,src=/tmp/.buildx-cache
+          cache-to: type=local,dest=/tmp/.buildx-cache
       -
-        name: Docker Buildx (push) - 0.15.0-alpine-amd64
-        run: |
-          docker buildx build \
-            --cache-from "type=local,src=/tmp/.buildx-cache" \
-            --platform linux/amd64 \
-            --output "type=image,push=true" \
-            --tag collelog/mirakc:0.15.0-alpine-amd64 \
-            --file ./mirakc/0.15.0-alpine-amd64.Dockerfile ./mirakc/
-      -
-        name: Docker Check Manifest - 0.15.0-alpine-amd64
-        run: |
-          docker run --rm mplatform/mquery collelog/mirakc:0.15.0-alpine-amd64
-      -
-        name: Docker Buildx (build) - 0.15.0-alpine-rpi4-64
-        run: |
-          docker buildx build \
-            --cache-from "type=local,src=/tmp/.buildx-cache" \
-            --cache-to "type=local,dest=/tmp/.buildx-cache" \
-            --platform linux/arm64 \
-            --output "type=image,push=false" \
-            --tag collelog/mirakc:0.15.0-alpine-rpi4-64 \
-            --file ./mirakc/0.15.0-alpine-rpi4-64.Dockerfile ./mirakc/
-      -
-        name: Docker Buildx (push) - 0.15.0-alpine-rpi4-64
-        run: |
-          docker buildx build \
-            --cache-from "type=local,src=/tmp/.buildx-cache" \
-            --platform linux/arm64 \
-            --output "type=image,push=true" \
-            --tag collelog/mirakc:0.15.0-alpine-rpi4-64 \
-            --file ./mirakc/0.15.0-alpine-rpi4-64.Dockerfile ./mirakc/
-      -
-        name: Docker Check Manifest - 0.15.0-alpine-rpi4-64
-        run: |
-          docker run --rm mplatform/mquery collelog/mirakc:0.15.0-alpine-rpi4-64
-      -
-        name: Docker Buildx (build) - 0.15.0-alpine-rpi4-32
-        run: |
-          docker buildx build \
-            --cache-from "type=local,src=/tmp/.buildx-cache" \
-            --cache-to "type=local,dest=/tmp/.buildx-cache" \
-            --platform linux/arm/v7 \
-            --output "type=image,push=false" \
-            --tag collelog/mirakc:0.15.0-alpine-rpi4-32 \
-            --file ./mirakc/0.15.0-alpine-rpi4-32.Dockerfile ./mirakc/
-      -
-        name: Docker Buildx (push) - 0.15.0-alpine-rpi4-32
-        run: |
-          docker buildx build \
-            --cache-from "type=local,src=/tmp/.buildx-cache" \
-            --platform linux/arm/v7 \
-            --output "type=image,push=true" \
-            --tag collelog/mirakc:0.15.0-alpine-rpi4-32 \
-            --file ./mirakc/0.15.0-alpine-rpi4-32.Dockerfile ./mirakc/
-      -
-        name: Docker Check Manifest - 0.15.0-alpine-rpi4-32
-        run: |
-          docker run --rm mplatform/mquery collelog/mirakc:0.15.0-alpine-rpi4-32
-      -
-        name: Docker Buildx (build) - 0.15.0-alpine-rpi3
-        run: |
-          docker buildx build \
-            --cache-from "type=local,src=/tmp/.buildx-cache" \
-            --cache-to "type=local,dest=/tmp/.buildx-cache" \
-            --platform linux/arm/v7 \
-            --output "type=image,push=false" \
-            --tag collelog/mirakc:0.15.0-alpine-rpi3 \
-            --file ./mirakc/0.15.0-alpine-rpi3.Dockerfile ./mirakc/
-      -
-        name: Docker Buildx (push) - 0.15.0-alpine-rpi3
-        run: |
-          docker buildx build \
-            --cache-from "type=local,src=/tmp/.buildx-cache" \
-            --platform linux/arm/v7 \
-            --output "type=image,push=true" \
-            --tag collelog/mirakc:0.15.0-alpine-rpi3 \
-            --file ./mirakc/0.15.0-alpine-rpi3.Dockerfile ./mirakc/
-      -
-        name: Docker Check Manifest - 0.15.0-alpine-rpi3
-        run: |
-          docker run --rm mplatform/mquery collelog/mirakc:0.15.0-alpine-rpi3
-      -
-        name: Clear
-        if: always()
-        run: |
-          rm -f ${HOME}/.docker/config.json
+        name: Build and push - 0.15.0-alpine-rpi3
+        uses: docker/build-push-action@v2
+        with:
+          context: ./mirakc/
+          file: ./mirakc/0.15.0-alpine-rpi3.Dockerfile
+          tags: |
+            collelog/mirakc:0.15.0-alpine-rpi3
+            collelog/mirakc:latest-alpine-rpi3
+          platforms: linux/arm/v7
+          push: true
+          cache-from: type=local,src=/tmp/.buildx-cache
+          cache-to: type=local,dest=/tmp/.buildx-cache
