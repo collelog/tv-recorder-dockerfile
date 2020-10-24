@@ -10,38 +10,50 @@ jobs:
         name: Checkout
         uses: actions/checkout@v2
       -
-        name: Setup kernel for react native, increase watchers
-        run: echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
-      -
-        name: Set up QEMU
-        uses: docker/setup-qemu-action@v1
-      -
         name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v1
+        uses: crazy-max/ghaction-docker-buildx@v3
       -
         name: Cache Docker layers
         uses: actions/cache@v2
+        id: cache
         with:
           path: /tmp/.buildx-cache
           key: ${{ runner.os }}-buildx-${{ github.sha }}
           restore-keys: |
             ${{ runner.os }}-buildx-
       -
-        name: Login to DockerHub
-        uses: docker/login-action@v1 
-        with:
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
+        name: Docker Login
+        env:
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+        run: |
+          echo "${DOCKER_PASSWORD}" | docker login --username "${DOCKER_USERNAME}" --password-stdin
       -
-        name: Build and push - latest-alpine
-        uses: docker/build-push-action@v2
-        with:
-          context: ./epgstation-build/
-          file: ./epgstation-build/1.7.5-alpine.Dockerfile
-          tags: |
-            collelog/epgstation-build:1.7.5-alpine
-            collelog/epgstation-build:latest-alpine
-          platforms: linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64
-          push: true
-          cache-from: type=local,src=/tmp/.buildx-cache
-          cache-to: type=local,dest=/tmp/.buildx-cache
+        name: Docker Buildx (build) - 1.7.5-alpine
+        run: |
+          docker buildx build \
+            --cache-from "type=local,src=/tmp/.buildx-cache" \
+            --cache-to "type=local,dest=/tmp/.buildx-cache" \
+            --platform linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64 \
+            --output "type=image,push=false" \
+            --tag collelog/epgstation-build:1.7.5-alpine \
+            --file ./epgstation-build/1.7.5-alpine.Dockerfile ./epgstation-build/ \
+            --ulimit 2048
+      -
+        name: Docker Buildx (push) - 1.7.5-alpine
+        run: |
+          docker buildx build \
+            --cache-from "type=local,src=/tmp/.buildx-cache" \
+            --platform linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64 \
+            --output "type=image,push=true" \
+            --tag collelog/epgstation-build:1.7.5-alpine \
+            --file ./epgstation-build/1.7.5-alpine.Dockerfile ./epgstation-build/
+      -
+        name: Docker Check Manifest - 1.7.5-alpine
+        run: |
+          docker run --rm mplatform/mquery collelog/epgstation-build:1.7.5-alpine
+      -
+        name: Clear
+        if: always()
+        run: |
+          rm -f ${HOME}/.docker/config.json
