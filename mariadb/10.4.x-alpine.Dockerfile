@@ -6,13 +6,11 @@ COPY ./scripts/run.sh /scripts/run.sh
 RUN set -eux && \
 	apk upgrade --no-cache --update-cache && \
 	apk add --no-cache --update-cache \
+		mariadb=10.4.15-r0 \
+		mariadb-client=10.4.15-r0 \
+		mariadb-server-utils=10.4.15-r0 \
 		pwgen \
 		tzdata && \
-	echo http://dl-cdn.alpinelinux.org/alpine/edge/main >> /etc/apk/repositories && \
-	apk add --no-cache --update-cache \
-		mariadb=10.5.5-r0 \
-		mariadb-client=10.5.5-r0 \
-		mariadb-server-utils=10.5.5-r0 && \
 	\
 	# cleaning
 	rm -rf /tmp/* /var/cache/apk/* && \
