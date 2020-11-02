@@ -35,7 +35,9 @@ jobs:
         with:
           context: ./mariadb/
           file: ./mariadb/10.4.x-alpine.Dockerfile
-          tags: collelog/mariadb:10.4-alpine \
+          tags: |
+            collelog/mariadb:10.4-alpine
+            collelog/mariadb:10.4.15-alpine
           platforms: linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64
           push: true
           cache-from: type=local,src=/tmp/.buildx-cache
