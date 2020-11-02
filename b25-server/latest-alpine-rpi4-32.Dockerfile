@@ -1,5 +1,5 @@
 # arib-b25-stream-test
-FROM collelog/arib-b25-stream-test-build:latest-alpine-rpi4-arm64v8 AS arib-b25-stream-test-image
+FROM collelog/arib-b25-stream-test-build:latest-alpine-rpi4-32 AS arib-b25-stream-test-image
 
 
 # final image
