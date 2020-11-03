@@ -1,13 +1,13 @@
 # recpt1
 FROM collelog/buildenv:alpine AS recpt1-build
 
-COPY ./patch/original/decoder.h.patch /tmp/
-COPY ./patch/original/pt1_dev.h.patch /tmp/
-COPY ./patch/original/recpt1.h.patch /tmp/
-COPY ./patch/original/recpt1core.h.patch /tmp/
-COPY ./patch/original/tssplitter_lite.h.patch /tmp/
-COPY ./patch/original/tssplitter_lite.c.patch /tmp/
-COPY ./patch/original/Makefile.in-rpi3.patch /tmp/
+COPY ./patch/honeyplanet/decoder.h.patch /tmp/
+COPY ./patch/honeyplanet/pt1_dev.h.patch /tmp/
+COPY ./patch/honeyplanet/recpt1.h.patch /tmp/
+COPY ./patch/honeyplanet/recpt1core.h.patch /tmp/
+COPY ./patch/honeyplanet/tssplitter_lite.h.patch /tmp/
+COPY ./patch/honeyplanet/tssplitter_lite.c.patch /tmp/
+COPY ./patch/honeyplanet/Makefile.in-rpi4.patch /tmp/
 
 RUN apk add --no-cache --update-cache \
 	pcsc-lite-dev
@@ -35,7 +35,7 @@ RUN patch < recpt1.h.patch
 RUN patch < recpt1core.h.patch
 RUN patch < tssplitter_lite.h.patch
 RUN patch < tssplitter_lite.c.patch
-RUN patch < Makefile.in-rpi3.patch
+RUN patch < Makefile.in-rpi4.patch
 RUN ./autogen.sh
 RUN ./configure --prefix=/usr/local --enable-b25
 RUN make -j $(nproc)
