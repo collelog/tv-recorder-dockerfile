@@ -1,44 +1,36 @@
 # [TV Recorder on Docker] Dockerfiles
->[collelog/tv-recorder GitHubリポジトリ](https://github.com/collelog/tv-recorder)を構成するDockerイメージのDockerfileです。
+>GitHub:[collelog/tv-recorder](https://github.com/collelog/tv-recorder)を構成するDockerコンテナのDockerfileです。
 
-Dockerfileで作成したDockerイメージは全てDocker Hubにて公開しています。  
-対象プラットフォームはamd64(x86-64),arm64v8,arm32v7,arm32v6です。
+当Dockerfileで作成したDockerイメージは全てDockerHubにて公開しています。  
 
-## Docker Hub タグ
-- **EPGStation**
-  - [collelog/epgstation](https://hub.docker.com/r/collelog/epgstation)
-    - [collelog/epgstation-build](https://hub.docker.com/r/collelog/epgstation-build)
-    - [collelog/ffmpeg](https://hub.docker.com/r/collelog/ffmpeg)   
-      Dockerfileは[collelog/ffmpeg GitHubリポジトリ](https://github.com/collelog/ffmpeg)にて管理しています。
-- **MariaDB**
-  - [collelog/mariadb](https://hub.docker.com/r/collelog/mariadb)
-
-- **mirakc**
-  - [collelog/mirakc](https://hub.docker.com/r/collelog/epgstation-build)
-    - [collelog/recpt1-build](https://hub.docker.com/r/collelog/epgstation-build)
-    - [collelog/arib-b25-stream-test-build](https://hub.docker.com/r/collelog/epgstation-build)
-
-- **xteve**
-  - [collelog/xteve](https://hub.docker.com/r/collelog/xteve)  
-    Dockerfileは[collelog/xteve GitHubリポジトリ](https://github.com/collelog/xteve)にて管理しています。
-
-## 利用ソースコード
-当ソースコードは以下のソースコード（docker-compose.yml,Dockerfile,その他動作に必要なファイル一式）を改変または参考に作成しています。
-
-- **EPGStation**
-  - [l3tnun/docker-mirakurun-epgstation](https://github.com/l3tnun/docker-mirakurun-epgstation) : docker-mirakurun-epgstation
-    - [MIT License](https://github.com/l3tnun/docker-mirakurun-epgstation/blob/master/LICENSE)
-
-- **MariaDB**
-  - [yobasystems/alpine-mariadb](https://github.com/yobasystems/alpine-mariadb) : MariaDB Docker image running on Alpine Linux  
-
-- **mirakc**
-  - [masnagam/mirakc](https://github.com/masnagam/mirakc) : mirakc (a Mirakurun clone written in Rust) + recdvb + recpt1
-    - [Apache License, Version 2.0](https://github.com/masnagam/mirakc/blob/master/LICENSE-APACHE) or [MIT License](https://github.com/masnagam/mirakc/blob/master/LICENSE-MIT)
-
-- **Mirakurun**
-  - [Chinachu/docker-mirakurun-chinachu](https://github.com/Chinachu/docker-mirakurun-chinachu) : docker-mirakurun-chinach
-    - [MIT License](https://github.com/Chinachu/docker-mirakurun-chinachu/blob/master/LICENSE)
+## DockerHub公開イメージ
+| アプリケーション | 公開イメージタグ | 依存イメージ | Dockerfile |
+| ---- | ---- | ---- | ---- |
+| [EPGStation](https://github.com/l3tnun/EPGStation) | [collelog/epgstation](https://hub.docker.com/r/collelog/epgstation) | | ./epgstation/ |
+| | | [collelog/epgstation-build](https://hub.docker.com/r/collelog/epgstation-build) | ./epgstation-build/ |
+| | | [collelog/sqlite3-regexp-build](https://hub.docker.com/r/collelog/sqlite3-regexp-build) | ./sqlite3-regexp-build/ |
+| | | [collelog/ffmpeg](https://hub.docker.com/r/collelog/ffmpeg) | GitHub:[collelog/ffmpeg](https://github.com/collelog/ffmpeg) |
+| [MariaDB](https://mariadb.org/) | [collelog/mariadb](https://hub.docker.com/r/collelog/mariadb) |  | ./mariadb/ |
+| [mirakc](https://github.com/mirakc/mirakc) | [collelog/mirakc](https://hub.docker.com/r/collelog/mirakc) |  | ./mirakc/ |
+| | | [mirakc/mirakc](https://hub.docker.com/r/mirakc/mirakc) | |
+| | | [collelog/recpt1-build](https://hub.docker.com/r/collelog/recpt1-build) | ./recpt1-build/ |
+| | | [collelog/recdvb-build](https://hub.docker.com/r/collelog/recdvb-build) | ./recdvb-build/ |
+| | | [collelog/recfsusb2n-build](https://hub.docker.com/r/collelog/recfsusb2n-build) | ./recfsusb2n-build/ |
+| | | [collelog/libarib25-build](https://hub.docker.com/r/collelog/libarib25-build) | ./libarib25-build/ |
+| | | [collelog/arib-b25-stream-test-build](https://hub.docker.com/r/collelog/arib-b25-stream-test-build) | ./arib-b25-stream-test-build/ |
+| [Mirakurun v2](https://github.com/Chinachu/Mirakurun) | [collelog/mirakurun](https://hub.docker.com/r/collelog/mirakurun) | | ./mirakurun/ |
+| | | [collelog/recpt1-build](https://hub.docker.com/r/collelog/recpt1-build) | ./recpt1-build/ |
+| | | [collelog/recdvb-build](https://hub.docker.com/r/collelog/recdvb-build) | ./recdvb-build/ |
+| | | [collelog/recfsusb2n-build](https://hub.docker.com/r/collelog/recfsusb2n-build) | ./recfsusb2n-build/ |
+| | | [collelog/libarib25-build](https://hub.docker.com/r/collelog/libarib25-build) | ./libarib25-build/ |
+| | | [collelog/arib-b25-stream-test-build](https://hub.docker.com/r/collelog/arib-b25-stream-test-build) | ./arib-b25-stream-test-build/ |
+| [xTeVe](https://xteve.de/) | [collelog/xteve](https://hub.docker.com/r/collelog/xteve) | | GitHub:[collelog/xteve](https://github.com/collelog/xteve) |
+| チャンネルスキャン | [collelog/tvchannels-scan](https://hub.docker.com/r/collelog/tvchannels-scan) | | ./tvchannels-scan/ || | | [collelog/recpt1-build](https://hub.docker.com/r/collelog/recpt1-build) | ./recpt1-build/ |
+| | | [collelog/recpt1-build](https://hub.docker.com/r/collelog/recpt1-build) | ./recpt1-build/ |
+| | | [collelog/recdvb-build](https://hub.docker.com/r/collelog/recdvb-build) | ./recdvb-build/ |
+| | | [collelog/recfsusb2n-build](https://hub.docker.com/r/collelog/recfsusb2n-build) | ./recfsusb2n-build/ |
+| | | [collelog/libarib25-build](https://hub.docker.com/r/collelog/libarib25-build) | ./libarib25-build/ |
+| B25サーバ | [collelog/b25-server](https://hub.docker.com/r/collelog/b25-server) | | ./b25-server/ |
 
 ## License
 このソースコードは [MIT License](https://github.com/collelog/tv-recorder-dockerfile/blob/master/LICENSE) のもとでリリースします。  
