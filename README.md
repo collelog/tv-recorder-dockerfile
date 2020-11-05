@@ -32,6 +32,7 @@
 | | | [collelog/recfsusb2n-build](https://hub.docker.com/r/collelog/recfsusb2n-build) | ./recfsusb2n-build/ |
 | | | [collelog/libarib25-build](https://hub.docker.com/r/collelog/libarib25-build) | ./libarib25-build/ |
 | B25サーバ | [collelog/b25-server](https://hub.docker.com/r/collelog/b25-server) | | ./b25-server/ |
+| | | [collelog/arib-b25-stream-test-build](https://hub.docker.com/r/collelog/arib-b25-stream-test-build) | ./arib-b25-stream-test-build/ |
 
 ## License
 このソースコードは [MIT License](https://github.com/collelog/tv-recorder-dockerfile/blob/master/LICENSE) のもとでリリースします。  
