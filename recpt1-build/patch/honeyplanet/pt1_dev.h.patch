@@ -1,6 +1,6 @@
 --- pt1_dev.h	2018-05-28 00:47:03.000000000 +0900
 +++ pt1_dev.after.h	2020-09-21 15:27:08.000000000 +0900
-@@ -10,7 +10,19 @@
+@@ -10,7 +10,45 @@
      "/dev/pt1video9",
      "/dev/pt1video8",
      "/dev/pt1video13",
@@ -47,7 +47,7 @@
  };
  char *isdb_t_dev[NUM_ISDB_T_DEV] = {
      "/dev/pt1video2",
-@@ -20,7 +32,19 @@
+@@ -20,7 +32,45 @@
      "/dev/pt1video10",
      "/dev/pt1video11",
      "/dev/pt1video14",
