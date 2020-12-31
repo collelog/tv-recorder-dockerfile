@@ -42,7 +42,7 @@ RUN rm -rf /tmp/* /var/cache/apk/*
 
 
 # final image
-FROM alpine:3.12.1
+FROM alpine:3.12.3
 LABEL maintainer "collelog <collelog.cavamin@gmail.com>"
 
 COPY --from=recpt1-build /build /build
