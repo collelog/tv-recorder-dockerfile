@@ -15,7 +15,7 @@ RUN rm -rf /tmp/* /var/cache/apk/*
 
 
 # final image
-FROM node:14-alpine3.12
+FROM node:14.15.3-alpine3.12
 LABEL maintainer "collelog <collelog.cavamin@gmail.com>"
 
 COPY --from=epgstation-build /build /build
