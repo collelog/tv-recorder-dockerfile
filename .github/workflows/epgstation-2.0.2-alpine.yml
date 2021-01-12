@@ -35,7 +35,9 @@ jobs:
         with:
           context: ./epgstation/
           file: ./epgstation/2.0.2-alpine-amd64.Dockerfile
-          tags: collelog/epgstation:2.0.2-alpine-amd64
+          tags: |
+            collelog/epgstation:2.0.2-alpine-amd64
+            collelog/epgstation:latest-alpine-amd64
           platforms: linux/amd64
           push: true
           cache-from: type=local,src=/tmp/.buildx-cache
@@ -46,7 +48,9 @@ jobs:
         with:
           context: ./epgstation/
           file: ./epgstation/2.0.2-alpine-vaapi-amd64.Dockerfile
-          tags: collelog/epgstation:2.0.2-alpine-vaapi-amd64
+          tags: |
+            collelog/epgstation:2.0.2-alpine-vaapi-amd64
+            collelog/epgstation:latest-alpine-vaapi-amd64
           platforms: linux/amd64
           push: true
           cache-from: type=local,src=/tmp/.buildx-cache
@@ -57,7 +61,9 @@ jobs:
         with:
           context: ./epgstation/
           file: ./epgstation/2.0.2-alpine-rpi4-64.Dockerfile
-          tags: collelog/epgstation:2.0.2-alpine-rpi4-64
+          tags: |
+            collelog/epgstation:2.0.2-alpine-rpi4-64
+            collelog/epgstation:latest-alpine-rpi4-64
           platforms: linux/arm64
           push: true
           cache-from: type=local,src=/tmp/.buildx-cache
@@ -68,7 +74,9 @@ jobs:
         with:
           context: ./epgstation/
           file: ./epgstation/2.0.2-alpine-rpi4-32.Dockerfile
-          tags: collelog/epgstation:2.0.2-alpine-rpi4-32
+          tags: |
+            collelog/epgstation:2.0.2-alpine-rpi4-32
+            collelog/epgstation:latest-alpine-rpi4-32
           platforms: linux/arm/v7
           push: true
           cache-from: type=local,src=/tmp/.buildx-cache
@@ -79,7 +87,9 @@ jobs:
         with:
           context: ./epgstation/
           file: ./epgstation/2.0.2-alpine-rpi3.Dockerfile
-          tags: collelog/epgstation:2.0.2-alpine-rpi3
+          tags: |
+            collelog/epgstation:2.0.2-alpine-rpi3
+            collelog/epgstation:latest-alpine-rpi3
           platforms: linux/arm/v7
           push: true
           cache-from: type=local,src=/tmp/.buildx-cache
@@ -90,7 +100,9 @@ jobs:
         with:
           context: ./epgstation/
           file: ./epgstation/2.0.2-alpine-arm64v8.Dockerfile
-          tags: collelog/epgstation:2.0.2-alpine-arm64v8
+          tags: |
+            collelog/epgstation:2.0.2-alpine-arm64v8
+            collelog/epgstation:latest-alpine-arm64v8
           platforms: linux/arm64
           push: true
           cache-from: type=local,src=/tmp/.buildx-cache
@@ -101,7 +113,9 @@ jobs:
         with:
           context: ./epgstation/
           file: ./epgstation/2.0.2-alpine-arm32v7.Dockerfile
-          tags: collelog/epgstation:2.0.2-alpine-arm32v7
+          tags: |
+            collelog/epgstation:2.0.2-alpine-arm32v7
+            collelog/epgstation:latest-alpine-arm32v7
           platforms: linux/arm/v7
           push: true
           cache-from: type=local,src=/tmp/.buildx-cache
@@ -112,7 +126,9 @@ jobs:
         with:
           context: ./epgstation/
           file: ./epgstation/2.0.2-alpine-arm32v6.Dockerfile
-          tags: collelog/epgstation:2.0.2-alpine-arm32v6
+          tags: |
+            collelog/epgstation:2.0.2-alpine-arm32v6
+            collelog/epgstation:latest-alpine-arm32v6
           platforms: linux/arm/v6
           push: true
           cache-from: type=local,src=/tmp/.buildx-cache
