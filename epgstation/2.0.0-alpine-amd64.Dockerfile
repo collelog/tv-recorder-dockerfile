@@ -1,13 +1,13 @@
 # FFmpeg
-FROM collelog/ffmpeg:4.3.1-alpine-rpi4-64 AS ffmpeg-image
+FROM collelog/ffmpeg:4.3.1-alpine-amd64 AS ffmpeg-image
 
 
 # sqlite3-regexp
-FROM collelog/sqlite3-regexp-build:3.31.1-alpine-rpi4-64 AS sqlite3-regexp-image
+FROM collelog/sqlite3-regexp-build:3.31.1-alpine-amd64 AS sqlite3-regexp-image
 
 
 # EPGStation
-FROM collelog/epgstation-build:2.0.0-beta.0-alpine AS epgstation-image
+FROM collelog/epgstation-build:2.0.0-alpine AS epgstation-image
 
 
 # final image
@@ -29,7 +29,6 @@ RUN set -eux && \
 	apk upgrade --no-cache --update-cache && \
 	apk add --no-cache --update-cache \
 		curl \
-		raspberrypi-libs \
 		tzdata && \
 	echo http://dl-cdn.alpinelinux.org/alpine/edge/main >> /etc/apk/repositories && \
 	apk add --no-cache --update-cache \
