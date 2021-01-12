@@ -2,9 +2,9 @@
 FROM collelog/buildenv:node14-alpine AS epgstation-build
 
 WORKDIR /opt/epgstation
-RUN curl -fsSL https://github.com/l3tnun/EPGStation/tarball/master \
-		| tar -xz --strip-components=1
-RUN npm ci --python=/usr/bin/python3
+RUN curl -fsSL https://github.com/l3tnun/EPGStation/tarball/master | \
+		tar -xz --strip-components=1
+RUN npm run all-install --python=/usr/bin/python3
 RUN npm run build
 
 WORKDIR /build
