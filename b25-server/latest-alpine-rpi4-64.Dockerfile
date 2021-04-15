@@ -3,7 +3,7 @@ FROM collelog/arib-b25-stream-test-build:latest-alpine-rpi4-64 AS arib-b25-strea
 
 
 # final image
-FROM alpine:3.12.3
+FROM alpine:3.13.5
 LABEL maintainer "collelog <collelog.cavamin@gmail.com>"
 
 # arib-b25-stream-test
@@ -20,9 +20,6 @@ RUN set -eux && \
 		pcsc-lite-libs \
 		socat \
 		tzdata && \
-	echo http://dl-cdn.alpinelinux.org/alpine/edge/main >> /etc/apk/repositories && \
-	apk add --no-cache --update-cache \
-		musl && \
 	\
 	mv /usr/local/bin/arib-b25-stream-test /usr/local/bin/b25 && \
 	\
