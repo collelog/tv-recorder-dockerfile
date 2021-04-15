@@ -19,7 +19,7 @@ FROM collelog/epgdump-build:stz2012-latest-alpine AS epgdump-image
 
 
 # final image
-FROM alpine:3.12.3
+FROM alpine:3.13.5
 LABEL maintainer "collelog <collelog.cavamin@gmail.com>"
 
 ENV LD_LIBRARY_PATH=/usr/local/lib64:/usr/local/lib
@@ -45,6 +45,7 @@ COPY --from=epgdump-image /build /
 RUN set -eux && \
 	apk upgrade --no-cache --update-cache && \
 	apk add --no-cache --update-cache \
+		boost \
 		ca-certificates \
 		ccid \
 		curl \
@@ -56,9 +57,6 @@ RUN set -eux && \
 	echo http://dl-cdn.alpinelinux.org/alpine/edge/community >> /etc/apk/repositories && \
 	apk add --no-cache --update-cache \
 		v4l-utils-dvbv5 && \
-	echo http://dl-cdn.alpinelinux.org/alpine/edge/main >> /etc/apk/repositories && \
-	apk add --no-cache --update-cache \
-		musl && \
 	\
 	mkdir /etc/dvbv5 && \
 	cd /etc/dvbv5 && \
