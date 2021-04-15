@@ -58,6 +58,7 @@ COPY --from=arib-b25-stream-test-image /build /
 RUN set -eux && \
 	apk upgrade --no-cache --update-cache && \
 	apk add --no-cache --update-cache \
+		boost \
 		ca-certificates \
 		ccid \
 		curl \
@@ -69,7 +70,6 @@ RUN set -eux && \
 	echo http://dl-cdn.alpinelinux.org/alpine/edge/community >> /etc/apk/repositories && \
 	apk add --no-cache --update-cache \
 		v4l-utils-dvbv5 && \
-	echo http://dl-cdn.alpinelinux.org/alpine/edge/main >> /etc/apk/repositories && \
 	\
 	mkdir /etc/dvbv5 && \
 	cd /etc/dvbv5 && \

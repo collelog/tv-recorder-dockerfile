@@ -58,6 +58,7 @@ COPY --from=arib-b25-stream-test-image /build /
 RUN set -eux && \
 	apk upgrade --no-cache --update-cache && \
 	apk add --no-cache --update-cache \
+		boost \
 		ca-certificates \
 		ccid \
 		curl \
