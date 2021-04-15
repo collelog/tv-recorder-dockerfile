@@ -13,7 +13,7 @@ RUN rm -rf /tmp/* /var/cache/apk/*
 
 
 # final image
-FROM alpine:33.13.5
+FROM alpine:3.13.5
 LABEL maintainer "collelog <collelog.cavamin@gmail.com>"
 
 COPY --from=epgdump-build /build /build
