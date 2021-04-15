@@ -11,11 +11,6 @@ RUN mv ./arib-b25-stream /usr/local/bin/
 RUN apk add --no-cache --update-cache \
 	pcsc-lite-dev
 
-RUN echo http://dl-cdn.alpinelinux.org/alpine/edge/main >> /etc/apk/repositories
-RUN apk add --no-cache --update-cache \
-	gcc \
-	musl
-
 WORKDIR /tmp/libarib25
 RUN curl -fsSL https://github.com/epgdatacapbon/libarib25/tarball/master | \
 		tar -xz --strip-components=1
@@ -35,7 +30,7 @@ RUN rm -rf /tmp/* /var/cache/apk/*
 
 
 # final image
-FROM alpine:3.12.3 
+FROM alpine:3.13.5
 LABEL maintainer "collelog <collelog.cavamin@gmail.com>"
 
 COPY --from=libarib25-build /build /build
