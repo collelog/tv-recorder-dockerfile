@@ -1,4 +1,4 @@
-FROM alpine:3.12.3
+FROM alpine:3.13.5
 LABEL maintainer "collelog <collelog.cavamin@gmail.com>"
 
 COPY ./scripts/run.sh /scripts/run.sh
