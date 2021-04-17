@@ -21,7 +21,7 @@ COPY --from=ffmpeg-image /build /
 
 # EPGStation
 COPY --from=epgstation-image /build /
-14.16.1
+
 # sqlite3-regexp
 COPY --from=sqlite3-regexp-image /build/usr/lib/sqlite3.31.1/regexp.so /opt/epgstation
 
