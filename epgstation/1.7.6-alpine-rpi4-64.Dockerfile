@@ -1,5 +1,5 @@
 # FFmpeg
-FROM collelog/ffmpeg:4.3.1-alpine-rpi4-64 AS ffmpeg-image
+FROM collelog/ffmpeg:4.4-alpine-rpi4-64 AS ffmpeg-image
 
 
 # sqlite3-regexp
@@ -11,7 +11,7 @@ FROM collelog/epgstation-build:1.7.6-alpine AS epgstation-image
 
 
 # final image
-FROM node:14.15.4-alpine3.12
+FROM node:14.16.1-alpine3.13
 LABEL maintainer "collelog <collelog.cavamin@gmail.com>"
 
 ENV LD_LIBRARY_PATH=/usr/local/lib64:/usr/lib64:/lib64:/usr/local/lib:/usr/lib:/lib
@@ -31,9 +31,6 @@ RUN set -eux && \
 		curl \
 		raspberrypi-libs \
 		tzdata && \
-	echo http://dl-cdn.alpinelinux.org/alpine/edge/main >> /etc/apk/repositories && \
-	apk add --no-cache --update-cache \
-		musl && \
 	\
 	# cleaning
 	npm cache verify && \
