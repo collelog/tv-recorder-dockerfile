@@ -12,7 +12,7 @@ FROM collelog/libarib25-build:epgdatacapbon-latest-alpine AS libarib25-image
 
 
 # recpt1
-FROM collelog/recpt1-build:epgdatacapbon-latest-alpine AS recpt1-image
+FROM collelog/recpt1-build:stz2012-latest-alpine AS recpt1-image
 
 
 # recdvb
