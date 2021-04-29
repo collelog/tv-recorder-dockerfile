@@ -29,7 +29,16 @@ RUN set -eux && \
 	apk upgrade --no-cache --update-cache && \
 	apk add --no-cache --update-cache \
 		curl \
-		tzdata && \
+		tzdata \
+		libva-intel-driver \
+		mesa-va-gallium \
+		mesa-vdpau-gallium && \
+	echo http://dl-2.alpinelinux.org/alpine/edge/community >> /etc/apk/repositories && \
+	apk add --no-cache --update-cache \
+		intel-media-driver && \
+	echo http://dl-2.alpinelinux.org/alpine/edge/testing >> /etc/apk/repositories && \
+	apk add --no-cache --update-cache \
+		libva-vdpau-driver && \
 	\
 	# cleaning
 	npm cache verify && \
