@@ -14,7 +14,7 @@ FROM collelog/epgstation-build:2.0.13-alpine AS epgstation-image
 FROM node:14.16.1-alpine3.13
 LABEL maintainer "collelog <collelog.cavamin@gmail.com>"
 
-ENV LD_LIBRARY_PATH=/usr/local/lib64:/usr/lib64:/lib64:/usr/local/lib:/usr/lib:/lib
+ENV LD_LIBRARY_PATH=/opt/intel/mediasdk/lib64:/usr/local/lib64:/usr/local/lib:/usr/lib:/lib
 
 # FFmpeg
 COPY --from=ffmpeg-image /build /
