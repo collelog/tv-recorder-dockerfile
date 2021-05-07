@@ -40,7 +40,6 @@ jobs:
           file: ./epgstation-build/2.2.2-alpine.Dockerfile
           tags: |
             collelog/epgstation-build:2.2.2-alpine
-            collelog/epgstation-build:latest-alpine
           platforms: linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64
           push: true
           cache-from: type=local,src=/tmp/.buildx-cache
