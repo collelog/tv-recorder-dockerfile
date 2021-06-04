@@ -102,7 +102,7 @@ RUN set -eux && \
 	mkdir -p /usr/local/mirakurun/opt/bin/ && \
 	cp /usr/local/bin/recpt1 /usr/local/mirakurun/opt/bin/  && \
 	\
-	sed -i -e '3i if [ -e "/etc/init.d/pcscd" ]; then /etc/init.d/pcscd stop; fi; sleep 1' /app/docker/container-init.sh && \
+	sed -i -e '3i if [ -e "/etc/init.d/pcscd" ]; then /etc/init.d/pcscd stop; sleep 1; fi' /app/docker/container-init.sh && \
 	\
 	# cleaning
 	rm -rf /tmp/* /var/cache/apk/*
