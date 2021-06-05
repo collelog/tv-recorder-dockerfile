@@ -71,6 +71,9 @@ RUN set -eux && \
 	echo http://dl-cdn.alpinelinux.org/alpine/edge/community >> /etc/apk/repositories && \
 	apk add --no-cache --update-cache \
 		v4l-utils-dvbv5 && \
+	echo http://dl-cdn.alpinelinux.org/alpine/edge/testing >> /etc/apk/repositories && \
+	apk add --no-cache --update-cache \
+		pcsc-tools && \
 	\
 	mkdir /etc/dvbv5 && \
 	cd /etc/dvbv5 && \
