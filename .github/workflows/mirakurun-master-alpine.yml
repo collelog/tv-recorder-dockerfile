@@ -85,7 +85,6 @@ jobs:
           file: ./mirakurun/master-alpine-rpi3.Dockerfile
           tags: |
             collelog/mirakurun:master-alpine-rpi3
-            collelog/mirakurun:-alpine-rpi3
           platforms: linux/arm/v7
           push: true
           cache-from: type=local,src=/tmp/.buildx-cache
