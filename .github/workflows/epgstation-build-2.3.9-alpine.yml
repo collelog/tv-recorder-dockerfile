@@ -10,9 +10,9 @@ jobs:
         name: free disk space
         run: |
           sudo swapoff -a
-          sudo rm -f /swapfile
-          sudo apt clean
-          docker rmi $(docker image ls -aq)
+          sudo rm -rf /swapfile /usr/share/dotnet /usr/local/lib/android /opt/ghc
+          sudo apt-get autoremove -y
+          sudo apt-get autoclean -y
           df -h
       -
         name: Checkout
