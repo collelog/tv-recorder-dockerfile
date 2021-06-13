@@ -7,6 +7,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       -
+        name: free disk space
+        run: |
+          sudo swapoff -a
+          sudo rm -rf /swapfile /usr/share/dotnet /usr/local/lib/android /opt/ghc
+          sudo apt-get autoremove -y
+          sudo apt-get autoclean -y
+          df -h
+      -
         name: Checkout
         uses: actions/checkout@v2
       -
@@ -35,7 +43,8 @@ jobs:
         with:
           context: ./epgstation/
           file: ./epgstation/master-alpine-amd64.Dockerfile
-          tags: collelog/epgstation:master-alpine-amd64
+          tags: |
+            collelog/epgstation:master-alpine-amd64
           platforms: linux/amd64
           push: true
           cache-from: type=local,src=/tmp/.buildx-cache
@@ -46,7 +55,8 @@ jobs:
         with:
           context: ./epgstation/
           file: ./epgstation/master-alpine-vaapi-amd64.Dockerfile
-          tags: collelog/epgstation:master-alpine-vaapi-amd64
+          tags: |
+            collelog/epgstation:master-alpine-vaapi-amd64
           platforms: linux/amd64
           push: true
           cache-from: type=local,src=/tmp/.buildx-cache
@@ -57,7 +67,8 @@ jobs:
         with:
           context: ./epgstation/
           file: ./epgstation/master-alpine-rpi4-64.Dockerfile
-          tags: collelog/epgstation:master-alpine-rpi4-64
+          tags: |
+            collelog/epgstation:master-alpine-rpi4-64
           platforms: linux/arm64
           push: true
           cache-from: type=local,src=/tmp/.buildx-cache
@@ -68,7 +79,8 @@ jobs:
         with:
           context: ./epgstation/
           file: ./epgstation/master-alpine-rpi4-32.Dockerfile
-          tags: collelog/epgstation:master-alpine-rpi4-32
+          tags: |
+            collelog/epgstation:master-alpine-rpi4-32
           platforms: linux/arm/v7
           push: true
           cache-from: type=local,src=/tmp/.buildx-cache
@@ -79,7 +91,8 @@ jobs:
         with:
           context: ./epgstation/
           file: ./epgstation/master-alpine-rpi3.Dockerfile
-          tags: collelog/epgstation:master-alpine-rpi3
+          tags: |
+            collelog/epgstation:master-alpine-rpi3
           platforms: linux/arm/v7
           push: true
           cache-from: type=local,src=/tmp/.buildx-cache
@@ -90,7 +103,8 @@ jobs:
         with:
           context: ./epgstation/
           file: ./epgstation/master-alpine-arm64v8.Dockerfile
-          tags: collelog/epgstation:master-alpine-arm64v8
+          tags: |
+            collelog/epgstation:master-alpine-arm64v8
           platforms: linux/arm64
           push: true
           cache-from: type=local,src=/tmp/.buildx-cache
@@ -101,7 +115,8 @@ jobs:
         with:
           context: ./epgstation/
           file: ./epgstation/master-alpine-arm32v7.Dockerfile
-          tags: collelog/epgstation:master-alpine-arm32v7
+          tags: |
+            collelog/epgstation:master-alpine-arm32v7
           platforms: linux/arm/v7
           push: true
           cache-from: type=local,src=/tmp/.buildx-cache
@@ -112,7 +127,8 @@ jobs:
         with:
           context: ./epgstation/
           file: ./epgstation/master-alpine-arm32v6.Dockerfile
-          tags: collelog/epgstation:master-alpine-arm32v6
+          tags: |
+            collelog/epgstation:master-alpine-arm32v6
           platforms: linux/arm/v6
           push: true
           cache-from: type=local,src=/tmp/.buildx-cache
