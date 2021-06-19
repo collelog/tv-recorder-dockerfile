@@ -2,7 +2,7 @@
 FROM collelog/buildenv:node14-alpine AS epgstation-build
 
 WORKDIR /opt/epgstation
-RUN curl -fsSL https://github.com/l3tnun/EPGStation/archive/v2.4.00.tar.gz | \
+RUN curl -fsSL https://github.com/l3tnun/EPGStation/archive/v2.4.0.tar.gz | \
 		tar -xz --strip-components=1
 RUN npm run all-install --python=/usr/bin/python3
 RUN npm run build
