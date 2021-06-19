@@ -14,7 +14,7 @@ RUN make -j $(nproc) install
 
 
 WORKDIR /tmp/recdvb
-RUN curl -fsSL http://www13.plala.or.jp/sat/recdvb/recdvb-1.3.2.tgz | \
+RUN curl -fsSL http://www13.plala.or.jp/sat/recdvb/recdvb-1.3.3.tgz | \
 		tar -xz --strip-components=1
 RUN mv /tmp/*.patch /tmp/recdvb/
 RUN patch < Makefile.in.patch
