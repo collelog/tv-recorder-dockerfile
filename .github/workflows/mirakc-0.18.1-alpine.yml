@@ -1,4 +1,4 @@
-name: mirakc-0.18.0-alpine
+name: mirakc-0.18.1-alpine
 
 on: [ workflow_dispatch ]
 
@@ -30,61 +30,66 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
       -
-        name: Build and push - 0.18.0-alpine
+        name: Build and push - 0.18.1-alpine
         uses: docker/build-push-action@v2
         with:
           context: ./mirakc/
-          file: ./mirakc/0.18.0-alpine.Dockerfile
+          file: ./mirakc/0.18.1-alpine.Dockerfile
           tags: |
-            collelog/mirakc:0.18.0-alpine
+            collelog/mirakc:0.18.1-alpine
+            collelog/mirakc:latest-alpine
           platforms: linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64
           push: true
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache
       -
-        name: Build and push - 0.18.0-alpine-amd64
+        name: Build and push - 0.18.1-alpine-amd64
         uses: docker/build-push-action@v2
         with:
           context: ./mirakc/
-          file: ./mirakc/0.18.0-alpine-amd64.Dockerfile
+          file: ./mirakc/0.18.1-alpine-amd64.Dockerfile
           tags: |
-            collelog/mirakc:0.18.0-alpine-amd64
+            collelog/mirakc:0.18.1-alpine-amd64
+            collelog/mirakc:latest-alpine-amd64
           platforms: linux/amd64
           push: true
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache
       -
-        name: Build and push - 0.18.0-alpine-rpi4-64
+        name: Build and push - 0.18.1-alpine-rpi4-64
         uses: docker/build-push-action@v2
         with:
           context: ./mirakc/
-          file: ./mirakc/0.18.0-alpine-rpi4-64.Dockerfile
+          file: ./mirakc/0.18.1-alpine-rpi4-64.Dockerfile
           tags: |
-            collelog/mirakc:0.18.0-alpine-rpi4-64
+            collelog/mirakc:0.18.1-alpine-rpi4-64
+            collelog/mirakc:latest-alpine-rpi4-64
           platforms: linux/arm64
           push: true
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache
       -
-        name: Build and push - 0.18.0-alpine-rpi4-32
+        name: Build and push - 0.18.1-alpine-rpi4-32
         uses: docker/build-push-action@v2
         with:
           context: ./mirakc/
-          file: ./mirakc/0.18.0-alpine-rpi4-32.Dockerfile
+          file: ./mirakc/0.18.1-alpine-rpi4-32.Dockerfile
           tags: |
-            collelog/mirakc:0.18.0-alpine-rpi4-32
+            collelog/mirakc:0.18.1-alpine-rpi4-32
+            collelog/mirakc:latest-alpine-rpi4-32
           platforms: linux/arm/v7
           push: true
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache
       -
-        name: Build and push - 0.18.0-alpine-rpi3
+        name: Build and push - 0.18.1-alpine-rpi3
         uses: docker/build-push-action@v2
         with:
           context: ./mirakc/
-          file: ./mirakc/0.18.0-alpine-rpi3.Dockerfile
+          file: ./mirakc/0.18.1-alpine-rpi3.Dockerfile
           tags: |
-            collelog/mirakc:0.18.0-alpine-rpi3
+            collelog/mirakc:0.18.1-alpine-rpi3
+            collelog/mirakc:latest-alpine-rpi3
           platforms: linux/arm/v7
           push: true
           cache-from: type=local,src=/tmp/.buildx-cache
