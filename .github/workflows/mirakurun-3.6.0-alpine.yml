@@ -1,4 +1,4 @@
-name: mirakurun-3.5.0-alpine
+name: mirakurun-3.6.0-alpine
 
 on: [ workflow_dispatch ]
 
@@ -30,61 +30,66 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
       -
-        name: Build and push - 3.5.0-alpine
+        name: Build and push - 3.6.0-alpine
         uses: docker/build-push-action@v2
         with:
           context: ./mirakurun/
-          file: ./mirakurun/3.5.0-alpine.Dockerfile
+          file: ./mirakurun/3.6.0-alpine.Dockerfile
           tags: |
-            collelog/mirakurun:3.5.0-alpine
+            collelog/mirakurun:3.6.0-alpine
+            collelog/mirakurun:latest-alpine
           platforms: linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64
           push: true
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache
       -
-        name: Build and push - 3.5.0-alpine-amd64
+        name: Build and push - 3.6.0-alpine-amd64
         uses: docker/build-push-action@v2
         with:
           context: ./mirakurun/
-          file: ./mirakurun/3.5.0-alpine-amd64.Dockerfile
+          file: ./mirakurun/3.6.0-alpine-amd64.Dockerfile
           tags: |
-            collelog/mirakurun:3.5.0-alpine-amd64
+            collelog/mirakurun:3.6.0-alpine-amd64
+            collelog/mirakurun:latest-alpine-amd64
           platforms: linux/amd64
           push: true
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache
       -
-        name: Build and push - 3.5.0-alpine-rpi4-64
+        name: Build and push - 3.6.0-alpine-rpi4-64
         uses: docker/build-push-action@v2
         with:
           context: ./mirakurun/
-          file: ./mirakurun/3.5.0-alpine-rpi4-64.Dockerfile
+          file: ./mirakurun/3.6.0-alpine-rpi4-64.Dockerfile
           tags: |
-            collelog/mirakurun:3.5.0-alpine-rpi4-64
+            collelog/mirakurun:3.6.0-alpine-rpi4-64
+            collelog/mirakurun:latest-alpine-rpi4-64
           platforms: linux/arm64
           push: true
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache
       -
-        name: Build and push - 3.5.0-alpine-rpi4-32
+        name: Build and push - 3.6.0-alpine-rpi4-32
         uses: docker/build-push-action@v2
         with:
           context: ./mirakurun/
-          file: ./mirakurun/3.5.0-alpine-rpi4-32.Dockerfile
+          file: ./mirakurun/3.6.0-alpine-rpi4-32.Dockerfile
           tags: |
-            collelog/mirakurun:3.5.0-alpine-rpi4-32
+            collelog/mirakurun:3.6.0-alpine-rpi4-32
+            collelog/mirakurun:latest-alpine-rpi4-32
           platforms: linux/arm/v7
           push: true
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache
       -
-        name: Build and push - 3.5.0-alpine-rpi3
+        name: Build and push - 3.6.0-alpine-rpi3
         uses: docker/build-push-action@v2
         with:
           context: ./mirakurun/
-          file: ./mirakurun/3.5.0-alpine-rpi3.Dockerfile
+          file: ./mirakurun/3.6.0-alpine-rpi3.Dockerfile
           tags: |
-            collelog/mirakurun:3.5.0-alpine-rpi3
+            collelog/mirakurun:3.6.0-alpine-rpi3
+            collelog/mirakurun:latest-alpine-rpi3
           platforms: linux/arm/v7
           push: true
           cache-from: type=local,src=/tmp/.buildx-cache
