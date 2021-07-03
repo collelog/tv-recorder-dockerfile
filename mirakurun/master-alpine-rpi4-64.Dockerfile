@@ -38,7 +38,7 @@ FROM collelog/arib-b25-stream-test-build:latest-alpine-rpi4-64 AS arib-b25-strea
 
 
 # final image
-FROM node:14.16.1-alpine3.13
+FROM node:14.17.1-alpine3.13
 LABEL maintainer "collelog <collelog.cavamin@gmail.com>"
 
 ENV LD_LIBRARY_PATH=/usr/local/lib64:/usr/local/lib
