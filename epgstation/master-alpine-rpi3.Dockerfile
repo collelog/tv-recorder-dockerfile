@@ -30,9 +30,6 @@ COPY --from=epgstation-image /build /
 COPY --from=sqlite3-regexp-image /build/usr/lib/sqlite3.31.1/regexp.so /opt/epgstation
 
 # sqlite-pcre2
-COPY --from=sqlite-regexp-image /build/usr/lib/sqlite3/libsqlite_pcre.so /opt/epgstation
-
-# sqlite-pcre2
 COPY --from=sqlite-pcre2-image /build/usr/lib/sqlite3/libsqlite_pcre.so /opt/epgstation
 
 RUN set -eux && \
