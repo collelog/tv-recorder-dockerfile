@@ -6,6 +6,10 @@ FROM collelog/ffmpeg:4.4-alpine-arm32v7 AS ffmpeg-image
 FROM collelog/sqlite3-regexp-build:3.31.1-alpine AS sqlite3-regexp-image
 
 
+# sqlite-pcre2
+FROM collelog/sqlite-pcre2-build:latest-alpine AS sqlite-pcre2-image
+
+
 # EPGStation
 FROM collelog/epgstation-build:master-alpine AS epgstation-image
 
@@ -25,10 +29,13 @@ COPY --from=epgstation-image /build /
 # sqlite3-regexp
 COPY --from=sqlite3-regexp-image /build/usr/lib/sqlite3.31.1/regexp.so /opt/epgstation
 
+# sqlite-pcre2
+COPY --from=sqlite-pcre2-image /build/usr/lib/sqlite3/libsqlite_pcre.so /opt/epgstation
 RUN set -eux && \
 	apk upgrade --no-cache --update-cache && \
 	apk add --no-cache --update-cache \
 		curl \
+		pcre2 \
 		tzdata && \
 	\
 	# cleaning
