@@ -42,6 +42,7 @@ RUN set -eux && \
 	\
 	ln -s /usr/lib/jellyfin-ffmpeg/ffmpeg /usr/local/bin/ffmpeg && \
 	ln -s /usr/lib/jellyfin-ffmpeg/ffprobe /usr/local/bin/ffprobe && \
+	ln -s /usr/lib/sqlite3/pcre.so /opt/epgstation/pcre.so && \
 	\
 	# cleaning
 	npm cache verify && \
