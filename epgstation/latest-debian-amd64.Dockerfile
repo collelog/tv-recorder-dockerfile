@@ -21,7 +21,7 @@ RUN set -eux && \
 		apt-transport-https \
 		ca-certificates \
 		curl \
-		gnupg2 \
+		gnupg \
 		lsb-release \
 		sqlite3-pcre \
 		tzdata && \

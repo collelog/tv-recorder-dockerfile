@@ -20,16 +20,18 @@ RUN set -eux && \
 		apt-transport-https \
 		ca-certificates \
 		curl \
-		gnupg2 \
+		gnupg \
 		lsb-release \
 		sqlite3-pcre \
 		tzdata && \
 	\
 	cd /tmp && \
-	curl -s https://repo.jellyfin.org/ubuntu/jellyfin_team.gpg.key | apt-key add - && \
+	curl -kO https://repo.jellyfin.org/debian/jellyfin_team.gpg.key && \
+	apt-key add jellyfin_team.gpg.key && \
 	echo "deb [arch=$( dpkg --print-architecture )] https://repo.jellyfin.org/debian $( lsb_release -c -s ) main" | tee /etc/apt/sources.list.d/jellyfin.list && \
-	curl -s https://keyserver.ubuntu.com/pks/lookup?op=get\&search=0x6587ffd6536b8826e88a62547876ae518cbcf2f2 | apt-key add - && \
-	echo "deb [arch=$( dpkg --print-architecture )] http://ppa.launchpad.net/ubuntu-raspi2/ppa-nightly/ubuntu $( lsb_release -c -s ) mainn" | tee /etc/apt/sources.list.d/raspbins.list && \
+	curl -kO https://archive.raspberrypi.org/debian/raspberrypi.gpg.key && \
+	apt-key add raspberrypi.gpg.key && \
+	echo "deb [arch=$( dpkg --print-architecture )] https://archive.raspberrypi.org/debian $( lsb_release -c -s ) main" | tee -a /etc/apt/sources.list && \
 	\
 	apt-get update -qq && \
 	apt-get install -y --no-install-recommends \
