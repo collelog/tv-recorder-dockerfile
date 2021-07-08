@@ -10,10 +10,6 @@ FROM collelog/sqlite3-regexp-build:3.31.1-alpine-rpi3 AS sqlite3-regexp-image
 FROM collelog/sqlite3-pcre-build:latest-alpine AS sqlite3-pcre-image
 
 
-# sqlite-pcre2
-FROM collelog/sqlite-pcre2-build:latest-alpine AS sqlite-pcre2-image
-
-
 # EPGStation
 FROM collelog/epgstation-build:2.5.2-alpine AS epgstation-image
 
@@ -36,15 +32,11 @@ COPY --from=sqlite3-regexp-image /build/usr/lib/sqlite3.31.1/regexp.so /opt/epgs
 # sqlite3-pcre
 COPY --from=sqlite3-pcre-image /build/usr/lib/sqlite3/pcre.so /opt/epgstation
 
-# sqlite-pcre2
-COPY --from=sqlite-pcre2-image /build/usr/lib/sqlite3/libsqlite_pcre.so /opt/epgstation
-
 RUN set -eux && \
 	apk upgrade --no-cache --update-cache && \
 	apk add --no-cache --update-cache \
 		curl \
 		pcre \
-		pcre2 \
 		raspberrypi-libs \
 		tzdata && \
 	\
