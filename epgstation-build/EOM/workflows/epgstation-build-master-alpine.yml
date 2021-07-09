@@ -1,4 +1,4 @@
-name: epgstation-build-master-alpine
+name: epgstation-build-latest-alpine
 
 on: [ workflow_dispatch ]
 
@@ -41,14 +41,14 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
       -
-        name: Build and push - master-alpine
+        name: Build and push - latest-alpine
         uses: docker/build-push-action@v2
         with:
           context: ./epgstation-build/
-          file: ./epgstation-build/master-alpine.Dockerfile
+          file: ./epgstation-build/latest-alpine.Dockerfile
           tags: |
-            collelog/epgstation-build:master-alpine
-          platforms: linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64
+            collelog/epgstation-build:latest-alpine
+          platforms: linux/amd64,linux/arm/v7,linux/arm64
           push: true
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache
