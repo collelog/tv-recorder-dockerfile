@@ -15,7 +15,7 @@ FROM collelog/epgstation-build:2.5.2-alpine AS epgstation-image
 
 
 # final image
-FROM node:14.17.1-alpine3.13
+FROM node:14-alpine3.13
 LABEL maintainer "collelog <collelog.cavamin@gmail.com>"
 
 ENV LD_LIBRARY_PATH=/opt/intel/mediasdk/lib64:/usr/local/lib64:/usr/local/lib:/usr/lib:/lib

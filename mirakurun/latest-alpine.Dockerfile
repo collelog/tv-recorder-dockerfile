@@ -29,7 +29,7 @@ FROM collelog/recpt1-build:stz2012-latest-alpine AS recpt1-image
 FROM collelog/recdvb-build:latest-alpine AS recdvb-image
 
 
-# recfsusb2ncd mi		
+# recfsusb2n
 FROM collelog/recfsusb2n-build:epgdatacapbon-latest-alpine AS recfsusb2n-image
 
 
@@ -38,7 +38,7 @@ FROM collelog/arib-b25-stream-test-build:latest-alpine AS arib-b25-stream-test-i
 
 
 # final image
-FROM node:14.17.1-alpine3.13
+FROM node:14-alpine3.13
 LABEL maintainer "collelog <collelog.cavamin@gmail.com>"
 
 ENV LD_LIBRARY_PATH=/usr/local/lib64:/usr/local/lib
