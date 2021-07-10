@@ -128,16 +128,3 @@ jobs:
           push: true
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache
-      -
-        name: Build and push - 2.5.2-alpine-arm32v6
-        uses: docker/build-push-action@v2
-        with:
-          context: ./epgstation/
-          file: ./epgstation/2.5.2-alpine-arm32v6.Dockerfile
-          tags: |
-            collelog/epgstation:2.5.2-alpine-arm32v6
-            collelog/epgstation:latest-alpine-arm32v6
-          platforms: linux/arm/v6
-          push: true
-          cache-from: type=local,src=/tmp/.buildx-cache
-          cache-to: type=local,dest=/tmp/.buildx-cache
