@@ -16,7 +16,7 @@ FROM collelog/recpt1-build:stz2012-latest-alpine-rpi4-32 AS recpt1-image
 
 
 # recdvb
-FROM collelog/recdvb-build:kaikoma-latest-alpine-rpi4-32 AS recdvb-image
+FROM collelog/recdvb-build:kaikoma-soft-latest-alpine-rpi4-32 AS recdvb-image
 
 
 # recfsusb2n
