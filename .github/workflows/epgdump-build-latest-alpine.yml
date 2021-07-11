@@ -1,4 +1,4 @@
-name: epgdump-build-stz2012-latest-alpine
+name: epgdump-build-latest-alpine
 
 on: [ workflow_dispatch ]
 

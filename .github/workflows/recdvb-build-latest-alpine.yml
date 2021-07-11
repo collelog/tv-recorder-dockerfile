@@ -1,4 +1,4 @@
-name: recdvb-build-sat-latest-alpine
+name: recdvb-build-latest-alpine
 
 on: [ workflow_dispatch ]
 
