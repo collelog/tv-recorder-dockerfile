@@ -1,7 +1,7 @@
 # recdvb
 FROM collelog/buildenv:alpine AS recdvb-build
 
-COPY ./patch/Makefile.in-rpi3.patch /tmp/
+COPY ./patch/kaikoma-soft/Makefile.in-rpi3.patch /tmp/
 
 RUN apk add --no-cache --update-cache \
 	pcsc-lite-dev
@@ -14,12 +14,13 @@ RUN make -j $(nproc) install
 
 
 WORKDIR /tmp/recdvb
-RUN curl -fsSL http://www13.plala.or.jp/sat/recdvb/recdvb-1.3.2.tgz | \
+RUN curl -fsSL https://github.com/kaikoma-soft/recdvb/tarball/master | \
 		tar -xz --strip-components=1
 RUN mv /tmp/*.patch /tmp/recdvb/
 RUN patch < Makefile.in-rpi3.patch
 RUN sed -i -e s/msgbuf/_msgbuf/ recpt1core.h
 RUN sed -i '1i#include <sys/types.h>' recpt1.h
+RUN sed -i '1i#include <sys/types.h>' tssplitter_lite.h
 RUN ./autogen.sh
 RUN ./configure --prefix=/usr/local --enable-b25
 RUN make -j $(nproc)
