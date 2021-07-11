@@ -40,3 +40,14 @@ jobs:
           push: true
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache
+      -
+        name: Build and push - Piro7-latest-alpine
+        uses: docker/build-push-action@v2
+        with:
+          context: ./epgdump-build/
+          file: ./epgdump-build/Piro7-latest-alpine.Dockerfile
+          tags: collelog/epgdump-build:Piro7-latest-alpine
+          platforms: linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64
+          push: true
+          cache-from: type=local,src=/tmp/.buildx-cache
+          cache-to: type=local,dest=/tmp/.buildx-cache
