@@ -4,7 +4,7 @@ FROM collelog/buildenv:node14-debian AS epgstation-build
 ENV DEBIAN_FRONTEND=noninteractive
 
 WORKDIR /opt/epgstation
-RUN curl -kfsSL https://github.com/l3tnun/EPGStation/archive/master.tar.gz | \
+RUN curl -kfsSL https://github.com/l3tnun/EPGStation/tarball/master | \
 		tar -xz --strip-components=1
 RUN npm run all-install --python=/usr/bin/python3
 RUN npm run build

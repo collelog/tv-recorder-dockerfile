@@ -1,4 +1,4 @@
-# stz2012”Ålibarib25
+# stz2012 libarib25
 FROM collelog/buildenv:alpine AS libarib25-build
 
 COPY ./arib-b25-stream /tmp/

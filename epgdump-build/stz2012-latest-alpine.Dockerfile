@@ -1,4 +1,4 @@
-# stz2012”Åepgdump
+# stz2012 epgdump
 FROM collelog/buildenv:alpine AS epgdump-build
 
 WORKDIR /tmp/epgdump

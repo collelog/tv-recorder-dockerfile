@@ -1,4 +1,4 @@
-# stz2012”Årecpt1
+# stz2012 recpt1
 FROM collelog/buildenv:alpine AS recpt1-build
 
 COPY ./patch/stz2012/pt1_dev.h.patch /tmp/

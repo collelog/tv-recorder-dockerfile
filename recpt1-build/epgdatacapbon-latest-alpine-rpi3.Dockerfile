@@ -1,4 +1,4 @@
-# epgdatacapbon”Årecpt1
+# epgdatacapbon recpt1
 FROM collelog/buildenv:alpine AS recpt1-build
 
 COPY ./patch/epgdatacapbon/pt1_dev.h.patch /tmp/
