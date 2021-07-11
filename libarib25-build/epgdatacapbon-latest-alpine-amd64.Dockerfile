@@ -1,4 +1,4 @@
-# epgdatacapbon”Ålibarib25
+# epgdatacapbon libarib25
 FROM collelog/buildenv:alpine AS libarib25-build
 
 COPY ./arib-b25-stream /tmp/
