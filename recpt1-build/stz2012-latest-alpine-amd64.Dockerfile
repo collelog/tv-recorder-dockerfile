@@ -22,7 +22,6 @@ RUN curl -fsSL https://github.com/stz2012/recpt1/tarball/master | \
 WORKDIR /tmp/recpt1/recpt1
 RUN mv /tmp/*.patch /tmp/recpt1/recpt1/
 RUN patch < pt1_dev.h.patch
-RUN patch < recpt1.h.patch
 RUN patch < recpt1core.c.patch
 RUN patch < Makefile.in-amd64.patch
 RUN ./autogen.sh
