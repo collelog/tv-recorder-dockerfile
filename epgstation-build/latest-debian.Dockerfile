@@ -4,6 +4,7 @@ FROM collelog/buildenv:node16-debian AS epgstation-build
 ENV DEBIAN_FRONTEND=noninteractive
 
 WORKDIR /opt/epgstation
+ENV DOCKER="YES"
 RUN curl -kfsSL https://github.com/l3tnun/EPGStation/tarball/master | \
 		tar -xz --strip-components=1
 RUN npm run all-install --python=/usr/bin/python3
