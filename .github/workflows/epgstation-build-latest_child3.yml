@@ -1,9 +1,9 @@
-name: epgstation-build-latest-debian_child3
+name: epgstation-build-latest_child3
 
 on:
   workflow_run:
     workflows:
-      - epgstation-build-latest-debian_child2
+      - epgstation-build-latest_child2
     types:
       - completed
 
