@@ -3,7 +3,7 @@ FROM collelog/epgstation-build:latest-debian AS epgstation-build
 
 
 # final image
-FROM node:14.17.3-buster-slim
+FROM node:16-buster-slim
 LABEL maintainer "collelog <collelog.cavamin@gmail.com>"
 
 ARG APT_KEY_DONT_WARN_ON_DANGEROUS_USAGE=DontWarn

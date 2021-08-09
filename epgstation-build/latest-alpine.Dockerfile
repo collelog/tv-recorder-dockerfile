@@ -1,5 +1,5 @@
 # EPGStation
-FROM collelog/buildenv:node14-alpine AS epgstation-build
+FROM collelog/buildenv:node16-alpine AS epgstation-build
 
 WORKDIR /opt/epgstation
 RUN curl -fsSL https://github.com/l3tnun/EPGStation/tarball/master | \
@@ -15,7 +15,7 @@ RUN rm -rf /tmp/* /var/cache/apk/*
 
 
 # final image
-FROM node:14-alpine3.13
+FROM node:16-alpine3.14
 LABEL maintainer "collelog <collelog.cavamin@gmail.com>"
 
 COPY --from=epgstation-build /build /build
