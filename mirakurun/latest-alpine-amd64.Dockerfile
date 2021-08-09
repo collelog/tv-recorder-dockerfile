@@ -1,5 +1,5 @@
 # mirakurun-build
-FROM collelog/buildenv:node14-alpine AS mirakurun-build
+FROM collelog/buildenv:node16-alpine AS mirakurun-build
 
 ENV DOCKER="YES"
 WORKDIR /tmp
