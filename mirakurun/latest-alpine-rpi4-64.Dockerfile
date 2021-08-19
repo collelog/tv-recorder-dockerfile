@@ -86,12 +86,6 @@ RUN set -eux && \
 	mkdir /run/openrc && \
 	touch /run/openrc/softlevel && \
 	\
-	sed -i 's/#rc_sys=""/rc_sys="lxc"/g' /etc/rc.conf && \
-	echo 'rc_provide="loopback net"' >> /etc/rc.conf && \
-	sed -i 's/^#\(rc_logger="YES"\)$/\1/' /etc/rc.conf && \
-	sed -i '/tty/d' /etc/inittab && \
-	sed -i 's/hostname $opts/# hostname $opts/g' /etc/init.d/hostname && \
-	sed -i 's/mount -t tmpfs/# mount -t tmpfs/g' /lib/rc/sh/init.sh && \
 	sed -i -e 's/cgroup_add_service$/# cgroup_add_service/g' /lib/rc/sh/openrc-run.sh && \
 	\
 	mkdir /etc/dvbv5 && \
@@ -101,8 +95,6 @@ RUN set -eux && \
 	\
 	mkdir -p /usr/local/mirakurun/opt/bin/ && \
 	cp /usr/local/bin/recpt1 /usr/local/mirakurun/opt/bin/  && \
-	\
-	sed -i -e '3i if [ -e "/etc/init.d/pcscd" ]; then /etc/init.d/pcscd stop; sleep 1; fi' /app/docker/container-init.sh && \
 	\
 	# cleaning
 	rm -rf /tmp/* /var/cache/apk/*
