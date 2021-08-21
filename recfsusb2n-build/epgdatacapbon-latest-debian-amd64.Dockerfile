@@ -21,7 +21,7 @@ RUN make -j $(nproc) install
 
 
 WORKDIR /tmp/recfsusb2n
-RUN curl -fsSL https://github.com/epgdatacapbon/recfsusb2n/tarball/master | \
+RUN curl -kfsSL https://github.com/epgdatacapbon/recfsusb2n/tarball/master | \
 		tar -xz --strip-components=1
 RUN mv /tmp/*.patch /tmp/recfsusb2n/src
 WORKDIR /tmp/recfsusb2n/src
