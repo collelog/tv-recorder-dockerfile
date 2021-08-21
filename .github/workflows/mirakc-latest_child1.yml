@@ -1,4 +1,4 @@
-name: mirakc-latest_child1.yml
+name: mirakc-latest_child1
 
 on:
   workflow_run:
