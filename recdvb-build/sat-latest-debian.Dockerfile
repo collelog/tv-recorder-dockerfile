@@ -1,20 +1,24 @@
 # recdvb
-FROM collelog/buildenv:alpine AS recdvb-build
+FROM collelog/buildenv:debian AS recdvb-build
+
+ENV DEBIAN_FRONTEND=noninteractive
 
 COPY ./patch/sat/Makefile.in.patch /tmp/
 
-RUN apk add --no-cache --update-cache \
-	pcsc-lite-dev
+RUN apt-get update
+RUN apt-get upgrade -y
+RUN apt-get install -y --no-install-recommends \
+	libpcsclite-dev
 
 WORKDIR /tmp/libarib25
-RUN curl -fsSL https://github.com/stz2012/libarib25/tarball/master | \
+RUN curl -kfsSL https://github.com/stz2012/libarib25/tarball/master | \
 		tar -xz --strip-components=1
 RUN cmake -DCMAKE_BUILD_TYPE=Release .
 RUN make -j $(nproc) install
 
 
 WORKDIR /tmp/recdvb
-RUN curl -fsSL http://www13.plala.or.jp/sat/recdvb/recdvb-1.3.3.tgz | \
+RUN curl -kfsSL http://www13.plala.or.jp/sat/recdvb/recdvb-1.3.3.tgz | \
 		tar -xz --strip-components=1
 RUN mv /tmp/*.patch /tmp/recdvb/
 RUN patch < Makefile.in.patch
@@ -28,11 +32,12 @@ RUN make -j $(nproc) install
 WORKDIR /build
 RUN cp --archive --parents --no-dereference /usr/local/bin/recdvb /build
 
-RUN rm -rf /tmp/* /var/cache/apk/*
+RUN apt-get clean
+RUN rm -rf /tmp/* /var/tmp/* /var/lib/apt/lists/*
 
 
 # final image
-FROM alpine:3.14
+FROM debian:buster-slim
 LABEL maintainer "collelog <collelog.cavamin@gmail.com>"
 
 COPY --from=recdvb-build /build /build

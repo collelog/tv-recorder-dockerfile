@@ -1,25 +1,30 @@
 # recdvb
-FROM collelog/buildenv:alpine AS recdvb-build
+FROM collelog/buildenv:debian AS recdvb-build
 
-COPY ./patch/sat/Makefile.in.patch /tmp/
+ENV DEBIAN_FRONTEND=noninteractive
 
-RUN apk add --no-cache --update-cache \
-	pcsc-lite-dev
+COPY ./patch/kaikoma-soft/Makefile.in-rpi3.patch /tmp/
+
+RUN apt-get update
+RUN apt-get upgrade -y
+RUN apt-get install -y --no-install-recommends \
+	libpcsclite-dev
 
 WORKDIR /tmp/libarib25
-RUN curl -fsSL https://github.com/stz2012/libarib25/tarball/master | \
+RUN curl -kfsSL https://github.com/stz2012/libarib25/tarball/master | \
 		tar -xz --strip-components=1
 RUN cmake -DCMAKE_BUILD_TYPE=Release .
 RUN make -j $(nproc) install
 
 
 WORKDIR /tmp/recdvb
-RUN curl -fsSL http://www13.plala.or.jp/sat/recdvb/recdvb-1.3.3.tgz | \
+RUN curl -kfsSL https://github.com/kaikoma-soft/recdvb/tarball/master | \
 		tar -xz --strip-components=1
 RUN mv /tmp/*.patch /tmp/recdvb/
-RUN patch < Makefile.in.patch
+RUN patch < Makefile.in-rpi3.patch
 RUN sed -i -e s/msgbuf/_msgbuf/ recpt1core.h
 RUN sed -i '1i#include <sys/types.h>' recpt1.h
+RUN sed -i '1i#include <sys/types.h>' tssplitter_lite.h
 RUN ./autogen.sh
 RUN ./configure --prefix=/usr/local --enable-b25
 RUN make -j $(nproc)
@@ -28,11 +33,12 @@ RUN make -j $(nproc) install
 WORKDIR /build
 RUN cp --archive --parents --no-dereference /usr/local/bin/recdvb /build
 
-RUN rm -rf /tmp/* /var/cache/apk/*
+RUN apt-get clean
+RUN rm -rf /tmp/* /var/tmp/* /var/lib/apt/lists/*
 
 
 # final image
-FROM alpine:3.14
+FROM debian:buster-slim
 LABEL maintainer "collelog <collelog.cavamin@gmail.com>"
 
 COPY --from=recdvb-build /build /build
