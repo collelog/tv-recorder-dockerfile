@@ -19,7 +19,7 @@ FROM collelog/epgdump-build:stz2012-latest-alpine AS epgdump-image
 
 
 # final image
-FROM alpine:3.13.5
+FROM alpine:3.14
 LABEL maintainer "collelog <collelog.cavamin@gmail.com>"
 
 ENV LD_LIBRARY_PATH=/usr/local/lib64:/usr/local/lib

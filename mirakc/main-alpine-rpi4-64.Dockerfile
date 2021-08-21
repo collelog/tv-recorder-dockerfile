@@ -28,7 +28,7 @@ FROM collelog/arib-b25-stream-test-build:latest-alpine-rpi4-64 AS arib-b25-strea
 
 
 # final image
-FROM alpine:3.13.5
+FROM alpine:3.14
 LABEL maintainer "collelog <collelog.cavamin@gmail.com>"
 
 ENV LD_LIBRARY_PATH=/usr/local/lib64:/usr/local/lib
@@ -80,7 +80,7 @@ RUN set -eux && \
 	curl -fsSLO https://raw.githubusercontent.com/Chinachu/dvbconf-for-isdb/master/conf/dvbv5_channels_isdbt.conf && \
 	\
 	# cleaning
-	rm -rf /tmp/* /var/cache/apk/* && \
+	rm -rf /tmp/* /var/tmp/* && \
 	\
 	chmod 755 /usr/local/bin/services.sh
 

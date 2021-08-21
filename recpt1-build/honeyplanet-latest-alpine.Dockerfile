@@ -43,7 +43,7 @@ RUN rm -rf /tmp/* /var/tmp/*
 
 
 # final image
-FROM alpine:3.13.5
+FROM alpine:3.14
 LABEL maintainer "collelog <collelog.cavamin@gmail.com>"
 
 COPY --from=recpt1-build /build /build

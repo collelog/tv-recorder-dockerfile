@@ -35,7 +35,7 @@ RUN rm -rf /tmp/* /var/cache/apk/*
 
 
 # final image
-FROM alpine:3.13.5
+FROM alpine:3.14
 LABEL maintainer "collelog <collelog.cavamin@gmail.com>"
 
 COPY --from=recfsusb2n-build /build /build

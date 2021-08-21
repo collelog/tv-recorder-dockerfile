@@ -14,11 +14,11 @@ RUN gcc -O2 -pipe -fPIC -shared regexp.c -o regexp.so
 WORKDIR /build/usr/lib/sqlite3.31.1/
 RUN cp /tmp/sqlite3-regexp/sqlite-amalgamation-3310100/regexp.so .
 
-RUN rm -rf /tmp/* /var/cache/apk/*
+RUN rm -rf /tmp/* /var/tmp/*
 
 
 # final image
-FROM alpine:3.13.5
+FROM alpine:3.14
 LABEL maintainer "collelog <collelog.cavamin@gmail.com>"
 
 COPY --from=build /build /build
