@@ -1,5 +1,5 @@
 # arib-b25-stream-test
-FROM collelog/buildenv:node12-alpine AS build
+FROM collelog/buildenv:node16-alpine AS build
 
 COPY ./patch/Makefile-rpi4.patch /tmp/
 
@@ -21,11 +21,11 @@ WORKDIR /build
 RUN cp --archive --parents --dereference /usr/local/bin/arib-b25-stream-test /build
 
 RUN npm cache verify
-RUN rm -rf /tmp/* /var/cache/apk/*
+RUN rm -rf /tmp/* /var/tmp/*
 
 
 # final image
-FROM alpine:3.13.5
+FROM alpine:3.14
 LABEL maintainer "collelog <collelog.cavamin@gmail.com>"
 
 COPY --from=build /build /build
