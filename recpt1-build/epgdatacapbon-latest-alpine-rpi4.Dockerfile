@@ -33,7 +33,7 @@ RUN make -j $(nproc) install
 WORKDIR /build
 RUN cp --archive --parents --no-dereference /usr/local/bin/recpt1 /build
 
-RUN rm -rf /tmp/* /var/cache/apk/*
+RUN rm -rf /tmp/* /var/tmp/*
 
 
 # final image
