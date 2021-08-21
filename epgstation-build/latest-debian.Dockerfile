@@ -15,7 +15,7 @@ RUN cp --archive --parents --no-dereference /opt/epgstation /build
 
 RUN npm cache verify
 RUN apt-get clean
-RUN rm -rf /tmp/* /var/lib/apt/lists/*
+RUN rm -rf /tmp/* /var/tmp/* /var/lib/apt/lists/* ~/.npm
 
 # final image
 FROM node:16-buster-slim

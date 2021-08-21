@@ -50,7 +50,7 @@ RUN set -eux && \
 	\
 	# cleaning
 	npm cache verify && \
-	rm -rf /tmp/* ~/.npm /var/cache/apk/*
+	rm -rf /tmp/* /var/tmp/* ~/.npm
 
 WORKDIR /opt/epgstation
 

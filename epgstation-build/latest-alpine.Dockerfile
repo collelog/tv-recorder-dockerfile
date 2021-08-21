@@ -12,7 +12,7 @@ WORKDIR /build
 RUN cp --archive --parents --no-dereference /opt/epgstation /build
 
 RUN npm cache verify
-RUN rm -rf /tmp/* /var/cache/apk/*
+RUN rm -rf /tmp/* /var/tmp/* ~/.npm
 
 
 # final image

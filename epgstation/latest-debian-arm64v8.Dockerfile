@@ -46,7 +46,7 @@ RUN set -eux && \
 	# cleaning
 	npm cache verify && \
 	apt-get clean && \
-	rm -rf /tmp/* ~/.npm /var/cache/apk/*
+	rm -rf /tmp/* /var/tmp/* /var/lib/apt/lists/* ~/.npm
 
 WORKDIR /opt/epgstation
 
