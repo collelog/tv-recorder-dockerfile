@@ -22,10 +22,8 @@ RUN cmake -DCMAKE_BUILD_TYPE=Release -DLDCONFIG_EXECUTABLE=IGNORE .
 RUN make -j $(nproc) install
 
 WORKDIR /build
-RUN cp --archive --parents --no-dereference /usr/local/lib/libarib25.* /build || true
-RUN cp --archive --parents --no-dereference /usr/local/lib/pkgconfig/libarib25.pc /build || true
-RUN cp --archive --parents --no-dereference /usr/local/lib64/libarib25.* /build || true
-RUN cp --archive --parents --no-dereference /usr/local/lib64/pkgconfig/libarib25.pc /build || true
+RUN cp --archive --parents --no-dereference /usr/local/lib/libarib25.* /build
+RUN cp --archive --parents --no-dereference /usr/local/lib/pkgconfig/libarib25.pc /build
 RUN cp --archive --parents --no-dereference /usr/local/include/arib25 /build
 RUN cp --archive --parents --no-dereference /usr/local/bin/b25 /build
 RUN cp --archive --parents --no-dereference /usr/local/bin/arib-b25-stream /build
