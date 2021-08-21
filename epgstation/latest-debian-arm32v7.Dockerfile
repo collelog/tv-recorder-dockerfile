@@ -15,6 +15,7 @@ COPY --from=epgstation-build /build /
 
 RUN set -eux && \
 	apt-get update -qq && \
+	apt-get upgrade -y && \
 	apt-get install -y --no-install-recommends \
 		apt-transport-https \
 		ca-certificates \
