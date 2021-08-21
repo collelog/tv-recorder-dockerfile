@@ -1,4 +1,4 @@
-name: recpt1-build-epgdatacapbon-latest-alpine
+name: recpt1-build-epgdatacapbon-latest_child1
 
 on:
   workflow_run:

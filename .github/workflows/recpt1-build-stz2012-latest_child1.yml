@@ -1,4 +1,4 @@
-name: recpt1-build-stz2012-latest-alpine
+name: recpt1-build-stz2012-latest_child1
 
 on:
   workflow_run:
