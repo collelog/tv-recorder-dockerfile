@@ -7,7 +7,7 @@ FROM collelog/recpt1-build:stz2012-latest-alpine AS recpt1-image
 
 
 # recdvb
-FROM collelog/recdvb-build:latest-alpine AS recdvb-image
+FROM collelog/recdvb-build:kaikoma-soft-latest-alpine AS recdvb-image
 
 
 # recfsusb2n
