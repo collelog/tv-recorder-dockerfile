@@ -8,7 +8,8 @@ COPY ./patch/Makefile.patch /tmp/
 RUN apt-get update
 RUN apt-get upgrade -y
 RUN apt-get install -y --no-install-recommends \
-	libpcsclite-dev
+	libpcsclite-dev \
+	pkg-config
 
 WORKDIR /tmp/arib-b25-stream-test
 RUN curl -kfsSL http://registry.npmjs.org/arib-b25-stream-test/-/arib-b25-stream-test-0.2.9.tgz | \
@@ -25,7 +26,8 @@ WORKDIR /build
 RUN cp --archive --parents --dereference /usr/local/bin/arib-b25-stream-test /build
 
 RUN npm cache verify
-RUN rm -rf /tmp/* /var/tmp/*
+RUN apt-get clean
+RUN rm -rf /tmp/* /var/tmp/* /var/lib/apt/lists/* ~/.npm
 
 
 # final image
