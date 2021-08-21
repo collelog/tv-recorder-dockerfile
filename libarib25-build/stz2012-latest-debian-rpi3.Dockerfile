@@ -1,6 +1,8 @@
 # stz2012 libarib25
 FROM collelog/buildenv:debian AS libarib25-build
 
+ENV DEBIAN_FRONTEND=noninteractive
+
 COPY ./arib-b25-stream /tmp/
 COPY ./patch/stz2012/CMakeLists-rpi3.patch /tmp/
 
