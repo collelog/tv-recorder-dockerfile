@@ -15,14 +15,14 @@ RUN apt-get install -y --no-install-recommends \
 	libpcsclite-dev
 
 WORKDIR /tmp/libarib25
-RUN curl -fsSL https://github.com/stz2012/libarib25/tarball/master | \
+RUN curl -kfsSL https://github.com/stz2012/libarib25/tarball/master | \
 		tar -xz --strip-components=1
 RUN cmake -DCMAKE_BUILD_TYPE=Release -DLDCONFIG_EXECUTABLE=IGNORE .
 RUN make -j $(nproc) install
 
 
 WORKDIR /tmp/recpt1
-RUN curl -fsSL http://hg.honeyplanet.jp/pt1/archive/tip.tar.bz2 | \
+RUN curl -kfsSL http://hg.honeyplanet.jp/pt1/archive/tip.tar.bz2 | \
 		tar -xj --strip-components=1
 WORKDIR /tmp/recpt1/recpt1
 RUN mv /tmp/*.patch /tmp/recpt1/recpt1/
