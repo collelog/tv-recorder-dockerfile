@@ -42,7 +42,7 @@ jobs:
           context: ./arib-b25-stream-test-build/
           file: ./arib-b25-stream-test-build/latest-alpine.Dockerfile
           tags: collelog/arib-b25-stream-test-build:latest-alpine
-          platforms: linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64
+          platforms: linux/amd64,linux/arm/v7,linux/arm64
           push: true
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache
