@@ -1,6 +1,8 @@
 # recpt1
 FROM collelog/buildenv:debian AS recpt1-build
 
+ENV DEBIAN_FRONTEND=noninteractive
+
 COPY ./patch/honeyplanet/decoder.h.patch /tmp/
 COPY ./patch/honeyplanet/pt1_dev.h.patch /tmp/
 COPY ./patch/honeyplanet/recpt1.h.patch /tmp/

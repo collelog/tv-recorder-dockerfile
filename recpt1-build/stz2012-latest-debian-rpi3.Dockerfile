@@ -1,6 +1,8 @@
 # stz2012 recpt1
 FROM collelog/buildenv:debian AS recpt1-build
 
+ENV DEBIAN_FRONTEND=noninteractive
+
 COPY ./patch/stz2012/pt1_dev.h.patch /tmp/
 COPY ./patch/stz2012/recpt1.h.patch /tmp/
 COPY ./patch/stz2012/recpt1core.c.patch /tmp/

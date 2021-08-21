@@ -1,6 +1,8 @@
 # epgdatacapbon recpt1
 FROM collelog/buildenv:debian AS recpt1-build
 
+ENV DEBIAN_FRONTEND=noninteractive
+
 COPY ./patch/epgdatacapbon/pt1_dev.h.patch /tmp/
 COPY ./patch/epgdatacapbon/recpt1.h.patch /tmp/
 COPY ./patch/epgdatacapbon/recpt1core.c.patch /tmp/
