@@ -42,7 +42,7 @@ jobs:
           context: ./recdvb-build/
           file: ./recdvb-build/sat-latest-alpine.Dockerfile
           tags: collelog/recdvb-build:sat-latest-alpine
-          platforms: linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64
+          platforms: linux/amd64,linux/arm/v7,linux/arm64
           push: true
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache
@@ -97,7 +97,7 @@ jobs:
           context: ./recdvb-build/
           file: ./recdvb-build/kaikoma-soft-latest-alpine.Dockerfile
           tags: collelog/recdvb-build:kaikoma-soft-latest-alpine
-          platforms: linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64
+          platforms: linux/amd64,linux/arm/v7,linux/arm64
           push: true
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache

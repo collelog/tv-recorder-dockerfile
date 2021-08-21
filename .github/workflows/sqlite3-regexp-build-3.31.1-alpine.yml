@@ -36,7 +36,7 @@ jobs:
           context: ./sqlite3-regexp-build/
           file: ./sqlite3-regexp-build/3.31.1-alpine.Dockerfile
           tags: collelog/sqlite3-regexp-build:3.31.1-alpine
-          platforms: linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64
+          platforms: linux/amd64,linux/arm/v7,linux/arm64
           push: true
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache

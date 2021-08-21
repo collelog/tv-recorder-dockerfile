@@ -36,7 +36,7 @@ jobs:
           context: ./epgdump-build/
           file: ./epgdump-build/stz2012-latest-alpine.Dockerfile
           tags: collelog/epgdump-build:stz2012-latest-alpine
-          platforms: linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64
+          platforms: linux/amd64,linux/arm/v7,linux/arm64
           push: true
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache
@@ -47,7 +47,7 @@ jobs:
           context: ./epgdump-build/
           file: ./epgdump-build/Piro77-latest-alpine.Dockerfile
           tags: collelog/epgdump-build:Piro77-latest-alpine
-          platforms: linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64
+          platforms: linux/amd64,linux/arm/v7,linux/arm64
           push: true
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache

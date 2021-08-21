@@ -38,7 +38,7 @@ jobs:
           tags: |
             collelog/mariadb:10.4.15-alpine
             collelog/mariadb:latest-10.4-alpine
-          platforms: linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64
+          platforms: linux/amd64,linux/arm/v7,linux/arm64
           push: true
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache
