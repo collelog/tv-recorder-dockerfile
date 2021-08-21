@@ -7,6 +7,7 @@ COPY ./patch/epgdatacapbon/decoder.h.patch /tmp/
 COPY ./patch/epgdatacapbon/usbdevfile.c.patch /tmp/
 
 RUN apk add --no-cache --update-cache \
+	boost-dev \
 	pcsc-lite-dev
 
 WORKDIR /tmp/libarib25
