@@ -3,7 +3,7 @@ FROM collelog/arib-b25-stream-test-build:latest-alpine AS arib-b25-stream-test-i
 
 
 # final image
-FROM alpine:3.13.5
+FROM alpine:3.14
 LABEL maintainer "collelog <collelog.cavamin@gmail.com>"
 
 # arib-b25-stream-test

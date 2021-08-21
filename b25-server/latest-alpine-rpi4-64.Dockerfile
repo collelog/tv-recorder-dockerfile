@@ -3,7 +3,7 @@ FROM collelog/arib-b25-stream-test-build:latest-alpine-rpi4-64 AS arib-b25-strea
 
 
 # final image
-FROM alpine:3.13.5
+FROM alpine:3.14
 LABEL maintainer "collelog <collelog.cavamin@gmail.com>"
 
 # arib-b25-stream-test
