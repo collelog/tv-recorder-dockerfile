@@ -1,4 +1,4 @@
-name: recpt1-build-stz2012-latest-debian
+name: recpt1-build-stz2012-latest
 
 on: [ workflow_dispatch ]
 
