@@ -1,7 +1,8 @@
 # recfsusb2n
 FROM collelog/buildenv:alpine AS recfsusb2n-build
 
-COPY ./patch/epgdatacapbon/Makefile.patch /tmp/
+COPY ./patch/epgdatacapbon/alpine/Makefile.patch /tmp/
+
 COPY ./patch/epgdatacapbon/decoder.h.patch /tmp/
 COPY ./patch/epgdatacapbon/usbdevfile.c.patch /tmp/
 

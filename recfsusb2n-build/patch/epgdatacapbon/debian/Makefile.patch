@@ -1,0 +1,18 @@
+--- Makefile	2020-01-15 00:53:21.000000000 +0900
++++ Makefile.after	2020-10-11 18:32:42.000000000 +0900
+@@ -1,5 +1,5 @@
+ CC	= gcc
+-CFLAGS	= -O2 -Wall
++CFLAGS	= -O2 -pipe -Wall
+ OBJS	= main.o utils.o message.o osdepend.o usbdevfile.o usbops.o tsthread.o em287x.o em287x_usb.o tc90522.o mxl136.o tda20142.o tssplitter_lite.o
+ LIBS	= -lpthread
+ TARGET	= recfsusb2n
+@@ -7,7 +7,7 @@
+ PREFIX = /usr/local
+ 
+ ifdef B25
+-LIBS	+= -laribb25
++LIBS	+= -larib25
+ CFLAGS_utils	+= -DSTD_B25
+ endif
+ ifeq ($(shell getconf LONG_BIT),32)

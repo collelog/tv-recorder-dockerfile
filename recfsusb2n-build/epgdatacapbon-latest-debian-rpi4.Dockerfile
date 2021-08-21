@@ -3,7 +3,8 @@ FROM collelog/buildenv:debian AS recfsusb2n-build
 
 ENV DEBIAN_FRONTEND=noninteractive
 
-COPY ./patch/epgdatacapbon/Makefile-rpi4.patch /tmp/
+COPY ./patch/epgdatacapbon/debian/Makefile-rpi4.patch /tmp/
+
 COPY ./patch/epgdatacapbon/decoder.h.patch /tmp/
 COPY ./patch/epgdatacapbon/usbdevfile.c.patch /tmp/
 
