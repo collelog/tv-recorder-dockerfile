@@ -70,6 +70,7 @@ RUN set -eux && \
 		libboost-filesystem1.67.0 \
 		libboost-thread1.67.0 \
 		libccid \
+		pcscd \
 		pcsc-tools \
 		socat && \
 	\
@@ -83,7 +84,7 @@ RUN set -eux && \
 	\
 	# cleaning
 	apt-get clean && \
-	rm -rf /tmp/* /var/cache/apk/*
+	rm -rf /tmp/* /var/tmp/* /var/lib/apt/lists/*
 
 WORKDIR /app
 
