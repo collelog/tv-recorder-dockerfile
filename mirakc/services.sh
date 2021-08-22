@@ -1,10 +1,12 @@
 #!/bin/sh -eux
 
-rm -rf /var/run/pcscd
-mkdir -p /var/run/pcscd
-
-echo "Start pcscd"
-pcscd -f -e &
+if [ -e "/etc/init.d/pcscd" ]; then
+  echo "stopping pcscd..."
+  /etc/init.d/pcscd stop
+  sleep 2
+  echo "starting pcscd..."
+  /etc/init.d/pcscd start
+fi
 
 echo "Start mirakc"
 mirakc

@@ -57,11 +57,13 @@ COPY --from=arib-b25-stream-test-image /build /
 RUN set -eux && \
 	apk upgrade --no-cache --update-cache && \
 	apk add --no-cache --update-cache \
+		bash \
 		boost \
 		ca-certificates \
 		ccid \
 		curl \
 		libstdc++ \
+		openrc \
 		pcsc-lite \
 		pcsc-lite-libs \
 		socat \
@@ -72,6 +74,11 @@ RUN set -eux && \
 	echo http://dl-cdn.alpinelinux.org/alpine/edge/testing >> /etc/apk/repositories && \
 	apk add --no-cache --update-cache \
 		pcsc-tools && \
+	\
+	mkdir /run/openrc && \
+	touch /run/openrc/softlevel && \
+	\
+	sed -i -e 's/cgroup_add_service$/# cgroup_add_service/g' /lib/rc/sh/openrc-run.sh && \
 	\
 	mkdir /etc/dvbv5 && \
 	cd /etc/dvbv5 && \

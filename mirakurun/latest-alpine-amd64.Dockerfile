@@ -97,7 +97,7 @@ RUN set -eux && \
 	cp /usr/local/bin/recpt1 /usr/local/mirakurun/opt/bin/  && \
 	\
 	# cleaning
-	rm -rf /tmp/* /var/cache/apk/*
+	rm -rf /tmp/* /var/tmp/*
 
 WORKDIR /app
 
