@@ -8,9 +8,9 @@
 | ---- | ---- | ---- | ---- |
 | [EPGStation](https://github.com/l3tnun/EPGStation) | [collelog/epgstation](https://hub.docker.com/r/collelog/epgstation) | | ./epgstation/ |
 | | | [collelog/epgstation-build](https://hub.docker.com/r/collelog/epgstation-build) | ./epgstation-build/ |
-| | | [collelog/sqlite3-regexp-build](https://hub.docker.com/r/collelog/sqlite3-regexp-build) | ./sqlite3-regexp-build/ |
-| | | [collelog/ffmpeg](https://hub.docker.com/r/collelog/ffmpeg) | GitHub:[collelog/ffmpeg](https://github.com/collelog/ffmpeg) |
-| [MariaDB](https://mariadb.org/) | [collelog/mariadb](https://hub.docker.com/r/collelog/mariadb) |  | ./mariadb/ |
+| |Alpineのみ| [collelog/sqlite3-regexp-build](https://hub.docker.com/r/collelog/sqlite3-regexp-build) | ./sqlite3-regexp-build/ |
+| |Alpineのみ,Debianはsqlite3-pcreインストール| [collelog/sqlite3-pcre-build](https://hub.docker.com/r/collelog/sqlite3-pcre-build) | ./sqlite3-pcre-build/ |
+| |Alpineのみ,Debianはjellyfin-ffmpegインストール| [collelog/ffmpeg](https://hub.docker.com/r/collelog/ffmpeg) | GitHub:[collelog/ffmpeg](https://github.com/collelog/ffmpeg) |
 | [mirakc](https://github.com/mirakc/mirakc) | [collelog/mirakc](https://hub.docker.com/r/collelog/mirakc) |  | ./mirakc/ |
 | | | [mirakc/mirakc](https://hub.docker.com/r/mirakc/mirakc) | |
 | | | [collelog/recpt1-build](https://hub.docker.com/r/collelog/recpt1-build) | ./recpt1-build/ |
@@ -18,12 +18,13 @@
 | | | [collelog/recfsusb2n-build](https://hub.docker.com/r/collelog/recfsusb2n-build) | ./recfsusb2n-build/ |
 | | | [collelog/libarib25-build](https://hub.docker.com/r/collelog/libarib25-build) | ./libarib25-build/ |
 | | | [collelog/arib-b25-stream-test-build](https://hub.docker.com/r/collelog/arib-b25-stream-test-build) | ./arib-b25-stream-test-build/ |
-| [Mirakurun v2](https://github.com/Chinachu/Mirakurun) | [collelog/mirakurun](https://hub.docker.com/r/collelog/mirakurun) | | ./mirakurun/ |
+| [Mirakurun](https://github.com/Chinachu/Mirakurun) | [collelog/mirakurun](https://hub.docker.com/r/collelog/mirakurun) | | ./mirakurun/ |
 | | | [collelog/recpt1-build](https://hub.docker.com/r/collelog/recpt1-build) | ./recpt1-build/ |
 | | | [collelog/recdvb-build](https://hub.docker.com/r/collelog/recdvb-build) | ./recdvb-build/ |
 | | | [collelog/recfsusb2n-build](https://hub.docker.com/r/collelog/recfsusb2n-build) | ./recfsusb2n-build/ |
 | | | [collelog/libarib25-build](https://hub.docker.com/r/collelog/libarib25-build) | ./libarib25-build/ |
 | | | [collelog/arib-b25-stream-test-build](https://hub.docker.com/r/collelog/arib-b25-stream-test-build) | ./arib-b25-stream-test-build/ |
+| [MariaDB](https://mariadb.org/) | [collelog/mariadb](https://hub.docker.com/r/collelog/mariadb) |  | ./mariadb/ |
 | [xTeVe](https://xteve.de/) | [collelog/xteve](https://hub.docker.com/r/collelog/xteve) | | GitHub:[collelog/xteve](https://github.com/collelog/xteve) |
 | チャンネルスキャン | [collelog/tvchannels-scan](https://hub.docker.com/r/collelog/tvchannels-scan) | | ./tvchannels-scan/ || | | [collelog/recpt1-build](https://hub.docker.com/r/collelog/recpt1-build) | ./recpt1-build/ |
 | | | [collelog/epgdump-build](https://hub.docker.com/r/collelog/epgdump-build) | ./epgdump-build/ |
