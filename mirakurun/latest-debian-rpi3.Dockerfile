@@ -41,6 +41,8 @@ FROM collelog/arib-b25-stream-test-build:latest-debian-rpi3 AS arib-b25-stream-t
 FROM node:16-buster-slim
 LABEL maintainer "collelog <collelog.cavamin@gmail.com>"
 
+ENV DEBIAN_FRONTEND=noninteractive
+
 # mirakurun
 COPY --from=mirakurun-build /build /
 
