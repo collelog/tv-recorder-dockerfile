@@ -65,6 +65,7 @@ RUN set -eux && \
 		libboost-filesystem1.67.0 \
 		libboost-thread1.67.0 \
 		libccid \
+		pcscd \
 		pcsc-tools \
 		socat && \
 	\
