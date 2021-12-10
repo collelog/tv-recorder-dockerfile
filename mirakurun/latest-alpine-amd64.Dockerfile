@@ -88,6 +88,8 @@ RUN set -eux && \
 	\
 	sed -i -e 's/cgroup_add_service$/# cgroup_add_service/g' /lib/rc/sh/openrc-run.sh && \
 	\
+	rc-status && \
+	\
 	mkdir /etc/dvbv5 && \
 	cd /etc/dvbv5 && \
 	curl -fsSLO https://raw.githubusercontent.com/Chinachu/dvbconf-for-isdb/master/conf/dvbv5_channels_isdbs.conf && \
