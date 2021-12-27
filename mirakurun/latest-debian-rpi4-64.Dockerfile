@@ -3,7 +3,7 @@ FROM collelog/buildenv:node16-debian AS mirakurun-build
 
 ENV DOCKER="YES"
 WORKDIR /tmp
-RUN curl -kfsSLo mirakurun.zip https://github.com/Chinachu/Mirakurun/archive/refs/heads/master.zip
+RUN curl -kfsSLo mirakurun.zip http://github.com/Chinachu/Mirakurun/archive/refs/heads/master.zip
 RUN unzip mirakurun.zip
 RUN chmod -R 755 ./Mirakurun-master
 RUN mv ./Mirakurun-master /app
