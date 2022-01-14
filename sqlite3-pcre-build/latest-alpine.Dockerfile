@@ -19,7 +19,7 @@ RUN rm -rf /tmp/* /var/tmp/*
 
 
 # final image
-FROM alpine:3.14
+FROM alpine:latest
 LABEL maintainer "collelog <collelog.cavamin@gmail.com>"
 
 COPY --from=sqlite3-pcre-build /build /build

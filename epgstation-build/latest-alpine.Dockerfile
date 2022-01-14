@@ -16,7 +16,7 @@ RUN rm -rf /tmp/* /var/tmp/* ~/.npm
 
 
 # final image
-FROM node:16-alpine3.14
+FROM node:16-alpine
 LABEL maintainer "collelog <collelog.cavamin@gmail.com>"
 
 COPY --from=epgstation-build /build /build
