@@ -12,7 +12,7 @@ RUN apt-get install -y --no-install-recommends \
 	pkg-config
 
 WORKDIR /tmp/arib-b25-stream-test
-RUN curl -kfsSL https://registry.npmjs.org/arib-b25-stream-test/-/arib-b25-stream-test-0.2.9.tgz | \
+RUN curl -kfsSLv https://registry.npmjs.org/arib-b25-stream-test/-/arib-b25-stream-test-0.2.9.tgz | \
 	tar -xz --strip-components=0
 WORKDIR /tmp/arib-b25-stream-test/package/src
 RUN mv /tmp/*.patch /tmp/arib-b25-stream-test/package/src/
