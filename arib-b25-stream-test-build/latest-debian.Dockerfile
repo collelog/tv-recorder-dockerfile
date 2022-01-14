@@ -12,8 +12,8 @@ RUN apt-get install -y --no-install-recommends \
 	pkg-config
 
 WORKDIR /tmp/arib-b25-stream-test
-RUN curl -kfsSLv https://registry.npmjs.org/arib-b25-stream-test/-/arib-b25-stream-test-0.2.9.tgz | \
-	tar -xz --strip-components=0
+RUN curl -kfsSLo arib-b25-stream-test-0.2.9.tgz https://registry.npmjs.org/arib-b25-stream-test/-/arib-b25-stream-test-0.2.9.tgz
+RUN tar -xz --strip-components=0 -f arib-b25-stream-test-0.2.9.tgz
 WORKDIR /tmp/arib-b25-stream-test/package/src
 RUN mv /tmp/*.patch /tmp/arib-b25-stream-test/package/src/
 RUN dos2unix Makefile
