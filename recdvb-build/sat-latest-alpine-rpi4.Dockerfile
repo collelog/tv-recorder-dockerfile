@@ -14,7 +14,7 @@ RUN make -j $(nproc) install
 
 
 WORKDIR /tmp/recdvb
-RUN curl -fsSL https://web.archive.org/web/20190917134748/http://www13.plala.or.jp/sat/recdvb/recdvb-1.3.2.tgz | \
+RUN curl -fsSLk https://web.archive.org/web/20190917134748/http://www13.plala.or.jp/sat/recdvb/recdvb-1.3.2.tgz | \
 		tar -xz --strip-components=1
 RUN mv /tmp/*.patch /tmp/recdvb/
 RUN patch < Makefile.in-rpi4.patch
