@@ -4,7 +4,6 @@ WORKDIR /build
 RUN cp --archive --parents --no-dereference /usr/local/bin/mirakc-arib /build
 RUN cp --archive --parents --no-dereference /usr/local/bin/mirakc /build
 RUN cp --archive --parents --no-dereference /etc/mirakc /build
-RUN cp --archive --parents --no-dereference /etc/mirakurun.openapi.json /build
 
 
 # libarib25 
@@ -62,6 +61,7 @@ RUN set -eux && \
 		ca-certificates \
 		curl \
 		dvb-tools \
+		jq \
 		libboost-filesystem1.67.0 \
 		libboost-thread1.67.0 \
 		libccid \
