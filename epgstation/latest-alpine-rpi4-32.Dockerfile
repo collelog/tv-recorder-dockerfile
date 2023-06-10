@@ -15,7 +15,7 @@ FROM collelog/epgstation-build:latest-alpine AS epgstation-image
 
 
 # final image
-FROM node:16-alpine
+FROM node:16-alpine3.17
 LABEL maintainer "collelog <collelog.cavamin@gmail.com>"
 
 ENV LD_LIBRARY_PATH=/opt/vc/lib:/usr/local/lib:/usr/lib:/lib

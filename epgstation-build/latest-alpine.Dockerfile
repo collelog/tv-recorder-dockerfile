@@ -1,5 +1,5 @@
 # EPGStation
-FROM collelog/buildenv:node16-alpine AS epgstation-build
+FROM collelog/buildenv:node16-alpine3.17 AS epgstation-build
 
 WORKDIR /opt/epgstation
 ENV DOCKER="YES"
@@ -16,7 +16,7 @@ RUN rm -rf /tmp/* /var/tmp/* ~/.npm
 
 
 # final image
-FROM node:16-alpine
+FROM node:16-alpine3.17
 LABEL maintainer "collelog <collelog.cavamin@gmail.com>"
 
 COPY --from=epgstation-build /build /build
