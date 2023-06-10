@@ -1,5 +1,5 @@
 # mirakurun-build
-FROM collelog/buildenv:node16-debian AS mirakurun-build
+FROM collelog/buildenv:node18-debian AS mirakurun-build
 
 ENV DOCKER="YES"
 WORKDIR /tmp
@@ -38,7 +38,7 @@ FROM collelog/arib-b25-stream-test-build:latest-debian-rpi3 AS arib-b25-stream-t
 
 
 # final image
-FROM node:16-buster-slim
+FROM node:18-buster-slim
 LABEL maintainer "collelog <collelog.cavamin@gmail.com>"
 
 ENV DEBIAN_FRONTEND=noninteractive
