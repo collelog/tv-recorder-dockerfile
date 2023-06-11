@@ -1,11 +1,6 @@
-name: epgstation-build-latest_child1
+name: epgstation-build-latest1
 
-on:
-  workflow_run:
-    workflows:
-      - epgstation-build-latest
-    types:
-      - completed
+on: [ workflow_dispatch ]
 
 jobs:
   buildx:
