@@ -35,10 +35,13 @@ COPY --from=sqlite3-pcre-image /build/usr/lib/sqlite3/pcre.so /opt/epgstation
 RUN set -eux && \
 	apk upgrade --no-cache --update-cache && \
 	apk add --no-cache --update-cache \
+		libstdc++ \
 		curl \
 		pcre \
 		raspberrypi-libs \
 		tzdata && \
+	apk add --no-cache --update-cache --repository http://dl-cdn.alpinelinux.org/alpine/edge/community \
+		libstdc++6 && \
 	\
 	# cleaning
 	npm cache verify && \
