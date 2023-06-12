@@ -3,12 +3,13 @@ FROM collelog/epgstation-build:latest-debian AS epgstation-build
 
 
 # final image
-FROM node:16-buster-slim
+FROM node:16-bullseye-slim
 LABEL maintainer "collelog <collelog.cavamin@gmail.com>"
 
+# https://askubuntu.com/questions/972516/debian-frontend-environment-variable
+ARG DEBIAN_FRONTEND="noninteractive"
+# http://stackoverflow.com/questions/48162574/ddg#49462622
 ARG APT_KEY_DONT_WARN_ON_DANGEROUS_USAGE=DontWarn
-
-ENV DEBIAN_FRONTEND=noninteractive
 
 # EPGStation
 COPY --from=epgstation-build /build /
@@ -16,26 +17,21 @@ COPY --from=epgstation-build /build /
 RUN set -eux && \
 	apt-get update -qq && \
 	apt-get upgrade -y && \
-	apt-get install -y --no-install-recommends \
+	apt-get install -y --no-install-recommends --no-install-suggests -y \
 		apt-transport-https \
 		ca-certificates \
 		curl \
 		gnupg \
-		lsb-release \
 		sqlite3-pcre \
-		tzdata && \
-	\
-	cd /tmp && \
-	curl -kO https://repo.jellyfin.org/debian/jellyfin_team.gpg.key && \
-	apt-key add jellyfin_team.gpg.key && \
-	echo "deb [arch=$( dpkg --print-architecture )] https://repo.jellyfin.org/debian $( lsb_release -c -s ) main" | tee /etc/apt/sources.list.d/jellyfin.list && \
-	curl -kO https://archive.raspberrypi.org/debian/raspberrypi.gpg.key && \
-	apt-key add raspberrypi.gpg.key && \
-	echo "deb [arch=$( dpkg --print-architecture )] https://archive.raspberrypi.org/debian $( lsb_release -c -s ) main" | tee -a /etc/apt/sources.list && \
-	\
+		tzdata \
+		wget && \
+	wget -O - https://repo.jellyfin.org/jellyfin_team.gpg.key | apt-key add - && \ 
+	echo "deb [arch=$( dpkg --print-architecture )] https://repo.jellyfin.org/$( awk -F'=' '/^ID=/{ print $NF }' /etc/os-release ) $( awk -F'=' '/^VERSION_CODENAME=/{ print $NF }' /etc/os-release ) main" | tee /etc/apt/sources.list.d/jellyfin.list && \
+	wget -O https://archive.raspberrypi.org/debian/raspberrypi.gpg.key | apt-key add - && \ 
+	echo "deb [arch=$( dpkg --print-architecture )] https://archive.raspberrypi.org/debian $( awk -F'=' '/^VERSION_CODENAME=/{ print $NF }' /etc/os-release ) main" | tee -a /etc/apt/sources.list && \
 	apt-get update -qq && \
-	apt-get install -y --no-install-recommends \
-		jellyfin-ffmpeg \
+	apt-get install -y --no-install-recommends --no-install-suggests -y \
+		jellyfin-ffmpeg6 \
 		libomxil-bellagio0 \
 		libomxil-bellagio-bin \
 		libraspberrypi0 && \

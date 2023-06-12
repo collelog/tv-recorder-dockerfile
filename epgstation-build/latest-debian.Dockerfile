@@ -1,5 +1,5 @@
 # EPGStation
-FROM collelog/buildenv:node16-debian AS epgstation-build
+FROM collelog/buildenv:node16-debian-bullseye AS epgstation-build
 
 ENV DEBIAN_FRONTEND=noninteractive
 
@@ -18,7 +18,7 @@ RUN apt-get clean
 RUN rm -rf /tmp/* /var/tmp/* /var/lib/apt/lists/* ~/.npm
 
 # final image
-FROM node:16-buster-slim
+FROM node:16-bullseye-slim
 LABEL maintainer "collelog <collelog.cavamin@gmail.com>"
 
 COPY --from=epgstation-build /build /build
