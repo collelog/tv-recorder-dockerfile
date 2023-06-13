@@ -27,7 +27,7 @@ RUN set -eux && \
 		wget && \
 	wget -O - https://repo.jellyfin.org/jellyfin_team.gpg.key | apt-key add - && \ 
 	echo "deb [arch=$( dpkg --print-architecture )] https://repo.jellyfin.org/$( awk -F'=' '/^ID=/{ print $NF }' /etc/os-release ) $( awk -F'=' '/^VERSION_CODENAME=/{ print $NF }' /etc/os-release ) main" | tee /etc/apt/sources.list.d/jellyfin.list && \
-	wget -O https://archive.raspberrypi.org/debian/raspberrypi.gpg.key | apt-key add - && \ 
+	wget -O - https://archive.raspberrypi.org/debian/raspberrypi.gpg.key | apt-key add - && \ 
 	echo "deb [arch=$( dpkg --print-architecture )] https://archive.raspberrypi.org/debian $( awk -F'=' '/^VERSION_CODENAME=/{ print $NF }' /etc/os-release ) main" | tee -a /etc/apt/sources.list && \
 	apt-get update -qq && \
 	apt-get install -y --no-install-recommends --no-install-suggests -y \
