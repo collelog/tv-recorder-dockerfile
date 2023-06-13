@@ -31,7 +31,7 @@ RUN set -eux && \
 	echo "deb [arch=$( dpkg --print-architecture )] https://archive.raspberrypi.org/debian $( awk -F'=' '/^VERSION_CODENAME=/{ print $NF }' /etc/os-release ) main" | tee -a /etc/apt/sources.list && \
 	apt-get update -qq && \
 	apt-get install -y --no-install-recommends --no-install-suggests -y \
-		jellyfin-ffmpeg6 \
+		jellyfin-ffmpeg5 \
 		libomxil-bellagio0 \
 		libomxil-bellagio-bin \
 		libraspberrypi0 && \

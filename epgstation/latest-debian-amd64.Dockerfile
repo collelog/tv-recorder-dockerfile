@@ -37,7 +37,7 @@ RUN set -eux && \
 	echo "deb [arch=$( dpkg --print-architecture )] https://repo.jellyfin.org/$( awk -F'=' '/^ID=/{ print $NF }' /etc/os-release ) $( awk -F'=' '/^VERSION_CODENAME=/{ print $NF }' /etc/os-release ) main" | tee /etc/apt/sources.list.d/jellyfin.list && \
 	apt-get update -qq && \
 	apt-get install -y --no-install-recommends --no-install-suggests -y \
-		jellyfin-ffmpeg6 \
+		jellyfin-ffmpeg5 \
 		mesa-va-drivers && \
 	# Intel VAAPI Tone mapping dependencies:
 	# Prefer NEO to Beignet since the latter one doesn't support Comet Lake or newer for now.
