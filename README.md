@@ -1,16 +1,16 @@
 # [TV Recorder on Docker] Dockerfiles
->GitHub:[collelog/tv-recorder](https://github.com/collelog/tv-recorder)を構成するDockerコンテナのDockerfileです。
+## Dockerfile
+Dockerfileは、GitHub上の[collelog/tv-recorder](https://github.com/collelog/tv-recorder)で使用するDockerコンテナを構成するための設定ファイルです。
+TV録画を行うためのアプリケーションであるmirakcやEPGStationなどを用意しています。また、このDockerfileで作成したDockerイメージは全て[DockerHub](https://hub.docker.com/r/collelog/)にて公開されています 。
 
-当Dockerfileで作成したDockerイメージは全てDockerHubにて公開しています。  
+DockerHub公開イメージの表にあるように、アプリケーションごとに異なるDockerfileが用意されており、それぞれのDockerfileは依存するイメージを含んでいます。
+例えばmirakcのDockerfileは、recpt1やrecdvb、recfsusb2nとlibarib25、arib-b25-stream-testのバイナリを含んでいます。
 
 ## DockerHub公開イメージ
 | アプリケーション | 公開イメージタグ | 依存イメージ | Dockerfile |
 | ---- | ---- | ---- | ---- |
 | [EPGStation](https://github.com/l3tnun/EPGStation) | [collelog/epgstation](https://hub.docker.com/r/collelog/epgstation) | | ./epgstation/ |
 | | | [collelog/epgstation-build](https://hub.docker.com/r/collelog/epgstation-build) | ./epgstation-build/ |
-| |Alpineのみ| [collelog/sqlite3-regexp-build](https://hub.docker.com/r/collelog/sqlite3-regexp-build) | ./sqlite3-regexp-build/ |
-| |Alpineのみ,Debianはsqlite3-pcreインストール| [collelog/sqlite3-pcre-build](https://hub.docker.com/r/collelog/sqlite3-pcre-build) | ./sqlite3-pcre-build/ |
-| |Alpineのみ,Debianはjellyfin-ffmpegインストール| [collelog/ffmpeg](https://hub.docker.com/r/collelog/ffmpeg) | GitHub:[collelog/ffmpeg](https://github.com/collelog/ffmpeg) |
 | [mirakc](https://github.com/mirakc/mirakc) | [collelog/mirakc](https://hub.docker.com/r/collelog/mirakc) |  | ./mirakc/ |
 | | | [mirakc/mirakc](https://hub.docker.com/r/mirakc/mirakc) | |
 | | | [collelog/recpt1-build](https://hub.docker.com/r/collelog/recpt1-build) | ./recpt1-build/ |
