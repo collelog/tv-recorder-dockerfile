@@ -1,4 +1,4 @@
-name: epgstation-build-latest1
+name: epgstation-build-latest_child1_manually
 
 on: [ workflow_dispatch ]
 

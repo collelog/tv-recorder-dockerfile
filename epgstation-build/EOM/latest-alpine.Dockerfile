@@ -3,8 +3,12 @@ FROM collelog/buildenv:node16-alpine3.17 AS epgstation-build
 
 WORKDIR /opt/epgstation
 ENV DOCKER="YES"
-RUN npm config set fetch-retry-mintimeout 200000
-RUN npm config set fetch-retry-maxtimeout 1200000
+RUN npm config set registry http://registry.npmjs.org/
+RUN npm config set loglevel info
+RUN npm config set fetch-retries 10
+RUN npm config set fetch-retry-mintimeout 15000
+RUN npm config set fetch-retry-maxtimeout 90000
+RUN npm config set cache-min 86400
 RUN curl -fsSL https://github.com/l3tnun/EPGStation/tarball/master | \
 		tar -xz --strip-components=1
 RUN npm run all-install --python=/usr/bin/python3
