@@ -69,8 +69,8 @@ RUN set -eux && \
 		ca-certificates \
 		curl \
 		dvb-tools \
-		libboost-filesystem1.67.0 \
-		libboost-thread1.67.0 \
+		libboost-filesystem1.74.0 \
+		libboost-thread1.74.0 \
 		libccid \
 		pcscd \
 		pcsc-tools \
