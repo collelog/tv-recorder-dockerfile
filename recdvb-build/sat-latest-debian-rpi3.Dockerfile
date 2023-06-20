@@ -11,14 +11,14 @@ RUN apt-get install -y --no-install-recommends \
 	libpcsclite-dev
 
 WORKDIR /tmp/libarib25
-RUN curl -kfsSL https://github.com/stz2012/libarib25/tarball/master | \
+RUN curl -fsSL https://github.com/stz2012/libarib25/tarball/master | \
 		tar -xz --strip-components=1
 RUN cmake -DCMAKE_BUILD_TYPE=Release .
 RUN make -j $(nproc) install
 
 
 WORKDIR /tmp/recdvb
-RUN curl -fsSLk https://web.archive.org/web/20190917134748/http://www13.plala.or.jp/sat/recdvb/recdvb-1.3.2.tgz | \
+RUN curl -kfsSL https://web.archive.org/web/20190917134748/http://www13.plala.or.jp/sat/recdvb/recdvb-1.3.2.tgz | \
 		tar -xz --strip-components=1
 RUN mv /tmp/*.patch /tmp/recdvb/
 RUN patch < Makefile.in-rpi3.patch

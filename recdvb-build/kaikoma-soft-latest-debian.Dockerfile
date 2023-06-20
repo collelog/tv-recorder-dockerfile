@@ -11,14 +11,14 @@ RUN apt-get install -y --no-install-recommends \
 	libpcsclite-dev
 
 WORKDIR /tmp/libarib25
-RUN curl -kfsSL https://github.com/stz2012/libarib25/tarball/master | \
+RUN curl -fsSL https://github.com/stz2012/libarib25/tarball/master | \
 		tar -xz --strip-components=1
 RUN cmake -DCMAKE_BUILD_TYPE=Release .
 RUN make -j $(nproc) install
 
 
 WORKDIR /tmp/recdvb
-RUN curl -kfsSL https://github.com/kaikoma-soft/recdvb/tarball/master | \
+RUN curl -fsSL https://github.com/kaikoma-soft/recdvb/tarball/master | \
 		tar -xz --strip-components=1
 RUN mv /tmp/*.patch /tmp/recdvb/
 RUN patch < Makefile.in.patch
