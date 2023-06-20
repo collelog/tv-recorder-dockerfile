@@ -1,5 +1,5 @@
 # recdvb
-FROM collelog/buildenv:debian-bullseye AS recdvb-build
+FROM collelog/buildenv:debian-bookworm AS recdvb-build
 
 ENV DEBIAN_FRONTEND=noninteractive
 
@@ -37,7 +37,7 @@ RUN rm -rf /tmp/* /var/tmp/* /var/lib/apt/lists/*
 
 
 # final image
-FROM debian:bullseye-slim
+FROM debian:bookworm-slim
 LABEL maintainer "collelog <collelog.cavamin@gmail.com>"
 
 COPY --from=recdvb-build /build /build

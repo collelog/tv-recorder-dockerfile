@@ -27,7 +27,7 @@ FROM collelog/arib-b25-stream-test-build:latest-debian-amd64 AS arib-b25-stream-
 
 
 # final image
-FROM debian:bullseye-slim
+FROM debian:bookworm-slim
 LABEL maintainer "collelog <collelog.cavamin@gmail.com>"
 
 ENV DEBIAN_FRONTEND=noninteractive

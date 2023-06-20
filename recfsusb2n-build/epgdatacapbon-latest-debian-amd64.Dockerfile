@@ -1,5 +1,5 @@
 # recfsusb2n
-FROM collelog/buildenv:debian-bullseye AS recfsusb2n-build
+FROM collelog/buildenv:debian-bookworm AS recfsusb2n-build
 
 ENV DEBIAN_FRONTEND=noninteractive
 
@@ -41,7 +41,7 @@ RUN rm -rf /tmp/* /var/tmp/* /var/lib/apt/lists/*
 
 
 # final image
-FROM debian:bullseye-slim
+FROM debian:bookworm-slim
 LABEL maintainer "collelog <collelog.cavamin@gmail.com>"
 
 COPY --from=recfsusb2n-build /build /build

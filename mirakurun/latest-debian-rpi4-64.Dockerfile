@@ -1,5 +1,5 @@
 # mirakurun-build
-FROM collelog/buildenv:node18-debian-bullseye AS mirakurun-build
+FROM collelog/buildenv:node18-debian-bookworm AS mirakurun-build
 
 ENV DOCKER="YES"
 WORKDIR /tmp
@@ -38,7 +38,7 @@ FROM collelog/arib-b25-stream-test-build:latest-debian-rpi4-64 AS arib-b25-strea
 
 
 # final image
-FROM node:18-bullseye-slim
+FROM node:18-bookworm-slim
 LABEL maintainer "collelog <collelog.cavamin@gmail.com>"
 
 ENV DEBIAN_FRONTEND=noninteractive
