@@ -1,5 +1,5 @@
 # epgdatacapbon libarib25
-FROM collelog/buildenv:debian AS libarib25-build
+FROM collelog/buildenv:debian-bullseye AS libarib25-build
 
 ENV DEBIAN_FRONTEND=noninteractive
 
@@ -35,7 +35,7 @@ RUN rm -rf /tmp/* /var/tmp/* /var/lib/apt/lists/*
 
 
 # final image
-FROM debian:buster-slim
+FROM debian:bullseye-slim
 LABEL maintainer "collelog <collelog.cavamin@gmail.com>"
 
 COPY --from=libarib25-build /build /build
