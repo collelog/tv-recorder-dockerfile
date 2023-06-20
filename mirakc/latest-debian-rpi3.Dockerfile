@@ -1,5 +1,5 @@
 # mirakc-arib, mirakc
-FROM mirakc/mirakc:debian-bullseye AS mirakc-image
+FROM mirakc/mirakc:debian AS mirakc-image
 WORKDIR /build
 RUN cp --archive --parents --no-dereference /usr/local/bin/mirakc-arib /build
 RUN cp --archive --parents --no-dereference /usr/local/bin/mirakc /build
