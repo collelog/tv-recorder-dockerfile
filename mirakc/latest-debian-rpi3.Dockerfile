@@ -62,8 +62,8 @@ RUN set -eux && \
 		curl \
 		dvb-tools \
 		jq \
-		libboost-filesystem1.67.0 \
-		libboost-thread1.67.0 \
+		libboost-filesystem1.74.0 \
+		libboost-thread1.74.0 \
 		libccid \
 		pcscd \
 		pcsc-tools \
