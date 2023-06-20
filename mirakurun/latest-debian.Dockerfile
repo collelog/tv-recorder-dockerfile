@@ -38,7 +38,7 @@ FROM collelog/arib-b25-stream-test-build:latest-debian AS arib-b25-stream-test-i
 
 
 # final image
-FROM node:18-bookworm-slim
+FROM node:18-bookworm
 LABEL maintainer "collelog <collelog.cavamin@gmail.com>"
 
 ENV DEBIAN_FRONTEND=noninteractive
