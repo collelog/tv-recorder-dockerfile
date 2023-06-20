@@ -1,5 +1,5 @@
 # mirakc-arib, mirakc
-FROM mirakc/mirakc:debian AS mirakc-image
+FROM mirakc/mirakc:debian-bullseye AS mirakc-image
 WORKDIR /build
 RUN cp --archive --parents --no-dereference /usr/local/bin/mirakc-arib /build
 RUN cp --archive --parents --no-dereference /usr/local/bin/mirakc /build
@@ -27,7 +27,7 @@ FROM collelog/arib-b25-stream-test-build:latest-debian-amd64 AS arib-b25-stream-
 
 
 # final image
-FROM debian:buster-slim
+FROM debian:bullseye-slim
 LABEL maintainer "collelog <collelog.cavamin@gmail.com>"
 
 ENV DEBIAN_FRONTEND=noninteractive
