@@ -1,5 +1,5 @@
 # arib-b25-stream-test
-FROM collelog/buildenv:node16-debian AS build
+FROM collelog/buildenv:node16-debian-bullseye AS build
 
 ENV DEBIAN_FRONTEND=noninteractive
 
@@ -31,7 +31,7 @@ RUN rm -rf /tmp/* /var/tmp/* /var/lib/apt/lists/* ~/.npm
 
 
 # final image
-FROM debian:buster-slim
+FROM debian:bullseye-slim
 LABEL maintainer "collelog <collelog.cavamin@gmail.com>"
 
 COPY --from=build /build /build
