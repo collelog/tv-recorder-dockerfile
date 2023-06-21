@@ -27,7 +27,7 @@ FROM collelog/arib-b25-stream-test-build:latest-debian-amd64 AS arib-b25-stream-
 
 
 # final image
-FROM debian:stable-slim
+FROM debian:bookworm-slim
 LABEL maintainer "collelog <collelog.cavamin@gmail.com>"
 
 ENV DEBIAN_FRONTEND=noninteractive
@@ -55,6 +55,12 @@ COPY --from=arib-b25-stream-test-image /build /
 
 
 RUN set -eux && \
+	echo "deb http://ftp.us.debian.org/debian bookworm main" >> /etc/apt/sources.list && \
+	echo "deb-src http://deb.debian.org/debian bookworm main non-free-firmware" >> /etc/apt/sources.list && \
+	echo "deb http://deb.debian.org/debian-security/ bookworm-security main non-free-firmware" >> /etc/apt/sources.list && \
+	echo "deb-src http://deb.debian.org/debian-security/ bookworm-security main non-free-firmware" >> /etc/apt/sources.list && \
+	echo "deb http://deb.debian.org/debian bookworm-updates main non-free-firmware" >> /etc/apt/sources.list && \
+	echo "deb-src http://deb.debian.org/debian bookworm-updates main non-free-firmware" >> /etc/apt/sources.list && \
 	apt-get update -qq && \
 	apt-get upgrade -y && \
 	apt-get install -y --no-install-recommends \
