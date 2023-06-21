@@ -55,6 +55,18 @@ jobs:
         name: Build and push - latest-debian-amd64
         uses: docker/build-push-action@v2
         with:
+          context: ./mirakurun/
+          file: ./mirakurun/latest-debian-amd64.Dockerfile
+          tags: |
+            collelog/mirakurun:latest-debian-amd64
+          platforms: linux/amd64
+          push: true
+          cache-from: type=local,src=/tmp/.buildx-cache
+          cache-to: type=local,dest=/tmp/.buildx-cache
+      -
+        name: Build and push - latest-debian-amd64
+        uses: docker/build-push-action@v2
+        with:
           context: ./mirakc/
           file: ./mirakc/latest-debian-amd64.Dockerfile
           tags: collelog/mirakc:latest-debian-amd64

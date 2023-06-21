@@ -55,12 +55,6 @@ COPY --from=arib-b25-stream-test-image /build /
 
 
 RUN set -eux && \
-	echo "deb http://146.75.114.132/debian/ bookworm main" >> /etc/apt/sources.list && \
-	echo "deb-src http://146.75.114.132/debian/ bookworm main" >> /etc/apt/sources.list && \
-	echo "deb http://146.75.114.132/debian-security/ bookworm-security main" >> /etc/apt/sources.list && \
-	echo "deb-src http://146.75.114.132/debian-security/ bookworm-security main" >> /etc/apt/sources.list && \
-	echo "deb http://146.75.114.132/debian/ bookworm-updates main" >> /etc/apt/sources.list && \
-	echo "deb-src http://146.75.114.132/debian/ bookworm-updates main" >> /etc/apt/sources.list && \
 	apt-get update -qq && \
 	apt-get upgrade -y && \
 	apt-get install -y --no-install-recommends \
