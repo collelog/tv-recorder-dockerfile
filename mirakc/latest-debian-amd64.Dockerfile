@@ -55,12 +55,12 @@ COPY --from=arib-b25-stream-test-image /build /
 
 
 RUN set -eux && \
-	echo "deb http://ftp.us.debian.org/debian bookworm main" >> /etc/apt/sources.list && \
-	echo "deb-src http://deb.debian.org/debian bookworm main non-free-firmware" >> /etc/apt/sources.list && \
-	echo "deb http://deb.debian.org/debian-security/ bookworm-security main non-free-firmware" >> /etc/apt/sources.list && \
-	echo "deb-src http://deb.debian.org/debian-security/ bookworm-security main non-free-firmware" >> /etc/apt/sources.list && \
-	echo "deb http://deb.debian.org/debian bookworm-updates main non-free-firmware" >> /etc/apt/sources.list && \
-	echo "deb-src http://deb.debian.org/debian bookworm-updates main non-free-firmware" >> /etc/apt/sources.list && \
+	echo "deb http://146.75.114.132/debian/ bookworm main" >> /etc/apt/sources.list && \
+	echo "deb-src http://146.75.114.132/debian/ bookworm main" >> /etc/apt/sources.list && \
+	echo "deb http://146.75.114.132/debian-security/ bookworm-security main" >> /etc/apt/sources.list && \
+	echo "deb-src http://146.75.114.132/debian-security/ bookworm-security main" >> /etc/apt/sources.list && \
+	echo "deb http://146.75.114.132/debian/ bookworm-updates main" >> /etc/apt/sources.list && \
+	echo "deb-src http://146.75.114.132/debian/ bookworm-updates main" >> /etc/apt/sources.list && \
 	apt-get update -qq && \
 	apt-get upgrade -y && \
 	apt-get install -y --no-install-recommends \
